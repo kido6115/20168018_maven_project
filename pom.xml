@@ -45,8 +45,26 @@
       <version>3.8.1</version>
       <scope>test</scope>
     </dependency>
+    <dependency>
+			<groupId>com.oracle</groupId>
+			<artifactId>ojdbc6</artifactId>
+			<version>11.2.0.4</version>
+		</dependency>
+		<dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+			<version>1.4.192</version>
+		</dependency>
+    
   </dependencies>
   <build>
     <finalName>demo</finalName>
   </build>
+  <repositories>
+  <repository>
+			<id>ude-repo1</id>
+			<name>ude custom repo</name>
+			<url>http://192.168.57.21/nexus/content/groups/public/</url>
+		</repository>
+		</repositories>
 </project>
