@@ -424,7 +424,7 @@ if(dep.equals("0")){
 		// 01.檔案名稱
 		// final String disk =
 		// "C:\\workspace\\DemoIO-0527 V9.0\\WebContent\\WEB-INF\\export\\";
-		final String disk = "C:\\";
+		final String disk = "D:\\";
 		final String fileName = "PSE";
 
 		// 02.資料來源
@@ -477,7 +477,7 @@ if(dep.equals("0")){
 			
 			//印出表頭
 			 Row headRow = sheet.createRow(0);
-	         String[] head = { "員工編號", "姓名", "年度", "假種", "上限"};
+	         String[] head = { "1", "2", "3", "4", "5"};
 	         for( int i = 0 ; i < head.length ; i++ ){
 	             Cell cell = headRow.createCell(i);
 	             cell.setCellValue(head[i]);
@@ -510,7 +510,7 @@ if(dep.equals("0")){
 	         sheet.autoSizeColumn((short)4);
 	        
 			//暫存位子
-			FileOutputStream fOut = new FileOutputStream("c://HOUR.xls");
+			FileOutputStream fOut = new FileOutputStream("D://HOUR.xls");
 			workbook.write(fOut);
 			fOut.close();}catch(Exception e){}
 			
