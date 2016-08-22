@@ -1,0 +1,44 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                template="/template.xhtml">
+                <ui:define name="title">
+                <div>
+                
+                </div>
+                
+                
+                	<h1><img src="img/PDW.png"/></h1>
+
+						<form method="post" action="ChangepwdServlet" name="form1" >
+							<table class="mytable"  align="center">
+								<tr><td><p align="center">
+								<br></br>
+									輸入舊密碼:
+									<input type="password" name="oldpwd" 
+										required="required" />
+								<br></br>
+								<br></br>
+							
+									輸入新密碼:
+							<input type="password" id="pwd" name="newpwd"  style="width:220px"
+										maxlength="12" size="14"
+										pattern="(?=^[a-z0-9]{6,12}$)((?=.*[a-z])(?=.*[0-9]))^.*$"
+										placeholder="6~12英數字組合" required="required" />
+							<br></br>
+							<br></br>
+								
+								重新輸入密碼:
+								<input type="password"  name="checkpwd" style="width:100"
+										required="required"/>
+								<br></br>
+							
+							<br></br> <button class="btn btn-primary" type="submit">
+								<img src="img/paper-plane.png"/>更新</button>
+								</p></td></tr>
+								</table>
+				
+						</form>
+						</ui:define>
+                </ui:composition>
