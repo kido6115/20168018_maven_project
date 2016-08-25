@@ -14,10 +14,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import Bean.SearchHour;
-import Bean.Hours;
-import Bean.SearchPSE;
-import Db.JDBCPSEsearch;
+import bean.Hours;
+import bean.SearchHour;
+import bean.SearchPSE;
+import db.JDBCPSESearch;
 
 public class PSEsearchServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -59,7 +59,7 @@ public class PSEsearchServlet extends HttpServlet {
 		String[] Kind = request.getParameterValues("type");
 		String[] Status = request.getParameterValues("status");
 
-		JDBCPSEsearch db = new JDBCPSEsearch();
+		JDBCPSESearch db = new JDBCPSESearch();
 		List<SearchPSE> list = null;
 		List<Hours> list2 = null;
 
@@ -144,7 +144,7 @@ public class PSEsearchServlet extends HttpServlet {
 			HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		String dep=session.getAttribute("Identity").toString();
-		JDBCPSEsearch db = new JDBCPSEsearch();
+		JDBCPSESearch db = new JDBCPSESearch();
 		List<SearchPSE> list = null;
 		List<Hours> list2 = null;
 

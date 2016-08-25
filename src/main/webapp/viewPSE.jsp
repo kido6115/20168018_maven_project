@@ -1,11 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ page import="Bean.edit"%>
-<%@ page import="Bean.view_sub"%>
+<%@ page import="bean.Edit"%>
+<%@ page import="bean.ViewSub"%>
 <%@ page import="java.sql.*"%>
 <%@ page import="java.util.List,java.util.ArrayList"%>
-<%@ page import="Db.SearchHour"%>
-<%@ page import="Bean.edit"%>
+<%@ page import="db.SearchHour"%>
+<%@ page import="bean.Edit"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -67,11 +67,11 @@
 										<td colspan="3"><%=session.getAttribute("Employee")%></td>
 									</tr>
 						
-						<%          ArrayList<view_sub> view = (ArrayList<view_sub>) request.getAttribute("PCList");
+						<%          ArrayList<ViewSub> view = (ArrayList<ViewSub>) request.getAttribute("PCList");
 			
 																		//editJDBC的ArrayList<edit> showed		
 											
-				                         	for(view_sub pc : view) {//for(Bean名 pc : view) 
+				                         	for(ViewSub pc : view) {//for(Bean名 pc : view) 
 											
 								%>
 								

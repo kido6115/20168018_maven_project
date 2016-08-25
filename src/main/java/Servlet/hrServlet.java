@@ -14,9 +14,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import Bean.hr;
-//import Db.JDBCPSEsearch;
-import Db.JDBC_hr;
+import bean.Hr;
+import db.JDBCHr;
 
 public class hrServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -48,8 +47,8 @@ public class hrServlet extends HttpServlet {
 		request.setAttribute("dep", dep_id);
 		request.setAttribute("job", job_id);
 
-		JDBC_hr db = new JDBC_hr();
-		List<hr> list = null;
+		JDBCHr db = new JDBCHr();
+		List<Hr> list = null;
 
 		try {
 

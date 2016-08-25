@@ -14,10 +14,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import Bean.SearchHour;
-import Bean.Hours;
-import Bean.SearchPSE;
-import Db.JDBCPSEsearch;
+import bean.Hours;
+import bean.SearchHour;
+import bean.SearchPSE;
+import db.JDBCPSESearch;
 
 public class PSEsearch_eServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -52,7 +52,7 @@ public class PSEsearch_eServlet extends HttpServlet {
 		String[] Kind = request.getParameterValues("type");
 		String[] Status = request.getParameterValues("status");
 
-		JDBCPSEsearch db = new JDBCPSEsearch();
+		JDBCPSESearch db = new JDBCPSESearch();
 		List<SearchPSE> list = null;
 		List<Hours> list2 = null;
 		if (Kind != null) {
@@ -133,7 +133,7 @@ public class PSEsearch_eServlet extends HttpServlet {
 		String dep=session.getAttribute("Identity").toString();
 		Eid = (String) session.getAttribute("Employee");
 
-		JDBCPSEsearch db = new JDBCPSEsearch();
+		JDBCPSESearch db = new JDBCPSESearch();
 		List<SearchPSE> list = null;
 		List<Hours> list2 = null;
 

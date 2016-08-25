@@ -4,9 +4,9 @@
 <%@ page import="java.io.*"%>
 <%@  page import="java.util.*"%>
 <%@  page import="java.util.Date"%>
-<%@ page import="Bean.*"%>
+<%@ page import="bean.*"%>
 <%@ page import="java.util.*,java.text.*" %>
-<%@  page import="Db.*"%>
+<%@  page import="db.*"%>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -75,7 +75,7 @@ sweetAlert('請假時間已請!!!');
 								<tbody>
 								
 								
-								<% ArrayList<view_sub> showed = (ArrayList<view_sub>) request.getAttribute("PIDs");%>
+								<% ArrayList<ViewSub> showed = (ArrayList<ViewSub>) request.getAttribute("PIDs");%>
 									<tr>
 										<td colspan="2" scope="col"><label for="textfield3">姓名
 												:</label></td>
@@ -104,7 +104,7 @@ sweetAlert('請假時間已請!!!');
 									
 									<%int i=1;
 									
-								for(view_sub edit : showed){
+								for(ViewSub edit : showed){
 									
 									
 								%>

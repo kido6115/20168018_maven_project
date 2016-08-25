@@ -200,10 +200,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import Bean.SearchHour;
-import Bean.Hours;
-import Bean.SearchPSE;
-import Db.JDBCPSEsearch;
+import bean.Hours;
+import bean.SearchHour;
+import bean.SearchPSE;
+import db.JDBCPSESearch;
+
 import java.io.PrintWriter;
 import java.util.ArrayList;
 
@@ -214,10 +215,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
-import Bean.Hours;
-import Bean.SearchPSE;
-import Db.JDBCPSEsearch;
 
 /**
  * Servlet implementation class exportServlet
@@ -252,7 +249,7 @@ public class exportServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 
-		JDBCPSEsearch db = new JDBCPSEsearch();
+		JDBCPSESearch db = new JDBCPSESearch();
 		List<SearchPSE> list = null;
 		List<Hours> list2 = null;
 		HttpSession session = request.getSession();
@@ -290,7 +287,7 @@ public class exportServlet extends HttpServlet {
 		String[] Kind = request.getParameterValues("type");
 		String[] Status = request.getParameterValues("status");
 
-		JDBCPSEsearch db = new JDBCPSEsearch();
+		JDBCPSESearch db = new JDBCPSESearch();
 		List<SearchPSE> list = null;
 
 		request.setAttribute("sdate", SStartdatetime);

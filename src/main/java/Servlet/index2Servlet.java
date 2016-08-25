@@ -10,8 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import Bean.RemainHour;
-import Db.JDBCIndex2;
+import bean.RemainHour;
+import db.JDBCIndex2;
 
 /**
  * Servlet implementation class index2Servlet

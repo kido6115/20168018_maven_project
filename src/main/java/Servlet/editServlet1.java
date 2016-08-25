@@ -14,11 +14,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import Db.JDBCSearchHour;
-import Db.SearchHour;
-import Db.editJDBC;
-
-import Bean.edit;
+import bean.Edit;
+import db.JDBCSearchHour;
+import db.SearchHour;
+import db.EditJDBC;
 
 import com.sun.corba.se.pept.transport.Connection;
 
@@ -38,9 +37,9 @@ public class editServlet1 extends HttpServlet {
 		eid = (String) session.getAttribute("Employee");
 		dpid = request.getParameter("checkbox");
 		
-		editJDBC db = new editJDBC();
+		EditJDBC db = new EditJDBC();
 		try{
-		List<edit> ed = db.edit(eid);// List<bean>
+		List<Edit> ed = db.edit(eid);// List<bean>
 
 		request.setAttribute("edit", ed);//("名,value")
 		RequestDispatcher dispatcher = request
@@ -60,9 +59,9 @@ public class editServlet1 extends HttpServlet {
 		HttpSession session = request.getSession();
 
 		eid = (String) session.getAttribute("Employee");
-		editJDBC db = new editJDBC();
+		EditJDBC db = new EditJDBC();
 		try {
-			List<edit> ed = db.edit(eid);
+			List<Edit> ed = db.edit(eid);
 			request.setAttribute("edit", ed);
 			RequestDispatcher dispatcher = request
 					.getRequestDispatcher("editPSE.jsp");

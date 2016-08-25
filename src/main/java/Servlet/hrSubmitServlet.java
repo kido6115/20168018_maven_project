@@ -15,10 +15,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import Bean.Hours;
-import Bean.SearchHour;
-import Bean.hr;
-import Db.JDBC_hr;
+import bean.Hours;
+import bean.SearchHour;
+import bean.Hr;
+import db.JDBCHr;
 
 
 public class hrSubmitServlet extends HttpServlet {
@@ -63,7 +63,7 @@ public class hrSubmitServlet extends HttpServlet {
 
 		}
 	
-		JDBC_hr db = new JDBC_hr();
+		JDBCHr db = new JDBCHr();
 		
 		
 			

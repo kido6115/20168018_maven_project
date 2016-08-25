@@ -2,12 +2,12 @@
 	pageEncoding="UTF-8"%>
 <%@ page import="java.util.List,java.util.ArrayList,java.util.Date"%>
 <%@ page import="java.lang.*"%>
-<%@ page import="Bean.UseLeft"%>
-<%@ page import="Bean.SearchHour"%>
-<%@  page import="Db.JDBCPSEsearch"%>
-<%@  page import="Db.JDBCSetHour"%>
-<%@  page import="Bean.Hours"%>
-<%@  page import="Bean.SearchPSE"%>
+<%@ page import="bean.UseLeft"%>
+<%@ page import="bean.SearchHour"%>
+<%@  page import="db.JDBCPSESearch"%>
+<%@  page import="db.JDBCSetHour"%>
+<%@  page import="bean.Hours"%>
+<%@  page import="bean.SearchPSE"%>
 
 
 <!DOCTYPE html>
@@ -94,7 +94,7 @@
 							<p>
 								年度:<label for="year" ></label> 
                              <select name="year" id="year">
-                                  <%JDBCPSEsearch db= new JDBCPSEsearch();
+                                  <%JDBCPSESearch db= new JDBCPSESearch();
 									for (int i = 0; i < db.getYear().size(); i++) {
 								%>
 								<%if(db.getYear().get(i).getYear().equals(request.getAttribute("Year"))){ %>

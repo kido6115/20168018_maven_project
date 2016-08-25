@@ -8,8 +8,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import db.JDBCSetHour;
+
 import java.util.Date;
-import Db.JDBCSetHour;
 
 /**
  * Servlet implementation class AddNextYear

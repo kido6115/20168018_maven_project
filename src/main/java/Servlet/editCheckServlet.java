@@ -11,10 +11,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import Bean.view_sub;
-import Db.JDBCEditPSE;
-import Db.JDBC_edit;
-import Bean.view_sub;
+import bean.ViewSub;
+import db.JDBCEditPSE;
+import db.JDBCEdit;
 
 
 
@@ -42,7 +41,7 @@ public class editCheckServlet extends HttpServlet {
 				
 		HttpSession session = request.getSession();
 		JDBCEditPSE db = new JDBCEditPSE();
-		JDBC_edit db2 = new  JDBC_edit();
+		JDBCEdit db2 = new  JDBCEdit();
 		PrintWriter out = response.getWriter();
 		int k = 0;
 		int j = 0;
@@ -68,7 +67,7 @@ public class editCheckServlet extends HttpServlet {
 		if(k!=0){
 			session.setAttribute("echeck","1");
 			String pid = (String)session.getAttribute("PID");
-			List<view_sub> editPSe=db2.view_sub(pid);
+			List<ViewSub> editPSe=db2.view_sub(pid);
 			request.setAttribute("PIDs", editPSe);
 			RequestDispatcher dispatcher=request.getRequestDispatcher("modifyPSE.jsp");
 			dispatcher.forward(request, response);

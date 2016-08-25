@@ -15,9 +15,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-
-import Bean.view_sub;
-import Db.JDBC_editview;
+import bean.ViewSub;
+import db.JDBCEditView;
 
 import com.sun.corba.se.pept.transport.Connection;
 
@@ -46,15 +45,15 @@ public class view_pseServlet extends HttpServlet {
 		/*
 		 * deleteServlet db = new deleteServlet(); 不是宣告servlet 是要宣告JDBC
 		 */
-		JDBC_editview db = new  JDBC_editview();
+		JDBCEditView db = new  JDBCEditView();
 		
-		List<view_sub> list = null;
+		List<ViewSub> list = null;
 		try {
 			int i = 0;
 			
 			int j=Integer.parseInt(request.getParameter("pid_n"));
 			String pid = (String)session.getAttribute("PID"+j);
-			List<view_sub> list1 = db.view_sub(pid);
+			List<ViewSub> list1 = db.view_sub(pid);
 			
 			request.setAttribute("PCList", list1);
 

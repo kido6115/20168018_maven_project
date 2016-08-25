@@ -181,12 +181,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import Bean.SearchHour;
-import Bean.SearchHour_m;
-import Bean.Hours;
-import Bean.SearchPSE;
-import Db.JDBCSearchHour;
-import Db.JDBCPSEsearch;
+import bean.Hours;
+import bean.SearchHour;
+import bean.SearchHourEmp;
+import bean.SearchHourMng;
+import bean.SearchPSE;
+import db.JDBCPSESearch;
+import db.JDBCSearchHour;
+
 import java.io.PrintWriter;
 import java.util.ArrayList;
 
@@ -197,10 +199,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
-
-import Bean.SearchHour_e;
-import Db.JDBCSearchHour;
 
 /**
  * Servlet implementation class exportServlet
@@ -236,8 +234,8 @@ public class exportServlet_hour_M extends HttpServlet {
 			HttpServletResponse response) throws ServletException, IOException {
 
 		JDBCSearchHour db = new JDBCSearchHour();
-		JDBCPSEsearch db2 = new JDBCPSEsearch();
-		List<SearchHour_m> list = null;
+		JDBCPSESearch db2 = new JDBCPSESearch();
+		List<SearchHourMng> list = null;
 		List<Hours> list2 = null;
 		HttpSession session = request.getSession();
 		String dep=session.getAttribute("Identity").toString();
@@ -276,7 +274,7 @@ public class exportServlet_hour_M extends HttpServlet {
 		
 
 		JDBCSearchHour db = new JDBCSearchHour();
-		List<SearchHour_m> list = null;
+		List<SearchHourMng> list = null;
 
 	
 		request.setAttribute("Year", Year);

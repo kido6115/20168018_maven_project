@@ -2,9 +2,9 @@
 	pageEncoding="BIG5"%>
 <%@ page import="java.sql.*"%>
 <%@ page import="java.util.List,java.util.ArrayList"%>
-<%@ page import="Bean.SearchHour_e"%>
-<%@ page import="Bean.SearchHour_m"%>
-<%@ page import="Bean.Hours"%>
+<%@ page import="bean.SearchHourEmp"%>
+<%@ page import="bean.SearchHourMng"%>
+<%@ page import="bean.Hours"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -139,7 +139,7 @@
 
 								</tr>
 								<%
-									ArrayList<SearchHour_e> list = (ArrayList<SearchHour_e>) request.getAttribute("SearchList");
+									ArrayList<SearchHourEmp> list = (ArrayList<SearchHourEmp>) request.getAttribute("SearchList");
 								%>
 								<script>
 									$("#first> tr").remove();
@@ -148,7 +148,7 @@
 								</script>
 								<%
 									// print the information about every category of the list
-								for(SearchHour_e searchhour : list) {
+								for(SearchHourEmp searchhour : list) {
 								%>
 								<tr>
 

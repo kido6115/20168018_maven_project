@@ -14,8 +14,8 @@ import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
 
-import Bean.view_sub;
-import Db.JDBC_edit;
+import bean.ViewSub;
+import db.JDBCEdit;
 
 import com.sun.corba.se.pept.transport.Connection;
 
@@ -45,11 +45,11 @@ public class modifyPSEServlet extends HttpServlet {
 		/*
 		 * deleteServlet db = new deleteServlet(); 不是宣告servlet 是要宣告JDBC
 		 */
-		JDBC_edit db = new  JDBC_edit();
+		JDBCEdit db = new  JDBCEdit();
 		
 		int i=Integer.parseInt(request.getParameter("pid_n"));
 		String pid = (String)session.getAttribute("PID"+i);
-		List<view_sub> editPSe=db.view_sub(pid);
+		List<ViewSub> editPSe=db.view_sub(pid);
 		
 		try {
 		

@@ -5,8 +5,8 @@
 	pageEncoding="BIG5"%>
 <%@ page import="java.sql.*"%>
 <%@ page import="java.util.List,java.util.ArrayList"%>
-<%@ page import="Db.SearchHour"%>
-<%@ page import="Bean.edit"%>
+<%@ page import="db.SearchHour"%>
+<%@ page import="bean.Edit"%>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -83,9 +83,9 @@ sweetAlert('修改成功!!!');
 
 
 								<%
-									ArrayList<edit> showed = (ArrayList<edit>) request.getAttribute("edit");
+									ArrayList<Edit> showed = (ArrayList<Edit>) request.getAttribute("edit");
 																						int i=0;					//editJDBC的ArrayList<edit> showed		
-																		for(edit ee : showed) {
+																		for(Edit ee : showed) {
 																			i++;
 								%>
 								<tr>

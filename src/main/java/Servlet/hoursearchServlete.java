@@ -14,11 +14,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import Bean.Hours;
-import Bean.SearchHour_e;
-
-import Db.JDBCPSEsearch;
-import Db.JDBCSearchHour;
+import bean.Hours;
+import bean.SearchHourEmp;
+import db.JDBCPSESearch;
+import db.JDBCSearchHour;
 
 public class hoursearchServlete extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -41,12 +40,12 @@ public class hoursearchServlete extends HttpServlet {
 		Year = request.getParameter("Year");
 
 		JDBCSearchHour ee = new JDBCSearchHour();
-		JDBCPSEsearch db2 = new JDBCPSEsearch();
+		JDBCPSESearch db2 = new JDBCPSESearch();
 
 		List<Hours> list2 = null;
 		try {
 			int i = 0;
-			List<SearchHour_e> list = ee.SearchHour_e(Year, eid,dep);
+			List<SearchHourEmp> list = ee.SearchHour_e(Year, eid,dep);
 			list2 = db2.getYear();
 			
 			request.setAttribute("Year", Year);

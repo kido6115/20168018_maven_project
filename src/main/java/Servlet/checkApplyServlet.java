@@ -11,13 +11,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import Bean.Apply;
-import Bean.Hours;
-import Bean.SearchHour_e;
-import Db.JDBCCheckApply;
-import Db.JDBCLogin;
-import Db.JDBCPSEsearch;
-import Db.JDBCSearchHour;
+import bean.Apply;
+import bean.Hours;
+import bean.SearchHourEmp;
+import db.JDBCCheckApply;
+import db.JDBCLogin;
+import db.JDBCPSESearch;
+import db.JDBCSearchHour;
 
 /**
  * Servlet implementation class checkApplyServlet

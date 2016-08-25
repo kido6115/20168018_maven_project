@@ -4,8 +4,8 @@
 <%@ page import="java.io.*"%>
 <%@  page import="java.util.*"%>
 <%@  page import="java.util.Date"%>
-<%@  page import="Db.JDBC_hr"%>
-<%@  page import="Bean.hr"%>
+<%@  page import="db.JDBCHr"%>
+<%@  page import="bean.Hr"%>
 
 
 <%@  page import="java.text.SimpleDateFormat"%>
@@ -227,10 +227,10 @@
 								<%
 									int i=0;																																								
 
-																						ArrayList<hr> list = (ArrayList<hr>)request.getAttribute("hrList");
+																						ArrayList<Hr> list = (ArrayList<Hr>)request.getAttribute("hrList");
 
 																						if(list.size()!=0){
-																						for(hr hr : list) {
+																						for(Hr hr : list) {
 								%>
 								<tr>
 									<td><input type="hidden" name="Eid<%=i%>"
