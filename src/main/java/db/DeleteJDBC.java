@@ -6,8 +6,8 @@ import java.util.*;
 
 import com.sun.xml.internal.bind.v2.runtime.unmarshaller.XsiNilLoader.Array;
 
-import Servlet.deleteServlet;
 import bean.Edit;
+import servlet.deleteServlet;
 
 public class DeleteJDBC extends JDBCCore {
 	public int checkbox(String[] checkbox) throws Exception{
