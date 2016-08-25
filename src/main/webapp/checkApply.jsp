@@ -120,7 +120,7 @@
 									<td><%=apply.getJob_name()%></td>
 									<td><%=apply.getAp_dep_name()%></td>
 									<td><%=apply.getAp_job_name()%></td>
-									<td><form action="checkApply2.jsp" method="post">
+									<td><form action="checkApplyview.jsp" method="post">
 									
 									<input type="hidden" name="apid" value="<%=apply.getaPID()%>">
 									

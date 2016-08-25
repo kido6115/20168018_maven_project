@@ -1,0 +1,70 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core" template="/template.xhtml">
+	<ui:define name="title">
+	<h1><img src="img/check.png"/></h1>
+						<table class="CSSTableGenerator" border="1">
+							<tbody>
+								<tr>
+									<td scope="col">主假單編號</td>
+									<td scope="col">員工編號</td>
+									<td scope="col">姓名</td>
+									<td scope="col">申請時間</td>
+									<td scope="col">查進行審核</td>
+								</tr>
+
+								<!-- <%
+									String dep=session.getAttribute("Identity").toString();
+												   if(db.ListUnchecked(dep).size()!=0){
+													   List<CheckPSE> list=db.ListUnchecked(dep);
+													   
+													   
+													   for(CheckPSE checkpse:list){
+								%> -->
+								<tr>
+									<td></td>
+									<td></td>
+									<td></td>
+
+									<td></td>
+
+
+									<td>
+									<form action="check.jsp" method="post">
+									<input type="hidden" name="pid" value=""/>
+									<input type="hidden" name="name" value=""/>
+									<input type="hidden" name="eid" value=""/>
+									
+									<input class="btn btn-info" name="進行審核" type="submit"
+										value="進行審核"/>
+										
+										</form>
+										</td>
+								</tr>
+
+								<!-- <%
+									}}else {
+								%> -->
+								<tr>
+									<td >目前沒有可以審核的假單喔!</td>
+								</tr>
+								<!-- <%
+									}
+								%> -->
+
+
+
+
+
+
+							</tbody>
+						</table>
+						<br/> 
+					
+
+
+			
+
+	</ui:define>
+</ui:composition>
