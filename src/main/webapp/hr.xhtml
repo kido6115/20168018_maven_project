@@ -1,0 +1,205 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core" template="/template.xhtml">
+	<ui:define name="title">
+<h1>
+							<img src="img/people.png"/>
+						</h1>
+
+						<form name="form1" class="fontstyle" method="post"
+							action="hrServlet">
+							<table  align="center">
+								<tr>
+									<td><table align="center">
+											<tr>
+												<td>員工編號<!--  <%
+ 	if(request.getAttribute("Eid")==null){
+ %> --> <input type="text" name="Eid" id="Eid" value=""/> <!-- <%
+ 	} else {
+ %> --> <input type="text" name="Eid" id="Eid"
+	value=""/> <!-- <%
+ 	}
+ %> --> <br/> <br/>員工姓名<!--  <%
+ 	if(request.getAttribute("Name")==null){
+ %>  --><input type="text" name="Name" id="Name" value=""/>
+													<!-- <%
+														} else {
+													%> --> <input type="text" name="Name" id="Name"
+													value=""/><!--  <%
+ 	}
+ %> -->
+												</td>
+											</tr>
+										</table></td>
+									<td><table align="center">
+											<tr>
+												<td>部門： <select name="dep" size="1" id="time">
+														<!-- <%
+															if(request.getAttribute("dep")!=null){
+														%> -->
+
+
+														<option value="">任意部門</option>
+														<option value="1"
+															>HR</option>
+														<option value="2"
+															>SALE</option>
+														<option value="3"
+															>IT</option>
+														<option value="4"
+															>FINANCE</option>
+														<option value="5"
+															>MARKETING</option>
+
+
+
+														<!-- <%
+															}else {
+														%> -->
+														<option value="">任意部門</option>
+														<option value="1">HR</option>
+														<option value="2">SALE</option>
+														<option value="3">IT</option>
+														<option value="4">FINANCE</option>
+														<option value="5">MARKETING</option>
+														<!-- <%
+															}
+														%> -->
+
+												</select> <br/> <br/>職稱：<select
+													name="job" size="1" id="time">
+
+														<!-- <%
+															if(request.getAttribute("job")!=null){
+														%> -->
+
+
+														<option value="">任意職稱</option>
+														<option value="4"
+															>專員</option>
+														<option value="2"
+															>部門經理</option>
+														<option value="1"
+															>助理</option>
+
+
+
+
+														<!-- <%
+															}else {
+														%> -->
+
+														<option value="">任意職稱</option>
+														<option value="4">專員</option>
+														<option value="2">部門經理</option>
+														<option value="1">助理</option>
+														<!-- <%
+															}
+														%> -->
+												</select> 
+
+
+												</td>
+											</tr>
+										</table></td>
+								</tr>
+								<tr>
+									<td >
+										<button style="float: right" class="btn btn-primary"
+											type="submit">
+											<img src="img/interface.png"/>查詢
+										</button>
+									</td>
+								</tr>
+							</table>
+
+						</form>
+
+						<br/>
+
+						<form name="form4" method="post" class="fontstyle"
+							action="hrSubmitServlet">
+							<!-- <%
+								if(request.getAttribute("hrList")!=null){
+							%> -->
+							<table class="CSSTableGenerator" border="1">
+
+
+								<tr>
+									<td>員工編號</td>
+									<td>員工姓名</td>
+									<td>部門</td>
+									<td>職稱</td>
+									<td>調動</td>
+
+								</tr>
+								<!-- <%
+									int i=0;																																								
+
+																						ArrayList<Hr> list = (ArrayList<Hr>)request.getAttribute("hrList");
+
+																						if(list.size()!=0){
+																						for(Hr hr : list) {
+								%> -->
+								<tr>
+									<td><input type="hidden" name=""
+										value=""/></td>
+									<td></td>
+									<td><input type="hidden" name=""
+										value=""/></td>
+									<td><input type="hidden" name=""
+										value=""/></td>
+									<td><select name="">
+											<option value="1" >HR</option>
+											<option value="2" >SALE</option>
+											<option value="3" >IT</option>
+											<option value="4" >FINANCE</option>
+											<option value="5" >MARKETING</option>
+									</select><select name="">
+											<option value="4" >專員</option>
+											<option value="2" >部門經理</option>
+											<option value="1" >助理</option>
+									</select></td>
+								</tr>
+								<!-- <%
+									i++;
+																																												
+																				}
+																						
+																					}
+								%> -->
+							</table>
+							<input type="hidden" name="count" value=""/> <br/>
+							<button class="btn btn-primary" type="submit" name="confirm"
+								id="confirm">
+								<img src="img/paper-plane.png"/>確認
+							</button>
+							<!-- <%
+								}else{
+							%> -->
+							<table class="CSSTableGenerator" border="1">
+								<tr>
+									<td>員工編號</td>
+									<td>員工姓名</td>
+									<td>部門</td>
+									<td>職稱</td>
+									<td>調動</td>
+
+								</tr>
+								<tr>
+									<td colspan="8">查無資料</td>
+								</tr>
+							</table>
+							<!-- <%
+								}
+							%> -->
+
+						</form>
+
+
+						<br/> <br/>
+				
+
+	</ui:define>
+</ui:composition>

@@ -1,0 +1,60 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core" template="/template.xhtml">
+	<ui:define name="title">
+<h1><img src="img/applpcheck.png"/></h1>
+						<table class="CSSTableGenerator" border="1">
+							<tbody>
+								<tr>
+									<td scope="col">申請日期</td>
+									<td scope="col">姓名</td>
+									<td scope="col">員工編號</td>
+									<td scope="col">部門</td>
+									<td scope="col">職位</td>
+									<td scope="col">申請部門</td>
+									<td scope="col">申請職位</td>
+									<td scope="col"></td>
+								</tr>
+
+								<!-- <%
+									
+									List<Apply> list=(ArrayList<Apply>)db.ListUncheckApply(0);
+															
+															
+															for(Apply apply: list){
+								%> -->
+								
+								<tr>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td><form action="checkApplyview.jsp" method="post">
+									
+									<input type="hidden" name="apid" value=""/>
+									
+									<button class="btn btn-danger" type="submit">審核</button>
+					          		</form>
+					          		</td>
+								</tr>
+							<!-- 	<%
+									}
+									%> -->
+
+
+
+
+
+
+							</tbody>
+						</table>
+						<br/> 
+					
+				
+
+	</ui:define>
+</ui:composition>
