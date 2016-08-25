@@ -1,6 +1,6 @@
 package db;
 
-import com.oracle.*;
+
 
 import bean.CheckPSE;
 import bean.CkeckSub;

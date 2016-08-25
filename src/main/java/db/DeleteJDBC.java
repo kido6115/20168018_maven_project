@@ -4,7 +4,6 @@ import java.awt.Checkbox;
 import java.sql.*;
 import java.util.*;
 
-import com.sun.xml.internal.bind.v2.runtime.unmarshaller.XsiNilLoader.Array;
 
 import bean.Edit;
 import servlet.deleteServlet;

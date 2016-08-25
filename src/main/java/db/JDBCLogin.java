@@ -87,7 +87,7 @@ public class JDBCLogin extends JDBCCore {
 
 package db;
 
-import com.oracle.*;
+
 import java.sql.*;
 import java.util.*;
 
