@@ -1,0 +1,69 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core" template="/template.xhtml">
+	<ui:define name="title">
+<h1><img src="img/applpcheck.png"/></h1>
+						<form action="checkApplyServlet" method="post">
+							<input type="hidden" name="apid"
+								value=""/>
+							<table class="CSSTableGenerator" border="1">
+								<tbody>
+
+									<!-- <%
+										int apid=Integer.parseInt(request.getParameter("apid"));
+																					    List<Apply> list=(ArrayList<Apply>)db.ListUncheckApply(apid);
+																													
+																													
+																						for(Apply apply: list){
+									%> -->
+									<tr>
+										<td>申請日期 :</td>
+										<td ><input type="hidden" name="eid"
+											value=""/> <input type="hidden"
+											name="ap_depid" value=""/> <input
+											type="hidden" name="ap_jobid"
+											value=""/> <input
+											type="hidden" name="jobid" value=""/>
+
+											<input type="hidden" name="depid"
+											value=""/></td>
+									</tr>
+									<tr>
+										<td>員工:</td>
+										<td></td>
+										<td>員工編號:</td>
+										<td></td>
+									</tr>
+									<tr>
+										<td>原部門職位:</td>
+										<td></td>
+										<td>申請部門職位:</td>
+										<td></td>
+									</tr>
+									<tr>
+										<td>理由:</td>
+										<td ></td>
+									</tr>
+<!-- 
+									<%
+										}
+									%>
+
+ -->
+
+
+
+								</tbody>
+
+							</table>
+							<br/> <br/> <span style="float: right"><button
+									type="submit" name="pass" class="btn btn-warning">通過</button>
+								<button type="submit" name="notpass" class="btn btn-danger">不通過</button></span>
+
+						</form>
+						<br/>
+					
+
+	</ui:define>
+</ui:composition>

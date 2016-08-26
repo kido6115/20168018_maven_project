@@ -1,0 +1,76 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core" template="/template.xhtml">
+	<ui:define name="title">
+<h1><img src="img/sethour.png"/></h1>
+						<form name="form2" method="post" class="fontstyle" action="SubmitHourServlet">
+
+
+
+							<table class="CSSTableGenerator" border="1">
+								<tr>
+									<td><div align="center">年度</div></td>
+									<td><div align="center">員工編號</div></td>
+									<td><div align="center">姓名</div></td>
+									<td><div align="center">假別</div></td>
+									<td><div align="center">本年度額度</div></td>
+									<!-- <td><div align="center">剩餘額度</div></td> -->
+									<td><div align="center">新額度</div></td>
+								</tr>
+								
+								<!--    <%  
+								   String[] ucredit=request.getParameterValues("ucredit");
+								   session.setAttribute("Ucredit",ucredit);
+								   
+								   int k=0;
+								   if(session.getAttribute("ViewList")!=null){
+					ArrayList<SearchHour> list = (ArrayList<SearchHour>) session.getAttribute("ViewList");%>
+			
+
+       
+        
+		
+               			<%// print the information about every category of the list
+               			
+               			
+
+               				
+               				
+               				for(SearchHour searchhour : list) {
+               					
+               					
+               		%>-->
+		<tr>
+			<td ></td>
+		    <td ></td>
+		    <td ></td>
+		    <td ></td>
+		    <td ></td>
+		    <td ></td>
+		   
+		    
+		    
+		    
+		    
+	   </tr>
+		<!--     <% 
+		}
+	}
+	%> -->
+								
+							</table>
+							<br/>
+							<p>※請確認「新額度」欄位之值是否正確。</p>
+							
+								<input class="btn btn-primary" type="submit" name="confirm"
+									id="confirm" value="確認" /> <input
+									type="button" class="btn btn-primary" name="confirm"
+									id="cancel" value="取消"
+									onclick="history.back()"/>
+						</form>
+						<br/> 
+				
+
+	</ui:define>
+</ui:composition>
