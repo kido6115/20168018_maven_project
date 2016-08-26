@@ -1,0 +1,71 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core" template="/template.xhtml">
+	<ui:define name="title">
+<h1>查看假單</h1>
+						<form>
+		    <table class="CSSTableGenerator">
+			<tr>
+										<td colspan="2" scope="col"><label for="textfield3">姓名
+												:</label></td>
+										<td colspan="3" scope="col"></td>
+									</tr>
+									<tr>
+										<td colspan="2" scope="row"><label for="textfield4">員工編號:</label></td>
+										<td colspan="3"></td>
+									</tr>
+						
+						<!-- <%          ArrayList<ViewSub> view = (ArrayList<ViewSub>) request.getAttribute("PCList");
+			
+																		//editJDBC的ArrayList<edit> showed		
+											
+				                         	for(ViewSub pc : view) {//for(Bean名 pc : view) 
+											
+								%> -->
+								
+			
+									
+									<tr>
+										<td width="23" rowspan="5" scope="row"><p>
+												子假單</p></td><!-- Attribute是從Servlet get -->
+										<td width="140" scope="row">假別</td>
+										<td colspan="3">
+											
+										</td>
+									</tr>
+									<tr>
+										<td scope="row">假別起始日期:</td>
+										<td width="180"></td>
+										<td width="140">假別開始時間:</td>
+										<td width="180"></td>
+									</tr>
+									<tr>
+										<td scope="row">假別結束日期:</td>
+										<td></td>
+										<td>假別結束時間:</td>
+										<td></td>
+									</tr>
+									<tr>
+										<td scope="row">請假時數:</td>
+										<td colspan="3"></td>
+									</tr>
+									<tr>
+										<td scope="row">備註：</td>
+										<td colspan="3"></td>
+										</tr>
+									<!-- 	<%} %>		
+			
+			               <% }	%>	
+			        -->
+						</table>
+			        	</form>	
+		
+						
+						
+						
+				
+				
+
+	</ui:define>
+</ui:composition>

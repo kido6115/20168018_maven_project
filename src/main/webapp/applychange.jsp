@@ -14,7 +14,7 @@
 <title>請假系統-調職申請</title>
 </head>
 <body>
-<%
+ <%
 if(session.getAttribute("Employee")==null)
 {
 	response.sendRedirect("index.jsp?Login=1#Login");	
@@ -45,7 +45,7 @@ if(request.getParameter("status")!=null){
 	}
 	}
 	%>
-	
+	 
 
 
 <div id="wrapper">
@@ -60,8 +60,8 @@ if(request.getParameter("status")!=null){
 		<div class="row">
 			<div class="col-lg-12">
 
-<a href="#menu-toggle" 
-							id="menu-toggle"><img src="img/right.png"></a>
+ <a href="#menu-toggle" 
+							id="menu-toggle"><img src="img/right.png" /></a>
 							
                           <a href="#menu-toggle2" 
 							id="menu-toggle2"><img src="img/left.png"></a>
@@ -81,8 +81,8 @@ if(request.getParameter("status")!=null){
 			$("#menu-toggle").show();
 			$("#wrapper").toggleClass("toggled");
 		});
-	</script>
-				<h1><img src="img/apply.png"></h1>
+	</script> 
+				<h1><img src="img/apply.png" /></h1>
 
 				<form name="form2" action="applychange_Servlet" method="post"
 				
@@ -91,20 +91,20 @@ if(request.getParameter("status")!=null){
 					<table border="0" align="center" width="60%"><tr><td><table align="center"><tr><td>
 											
 										<label for="textfield3">員工姓名:</label>
-										<%=(String) session.getAttribute("Name")%>
-								<br>
-								<br>
+									 	<%=(String) session.getAttribute("Name")%> 
+								<br/>
+								<br/>
 									
 								
 								<label for="textfield4">員工編號:</label>
-									<%=(String) session.getAttribute("Employee")%>
+								 <%=(String) session.getAttribute("Employee")%> 
 							
-										<br>
-										<br>
+										<br/>
+										<br/>
 										
 					
 				原部門:
-				<%=session.getAttribute("DEP")%><input type="hidden" name="dep_old" value="<%=session.getAttribute("Identity")%>">
+				 <%=session.getAttribute("DEP")%> <input type="hidden" name="dep_old" value="<%=session.getAttribute("Identity")%>">
 					<br>
 					<br>
 					原職稱: <%=session.getAttribute("JOB")%><input type="hidden" name="job_old" value="<%=session.getAttribute("JOB_ID")%>">

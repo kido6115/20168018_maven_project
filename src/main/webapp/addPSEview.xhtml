@@ -1,0 +1,135 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core" template="/template.xhtml">
+	<ui:define name="title">
+		<div id="page-content-wrapper">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-lg-12">
+
+
+				
+<h1><img src="img/add.png"/></h1>
+						<p></p>
+						<div id="form">
+						<form action="addPSEServlet" method="post">
+							<table  class="CSSTableGenerator">
+								<tbody>
+									<tr>
+										<td colspan="2" scope="col"><label for="textfield3">姓名
+												:</label></td>
+										<td colspan="3" scope="col"></td>
+									</tr>
+									<tr>
+										<td colspan="2" scope="row"><label for="textfield4">員工編號:</label></td>
+										<td colspan="3"></td>
+									</tr>
+									<!-- <%
+									int j=0;
+										for (int i = 1; i <= 5; i++) {
+											if (request.getParameterValues("pkind" + i) != null) {
+												
+									%> -->
+									
+									<tr>
+										<td width="23" rowspan="5" scope="row"><p>
+												子假單</p></td>
+										<td width="140" scope="row">假別</td>
+										<td colspan="3">
+											<!-- <%
+												String type = request.getParameter("pkind" + i);
+														if (type.equals("1")) {
+															out.println("事假");
+														} else if (type.equals("2")) {
+															out.println("病假");
+														} else if (type.equals("3")) {
+															out.println("喪假");
+														} else if (type.equals("4")) {
+															out.println("產假");
+														} else if (type.equals("5")) {
+															out.println("特休");
+														}
+											%> -->
+										</td>
+									</tr>
+									<tr>
+										<td scope="row">假別起始日期:</td>
+										<td width="180"></td>
+										<td width="140">假別開始時間:</td>
+										<td width="180"></td>
+									</tr>
+									<tr>
+										<td scope="row">假別結束日期:</td>
+										<td></td>
+										<td>假別結束時間:</td>
+										<td></td>
+									</tr>
+									<tr>
+										<td scope="row">請假時數:</td>
+										<td colspan="3"></td>
+									</tr>
+									<tr>
+										<td scope="row">備註：</td>
+										<td colspan="3">
+										
+							 <input type="hidden" name="" value="" />
+                             <input type="hidden" name="" value="" />
+                             <input type="hidden" name="" value="" />
+                             <input type="hidden" name="" value="" />
+                             <input type="hidden" name="" value="" />
+                             <input type="hidden" name="" value="" />
+                             <input type="hidden" name="" value="" />
+                               
+										</td>
+								
+									</tr>
+									
+									<!-- <%
+									j++;
+										}
+									
+										}
+									%> -->
+								</tbody>
+							</table>
+							<p></p>
+							<p>
+								<input type="submit" class=" btn btn-primary " name="submit"
+									id="submit" value="送出" /> 
+							</p>
+					  <input type="hidden" name="count" value="" />
+							
+							
+</form>
+<form    action="addPSEViewServlet" method="post" >
+<!-- <% int k=0;
+for (int i = 1; i <= 5; i++) {
+	
+	if (request.getParameterValues("pkind" + i) != null) {%> -->
+                             <input type="hidden" name="" value="" />
+                             <input type="hidden" name="" value="" />
+                             <input type="hidden" name="" value="" />
+                             <input type="hidden" name="" value="" />
+                             <input type="hidden" name="" value="" />
+                             <input type="hidden" name="" value="" />
+                             <input type="hidden" name="" value="" />
+                             
+<!-- <%k++;}%>
+											
+<% } %> --><input type="hidden" name="count" value="" id="count" />
+<input type="submit" class=" btn btn-primary " name="submit"
+									id="submitr" value="返回" /> 
+</form>
+							<p></p>
+							<p></p>
+							
+					
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</ui:define>
+</ui:composition>

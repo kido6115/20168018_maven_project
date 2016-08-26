@@ -1,0 +1,181 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core" template="/template.xhtml">
+	<ui:define name="title">
+<h1>修改假單</h1>
+						<p></p>
+						<div id="form">
+						
+						<!-- <%
+								for (int i = 0; i < 4; i++) {
+							%> -->
+							<input type="hidden" id=""
+								value=""/>
+						<!-- 	<%
+								}
+							%> -->
+						<form action="editCheckServlet" method="post" >
+							<table class="CSSTableGenerator" border="1">
+								<tbody>
+								
+								
+<!-- 								<% ArrayList<ViewSub> showed = (ArrayList<ViewSub>) request.getAttribute("PIDs");%>
+ -->									<tr>
+										<td colspan="2" scope="col"><label for="textfield3">姓名
+												:</label></td>
+										<td colspan="3" scope="col"></td>
+									</tr>
+									<tr>
+										<td colspan="2" scope="row"><label for="textfield4">員工編號:</label></td>
+										<td colspan="3"></td>
+									</tr>
+									<tr>
+										<td colspan="2" scope="row"><label for="textfield4">假單編號:</label></td>
+										<td colspan="3"></td>
+									</tr> 
+									<tr>
+										<td colspan="2">各假別剩餘額度(待審核)</td>
+										<td colspan="3">
+										<!-- 	<%
+												for (int i = 0; i < db.remainHour(Eid).size(); i++) {
+											%> <%=db.remainHour(Eid).get(i).getkname()%>:<%=credit.get(i).getremainHour()-remain[i+1]%>(<%=pend[i+1]%>)
+											| <%
+ 	}
+ %> -->
+										</td>
+
+									</tr>
+									
+									<!-- <%int i=1;
+									
+								for(ViewSub edit : showed){
+									
+									
+								%> -->
+									<tr>
+										<td rowspan="5" scope="row"><p>子假單</p>
+											<p>
+												<button class="btn btn-sm btn-danger">X</button>
+											</p></td>
+										<td scope="row">假別</td>
+										<td colspan="3">
+										<input type="radio" name="" id="radio" value="1"  /> 事假 
+											<input type="radio" name="" id="radio2" value="2" />	病假 
+											<input type="radio" name="" id="radio4" value="3"  /> 喪假
+											 <input type="radio" name="" id="radio5" value="4" /> 產假
+											  <input type="radio" name="" id="radio3" value="5" /> 特休
+											
+											</td>
+									</tr>
+									<tr>
+									
+									<!-- <%
+										
+										  SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+									
+										       //  利用 DateFormat 來parse 日期的字串
+										         DateFormat df = DateFormat.getDateInstance();
+										        Date date = df.parse(edit.getStartDate());
+										        Date datee = df.parse(edit.getEndDate());
+										        Calendar calendars = Calendar.getInstance();
+										        calendars.setTime(date);
+										        Calendar calendare = Calendar.getInstance();
+										        calendare.setTime(datee);
+										       //  直接格式化輸出現在時間的方法
+									        SimpleDateFormat sdFormat = new SimpleDateFormat("yyyy-mm-dd");
+										
+										%> -->
+										<td scope="row">假別起始日期:</td>
+										
+										<td><input type="date" id="" name="" value="" /></td>
+										<td>假別起始時間:</td>
+										<td>
+										<select name="" id="" onchange="">
+												<option  >9:00</option>
+												<option  >9:30</option>
+												<option >10:00</option>
+												<option  >10:30</option>
+												<option  >11:00</option>
+												<option  >11:30</option>
+												<option  >12:00</option>
+												<option >13:00</option>
+												<option >13:30</option>
+												<option  >14:00</option>
+												<option >14:30</option>
+												<option  >15:00</option>
+												<option  >15:30</option>
+												<option >16:00</option>
+												<option  >16:30</option>
+												<option >17:00</option>
+												<option  >17:30</option>
+												<option  >18:00</option>
+										</select></td>
+									</tr>
+									<tr>
+										<td scope="row">假別結束日期:</td>
+										<td>
+										
+										<input type="date" id="" name="" value=""  onchange=""/></td>
+										<td>假別結束時間:</td>
+										<td>
+										<select  name="" id="" onchange="">
+												<option  >9:00</option>
+												<option  >9:30</option>
+												<option  >10:00</option>
+												<option  >10:30</option>
+												<option >11:00</option>
+												<option>11:30</option>
+												<option  >12:00</option>
+												<option  >13:00</option>
+												<option  >13:30</option>
+												<option  >14:00</option>
+												<option >14:30</option>
+												<option  >15:00</option>
+												<option  >15:30</option>
+												<option >16:00</option>
+												<option  >16:30</option>
+												<option  >17:00</option>
+												<option >17:30</option>
+												<option  >18:00</option>
+										</select></td>
+									</tr>
+									<tr>
+										<td scope="row">請假時數:</td>
+										<td colspan="3"><input type="text" name=""
+											id="" value=""/></td>
+									</tr>
+									<tr>
+										<td scope="row">備註</td>
+										<td colspan="3"><!-- <textarea name="" cols="40"
+												rows="2" id=""></textarea></td> --></td>
+
+									</tr>
+									
+									<!-- <% i++;} %>
+                                                -->
+								</tbody>
+							</table>
+<input type='hidden' name='count' id='count' value=''/>
+
+							<p></p>
+							<p>
+								<input class="btn btn-primary" type="submit" name="submit"
+									id="submit" value="送出"	/>
+								<input class="btn btn-primary" type="button" name="button"
+									id="button" value="返回" onclick="history.back();"/>
+
+							</p>
+							<p></p>
+							<p></p>
+							<p></p>
+							<p></p>
+							</form>
+						</div>
+
+						<a href="#menu-toggle" class="btn btn-default" id="menu-toggle">縮放</a>
+				
+				
+
+	</ui:define>
+</ui:composition>

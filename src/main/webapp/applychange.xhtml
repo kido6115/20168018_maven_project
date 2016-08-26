@@ -1,0 +1,117 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core" template="/template.xhtml">
+	<ui:define name="title">
+		<div id="page-content-wrapper">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-lg-12">
+
+
+				<h1><img src="img/apply.png"/></h1>
+
+				<form name="form2" action="applychange_Servlet" method="post"
+				
+					class="fontstyle">
+
+					<table border="0" align="center" width="60%"><tr><td><table align="center"><tr><td>
+											
+										<label for="textfield3">員工姓名:</label>
+										<!-- <%=(String) session.getAttribute("Name")%> -->
+								<br/>
+								<br/>
+									
+								
+								<label for="textfield4">員工編號:</label>
+									<!-- <%=(String) session.getAttribute("Employee")%> -->
+							
+										<br/>
+										<br/>
+										
+					
+				原部門:
+				<!-- <%=session.getAttribute("DEP")%> --><input type="hidden" name="dep_old" value=""/>
+					<br/>
+					<br/>
+					原職稱: <!-- <%=session.getAttribute("JOB")%> --><input type="hidden" name="job_old" value="" />
+					<br/>
+					<br/>
+					
+					</td></tr></table></td>
+					
+					
+					<td><table align="center"><tr><td>
+					
+				請調部門: <select name="apartment" size="1"
+								id="time">
+								
+								<option value="1">HR部門</option>
+								<option value="2">SALE部門</option>
+								<option value="3">IT部門</option>
+								<option value="4">FINANCE部門</option>
+								<option value="5">MARKETING部門</option>
+
+							</select>
+					<br/>
+					<br/>
+					
+					
+					請調職位:<select name="identity" size="1" id="time">
+								
+								<option value="4">專員</option>
+								<option value="2">部門經理</option>
+								<option value="1">助理</option>
+
+							</select>
+					<br/>
+					<br/>
+					
+					請調原因:
+					<br/>
+					
+										
+										<!-- <textarea name="ps" id="ps" cols="40"
+												rows="2" id=""></textarea>
+ -->									
+					
+				<br/>
+				<br/>
+				
+				
+								</td></tr></table></td></tr>
+								
+								
+								
+								
+							</table>
+							<p align="center"><button class="btn btn-primary" type="submit"
+								onClick="return switchAndSubmit()"><img src="img/paper-plane.png" />提交</button> </p>
+						</form>
+<h2></h2>
+
+						<script language="javascript">
+							function switchAndSubmit() {
+								var formObj = document.form2;
+
+								formObj.action = "applychange_Servlet";
+								formObj.submit();
+								return false;
+							}
+							
+						</script>
+					<br/>
+
+
+
+			
+				<br/> 
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+	</ui:define>
+</ui:composition>
