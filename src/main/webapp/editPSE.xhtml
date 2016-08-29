@@ -4,7 +4,7 @@
 	xmlns:f="http://java.sun.com/jsf/core" template="/template.xhtml">
 	<ui:define name="title">
 <h1>修改/刪除假單</h1>
-						<form action="deleteServlet" method="post">
+						<!-- <form action="deleteServlet" method="post"> -->
 
 							<table class="CSSTableGenerator">
 								<tr>
@@ -45,14 +45,14 @@
 																	}
 										%> -->
 									</td>
-									<td width="20%"><input class="btn btn-info" name="查看內容" type="button"
-										id="查看內容" value="查看內容"
-										onclick="" /> 
-										<!-- javascript:location.href='view_pseServlet?pid_n=<%=i%>' -->
-										<input
-										class="btn btn-info" type="button" name="button" id="button"
-										value="修改假單"
-										onclick="" /></td>
+									<td width="20%">
+									<h:form>
+									<h:commandButton class="btn btn-info btn-lg" value="查看內容" action="viewPSE.xhtml" /> 
+									</h:form>	<!-- javascript:location.href='view_pseServlet?pid_n=<%=i%>' -->
+										
+										<h:form>
+									<h:commandButton class="btn btn-info btn-lg" value="修改假單" action="modifyPSE.xhtml" /> 
+									</h:form></td>
 <!-- 										javascript:location.href='modifyPSEServlet?pid_n=<%=i%>'
  -->										<!-- <%
 										session.setAttribute("PID"+i,ee.getPid()); %> -->
@@ -65,7 +65,7 @@
 							<br/> <input class="btn btn-primary" type="button"
 								name="button2" id="button2" value="刪除假單"
 								onclick="if(confirm('確認要刪除嗎？')) this.form.submit();" />
-						</form>
+						<!-- </form> -->
 
 					
 

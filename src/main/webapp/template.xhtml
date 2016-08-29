@@ -30,10 +30,10 @@
 <div>
  <div id="sidebar-wrapper">
 <ul class="sidebar-nav">
-		<li class="sidebar-brand"><a href="index2Servlet"> 請假系統 </a></li>
+		<li class="sidebar-brand"><a href="index2.xhtml"> 請假系統 </a></li>
 
 		<li id="manage"><a href="#">&nbsp;&nbsp;假單管理</a></li>
-		<li id=""><a href="addPSE.jsp">&nbsp;&nbsp;&nbsp;-新增假單 <!-- <%
+		<li id=""><a href="addPSE.xhtml">&nbsp;&nbsp;&nbsp;-新增假單 <!-- <%
 			if (status.equals("addPSE")) {
 		%> --><span class="glyphicon glyphicon-hand-left" ></span>
 				<!-- <%
@@ -41,35 +41,35 @@
 				%> -->
 
 		</a></li>
-		<li id=""><a href="editServlet1">&nbsp;&nbsp;&nbsp;修改/刪除假單<!-- <%
+		<li id=""><a href="editPSE.xhtml">&nbsp;&nbsp;&nbsp;修改/刪除假單<!-- <%
 			if (status.equals("editPSE")) {
 		%> --><span class="glyphicon glyphicon-hand-left"></span>
 			<!-- 	<%
 					}
 				%> -->
 		</a></li>
-		<li><a href="hoursearchServlete">&nbsp;&nbsp;查詢時數<!-- <%
+		<li><a href="empsearchhour.xhtml">&nbsp;&nbsp;查詢時數<!-- <%
 			if (status.equals("PSEsearch_m")) {
 		%> --><span class="glyphicon glyphicon-hand-left" ></span>
 				<!-- <%
 					}
 				%> -->
 		</a></li>
-		<li><a href="PSEsearch_eServlet">&nbsp;&nbsp;查詢假單<!-- <%
+		<li><a href="empsearchPSE.xhtml">&nbsp;&nbsp;查詢假單<!-- <%
 			if (status.equals("PSEsearch")) {
 		%> --><span class="glyphicon glyphicon-hand-left" ></span>
 				<!-- <%
 					}
 				%> -->
 		</a></li>
-		<li><a href="changepwd.jsp">&nbsp;&nbsp;修改密碼<!-- <%
+		<li><a href="changepwd.xhtml">&nbsp;&nbsp;修改密碼<!-- <%
 			if (status.equals("changepwd")) {
 		%> --><span class="glyphicon glyphicon-hand-left" ></span>
 				<!-- <%
 					}
 				%> -->
 		</a></li>
-		<li><a href="applychange.jsp">&nbsp;&nbsp;調職申請<!-- <% 
+		<li><a href="applychange.xhtml">&nbsp;&nbsp;調職申請<!-- <% 
 			if (status.equals("applychange")) {
 		%> --><span class="glyphicon glyphicon-hand-left" ></span>
 				<!-- <%

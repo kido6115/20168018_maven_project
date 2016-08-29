@@ -197,7 +197,7 @@
 						<span aria-hidden="true">&times;</span>
 					</button>
 				</div>
-				<form action="LoginServlet" method="post">
+				<!-- <form action="LoginServlet" method="post"> -->
 
 					<div class="modal-body" style="text-align: left">
 						<div style="float: left">
@@ -205,7 +205,7 @@
 						</div>
 						<div style="float: left; margin-left: 10%; margin-top: 5%">
 
-							<table class="intext" style="color: black; text-align: right;">
+							<!-- <table class="intext" style="color: black; text-align: right;">
 								<tr>
 									<td>請輸入員工編號：</td>
 									<td><input type="text" name="Eid" id="Eid" /></td>
@@ -221,12 +221,17 @@
 										<button type="submit" class="btn-lg btn-warning">送出</button> <br/>
 										<br/> <a href="ForgetPwd.jsp">忘記密碼</a> <br/> <br/></td>
 								</tr>
-							</table>
+							</table> -->
+							<h:form>
+							<h:inputText type="text" name="account" value="#{login.employee.eid}" />
+						    <h:inputText type="password" name="password" value="#{login.employee.pwd}" />
+						    <h:commandButton class="btn btn-info btn-lg" value="登入" action="#{login.login}" /> 
+							</h:form>
 						</div>
 					</div>
 
 
-				</form>
+				<!-- </form> -->
 
 			</div>
 		</div>

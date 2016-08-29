@@ -1,6 +1,15 @@
 package bean;
 
-public class Employee {
+import java.io.Serializable;
+
+public class Employee implements Serializable{
+	
+	 /**
+		 * 
+		 */
+		private static final long serialVersionUID = -2322823282417821899L;
+
+
 
 	private String Eid;
 	private String Name;
@@ -8,7 +17,11 @@ public class Employee {
 	private String Email;
 	private String Pwd;
 	private int Identity;
-
+	//???
+	public Employee(){
+		
+	}
+//
 	public Employee(String Eid, String Name, String Id, String Email,
 			String Pwd, int Identity) {
 		this.Eid = Eid;
@@ -19,6 +32,7 @@ public class Employee {
 		this.Identity = Identity;
 
 	}
+
 
 	public String getEid() {
 		return Eid;
