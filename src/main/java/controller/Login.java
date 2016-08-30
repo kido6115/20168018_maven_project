@@ -1,14 +1,17 @@
 package controller;
 
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpSession;
+
 import bean.Employee;
 import db.JDBCLogin;
 
 @ManagedBean(name = "login")
-
+@SessionScoped
 public class Login {
-	private String Eid;
-	private String Pwd;
+	
 	private Employee employee = new Employee();
 
 	public String login() {
@@ -16,6 +19,9 @@ public class Login {
 		if (empExist) {
 			System.out.println(employee.getEid());
 			System.out.println(employee.getPwd());
+			FacesContext context = FacesContext.getCurrentInstance();
+		    HttpSession session = (HttpSession) context.getExternalContext().getSession(true);
+		    session.setAttribute("eid",employee.getEid());
 			return "index2.xhtml";
 		} else {
 			

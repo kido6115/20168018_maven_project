@@ -16,7 +16,6 @@ import javax.servlet.http.HttpSession;
 
 import bean.Edit;
 import db.JDBCSearchHour;
-import db.SearchHour;
 import db.EditJDBC;
 
 import com.sun.corba.se.pept.transport.Connection;
