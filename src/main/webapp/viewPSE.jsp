@@ -1,11 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ page import="bean.Edit"%>
-<%@ page import="bean.ViewSub"%>
+<%@ page import="org.iisi.bean.Edit"%>
+<%@ page import="org.iisi.bean.ViewSub"%>
 <%@ page import="java.sql.*"%>
 <%@ page import="java.util.List,java.util.ArrayList"%>
-<%@ page import="db.SearchHour"%>
-<%@ page import="bean.Edit"%>
+<%@ page import="org.iisi.bean.Edit"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>

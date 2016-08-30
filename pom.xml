@@ -10,6 +10,9 @@
   <properties>
 		<java.version>1.8</java.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<logback.version>1.1.3</logback.version>
+		<slf4j.version>1.7.12</slf4j.version>
+		<jcl.slf4j.version>1.7.12</jcl.slf4j.version>
 
 
 	</properties>
@@ -73,7 +76,35 @@
          <artifactId>jsf-impl</artifactId>
          <version>2.1.7</version>
       </dependency>
-		
+      
+      	<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>jcl-over-slf4j</artifactId>
+			<version>${jcl.slf4j.version}</version>
+		</dependency>
+
+		<!-- Logging -->
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-classic</artifactId>
+			<version>${logback.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-access</artifactId>
+			<version>${logback.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-core</artifactId>
+			<version>${logback.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.logback-extensions</groupId>
+			<artifactId>logback-ext-spring</artifactId>
+			<version>0.1.1</version>
+		</dependency>
+	
    
   </dependencies>
 
@@ -118,6 +149,7 @@
 		</plugins>
   </build>
   <repositories>
+
   <repository>
 			<id>ude-repo1</id>
 			<name>ude custom repo</name>

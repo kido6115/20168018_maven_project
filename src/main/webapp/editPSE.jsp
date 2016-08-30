@@ -3,8 +3,7 @@
 	pageEncoding="BIG5"%>
 <%@ page import="java.sql.*"%>
 <%@ page import="java.util.List,java.util.ArrayList"%>
-<%@ page import="db.SearchHour"%>
-<%@ page import="bean.Edit"%>
+<%@ page import="org.iisi.bean.Edit"%>
 
 <!DOCTYPE html>
 <html lang="en">

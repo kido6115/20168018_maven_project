@@ -1,7 +1,9 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core" template="/template.xhtml">
+	xmlns:f="http://java.sun.com/jsf/core" 
+	xmlns:p="http://primefaces.org/ui"
+	template="/template.xhtml">
 	<ui:define name="title">
 		<h1>
 			<img src="img/search.png" />
@@ -17,8 +19,8 @@
 							<h:selectOneMenu id="year" value="#{hoursearch.year}"
 								style="width:125px">
 								<f:selectItem itemLabel="2017" itemValue="2017" />
-								<f:selectItem itemLabel="2018" itemValue="2018" />
-								<f:selectItem itemLabel="2019" itemValue="2019" />
+								<f:selectItem itemLabel="2016" itemValue="2016" />
+								<f:selectItem itemLabel="2015" itemValue="2015" />
 								<h:commandButton class="btn btn-info btn-lg" value="submit"
 									action="#{hoursearch.empHourSearch}" />
 							</h:selectOneMenu>
@@ -85,8 +87,48 @@
 			}
 		</script>
 		<br />
-
-
+<!-- #{hoursearch.searchHourEmpList} -->
+<h:dataTable border="1" var="employee" value="#{hoursearch.searchHourEmpList}">
+    <h:column headerText="Id">
+        <h:outputText value="#{employee.eid}" />
+    </h:column>
+ 
+    <h:column headerText="Year">
+        <h:outputText value="#{employee.name}" />
+    </h:column>
+ 
+    <h:column headerText="Brand">
+        <h:outputText value="#{employee.kname}" />
+    </h:column>
+ 
+    <h:column headerText="Color">
+        <h:outputText value="#{employee.credit}" />
+    </h:column>
+</h:dataTable>
+<!-- better? -->
+ <h:dataTable value="#{hoursearch.searchHourEmpList}" var="employee" width="800"
+         >
+         <h:column>    				
+            <f:facet name="header">姓名</f:facet>    				
+            #{employee.name}
+         </h:column>
+         <h:column>
+            <f:facet name="header">員工編號</f:facet>
+            #{employee.eid}
+         </h:column>
+         <h:column>
+            <f:facet name="header">假種</f:facet>
+            #{employee.kname}
+         </h:column>
+         <h:column>
+            <f:facet name="header">額度</f:facet>
+            #{employee.credit}
+         </h:column>
+         <h:column>
+            <f:facet name="header">年度</f:facet>
+            #{employee.year}
+         </h:column>
+      </h:dataTable>
 		<form name="form4" method="post" class="fontstyle">
 			<table class="CSSTableGenerator" border="1">
 
@@ -98,7 +140,7 @@
 					<td>上限</td>
 
 				</tr>
-				
+		
 				<!-- <%
 									ArrayList<SearchHourEmp> list = (ArrayList<SearchHourEmp>) request.getAttribute("SearchList");
 								%> -->

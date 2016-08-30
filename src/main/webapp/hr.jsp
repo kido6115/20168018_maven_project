@@ -4,8 +4,8 @@
 <%@ page import="java.io.*"%>
 <%@  page import="java.util.*"%>
 <%@  page import="java.util.Date"%>
-<%@  page import="db.JDBCHr"%>
-<%@  page import="bean.Hr"%>
+<%@  page import="org.iisi.db.JDBCHr"%>
+<%@  page import="org.iisi.bean.Hr"%>
 
 
 <%@  page import="java.text.SimpleDateFormat"%>

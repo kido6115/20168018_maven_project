@@ -1,9 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%><%@ page import="java.sql.*"%>
 <%@ page import="java.util.List,java.util.ArrayList"%>
-<%@ page import="bean.CheckPSE"%>
+<%@ page import="org.iisi.bean.CheckPSE"%>
 
-<%@ page import="db.JDBCCheckPSE"%>
+<%@ page import="org.iisi.db.JDBCCheckPSE"%>
 <%@ page import="java.text.SimpleDateFormat"%>
 <%@ page import="java.text.DateFormat"%>
 <%@ page import="java.util.Date"%>
