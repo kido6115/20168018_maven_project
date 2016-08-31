@@ -22,8 +22,8 @@ public class Login {
 		boolean empExist = empExist(employee);
 		if (empExist) {
 			
-			LOGGER.debug(employee.getEid());
-			LOGGER.debug(employee.getPwd());
+			LOGGER.debug("EID is "+employee.getEid());
+			LOGGER.debug("Password is "+employee.getPwd());
 			FacesContext context = FacesContext.getCurrentInstance();
 		    HttpSession session = (HttpSession) context.getExternalContext().getSession(true);
 		    session.setAttribute("eid",employee.getEid());
@@ -36,9 +36,12 @@ public class Login {
 	}
 
 	protected boolean empExist(Employee employee) {
+		
 		JDBCLogin db = new JDBCLogin();
 		int status = db.CheckEmployee(employee.getEid(), employee.getPwd());
-		System.out.println(status);
+		
+		LOGGER.debug("Status is "+Integer.toString(status));
+
 		if (status == 1) {
 			return true;
 		} else {

@@ -17,6 +17,7 @@
 
 	</properties>
   <dependencies>
+
   <dependency>
     <groupId>commons-fileupload</groupId>
     <artifactId>commons-fileupload</artifactId>
@@ -103,7 +104,13 @@
 			<groupId>org.logback-extensions</groupId>
 			<artifactId>logback-ext-spring</artifactId>
 			<version>0.1.1</version>
+			
 		</dependency>
+		<dependency>
+   <groupId>org.primefaces</groupId>
+   <artifactId>primefaces</artifactId>
+   <version>6.0</version>
+  </dependency>
 	
    
   </dependencies>
@@ -149,8 +156,7 @@
 		</plugins>
   </build>
   <repositories>
-
-  <repository>
+<repository>
 			<id>ude-repo1</id>
 			<name>ude custom repo</name>
 			<url>http://192.168.57.21/nexus/content/groups/public/</url>
