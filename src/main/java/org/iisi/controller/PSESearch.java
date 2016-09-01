@@ -1,13 +1,20 @@
 package org.iisi.controller;
 
+import org.iisi.bean.SearchPSE;
+import org.iisi.db.JDBCLogin;
+import org.iisi.db.JDBCPSESearch;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpSession;
 
 @ManagedBean(name = "psesearch")
 @SessionScoped
@@ -19,8 +26,20 @@ public class PSESearch implements Serializable {
 	private String[] statusConditions;
 	private Date startDate = new Date();
 	private Date endDate = new Date();
+    private List<SearchPSE> searchPSEList=null;
 
+    
+	
 	public String empPSESearch() {
+		String eid;
+		FacesContext context = FacesContext.getCurrentInstance();
+		HttpSession session = (HttpSession) context.getExternalContext().getSession(true);
+		eid = (String) session.getAttribute("eid");
+
+		JDBCLogin login = new JDBCLogin();
+		String dept = login.getDep(eid);
+		
+		
 		for (int i = 0; i < kindConditions.length; i++) {
 			LOGGER.debug("Kind values are " + kindConditions[i]);
 		}
@@ -29,11 +48,35 @@ public class PSESearch implements Serializable {
 		}
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd ");
 
-		LOGGER.debug(sdf.format(startDate));
-		LOGGER.debug(sdf.format(endDate));
+		LOGGER.debug("Start time is "+sdf.format(startDate));
+		LOGGER.debug("End time is "+sdf.format(endDate));
+		String enddate = sdf.format(endDate);
+		String startdate = sdf.format(startDate);
+        String[] k = kindConditions;
+        String[] s = statusConditions;
 
+		JDBCPSESearch sc = new JDBCPSESearch();
+		
+			 
+			
+				try {
+					List<SearchPSE> list = sc.SearchPSE_E(eid,null, null, null, null, dept);
+					for (SearchPSE searchhour : list) {
+						
+						LOGGER.debug(searchhour.geteid());
+						LOGGER.debug(searchhour.getstarttime());
+						LOGGER.debug(searchhour.getendtime());
+						LOGGER.debug(searchhour.getkname());
+						LOGGER.debug(searchhour.getsname());
+						searchPSEList=list;
+					}
+				} catch (Exception e) {
+					LOGGER.debug("fail");
+				}
+				
+		
+				return "empsearchPSE.xhtml";
 
-		return "empsearchPSE.xhtml";
 
 	}
 
@@ -68,5 +111,13 @@ public class PSESearch implements Serializable {
 	public void setEndDate(Date endDate) {
 		this.endDate = endDate;
 	}
+	public List<SearchPSE> getSearchPSEList() {
+		return searchPSEList;
+	}
+
+	public void setSearchPSEList(List<SearchPSE> searchPSEList) {
+		this.searchPSEList = searchPSEList;
+	}
+
 
 }

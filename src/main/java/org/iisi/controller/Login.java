@@ -40,7 +40,7 @@ public class Login {
 		JDBCLogin db = new JDBCLogin();
 		int status = db.CheckEmployee(employee.getEid(), employee.getPwd());
 		
-		LOGGER.debug("Status is "+Integer.toString(status));
+		LOGGER.debug("Login status is "+Integer.toString(status));
 
 		if (status == 1) {
 			return true;

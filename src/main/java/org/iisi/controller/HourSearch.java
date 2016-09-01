@@ -31,6 +31,7 @@ public class HourSearch implements Serializable {
 		eid = (String) session.getAttribute("eid");
 		JDBCLogin login = new JDBCLogin();
 		String dept = login.getDep(eid);
+		
 		JDBCSearchHour sh = new JDBCSearchHour();
 		List<SearchHourEmp> list = sh.SearchHour_e(year, eid, dept);
 

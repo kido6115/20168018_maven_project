@@ -1,9 +1,8 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core" 
-	xmlns:p="http://primefaces.org/ui"
-	template="/template.xhtml">
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" template="/template.xhtml">
 	<ui:define name="title">
 
 		<h1>
@@ -68,10 +67,8 @@
         							
         							
          	if(k0==1){
- %> -->
-									<br /> jsp:<br />
-								<input type="checkbox" name="type" value="1" />事假 <input
-									type="checkbox" name="type" value="2" />病假 <input
+ %> --> <br /> jsp:<br /> <input type="checkbox" name="type" value="1" />事假
+									<input type="checkbox" name="type" value="2" />病假 <input
 									type="checkbox" name="type" value="3" />喪假 <input
 									type="checkbox" name="type" value="4" />產假 <input
 									type="checkbox" name="type" value="5" />特休 <br /> <br />
@@ -130,20 +127,55 @@
 								<f:selectItem itemLabel="退回" itemValue="2" />
 								<f:selectItem itemLabel="待審核" itemValue="3" />
 							</h:selectManyCheckbox>
-							
-					
+
+
 							<h:commandButton value="查詢" action="#{psesearch.empPSESearch}" />
+							<p:outputLabel for="popup" value="Popup:" />
+							<p:calendar id="popup" value="#{psesearch.startDate}" pattern="yyyy-MM-dd" />
+							<p:outputLabel for="event" value="Select Event:" />
+							<p:calendar id="event" value="#{psesearch.endDate}" pattern="yyyy-MM-dd">
+
+							</p:calendar>
 						</h:form></td>
-						
+
 				</tr>
 			</table>
 		</form>
-<h:form>
-<p:outputLabel for="popup" value="Popup:" />
-        <p:calendar id="popup" value="#{psesearch.startDate}" />
-   <p:outputLabel for="inline" value="Inline:" />
-        <p:calendar id="inline" value="#{psesearch.startDate}" mode="inline" />
-</h:form>
+		
+ <h:dataTable value="#{psesearch.searchPSEList}" var="searchpse" width="800"
+         >
+         
+         
+         <h:column>
+            <f:facet name="header">員工編號</f:facet>
+           #{searchpse.eid}
+         </h:column>
+         <h:column>
+            <f:facet name="header">員工姓名</f:facet>
+            #{searchpse.name}
+         </h:column>
+         <h:column>
+            <f:facet name="header">假單編號</f:facet>
+            #{searchpse.pid}
+         </h:column>
+         <h:column>    				
+            <f:facet name="header">假單種類</f:facet>    				
+            #{searchpse.kname}
+         </h:column>
+         <h:column>    				
+            <f:facet name="header">開始時間</f:facet>    				
+            #{searchpse.starttime}
+         </h:column>
+         <h:column>    				
+            <f:facet name="header">結束時間</f:facet>    				
+            #{searchpse.endtime}
+         </h:column>
+          <h:column>
+            <f:facet name="header">假單狀態</f:facet>
+           #{searchpse.sname}
+         </h:column>
+      </h:dataTable>
+	
 		<h2></h2>
 
 		<!-- 		<script language="javascript">
