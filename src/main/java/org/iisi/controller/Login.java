@@ -24,9 +24,13 @@ public class Login {
 			
 			LOGGER.debug("EID is "+employee.getEid());
 			LOGGER.debug("Password is "+employee.getPwd());
+		
+
+			
 			FacesContext context = FacesContext.getCurrentInstance();
 		    HttpSession session = (HttpSession) context.getExternalContext().getSession(true);
 		    session.setAttribute("eid",employee.getEid());
+		    
 			return "index2.xhtml";
 		} else {
 			
@@ -39,7 +43,8 @@ public class Login {
 		
 		JDBCLogin db = new JDBCLogin();
 		int status = db.CheckEmployee(employee.getEid(), employee.getPwd());
-		
+	
+
 		LOGGER.debug("Login status is "+Integer.toString(status));
 
 		if (status == 1) {

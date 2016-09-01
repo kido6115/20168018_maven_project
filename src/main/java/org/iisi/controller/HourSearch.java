@@ -29,6 +29,7 @@ public class HourSearch implements Serializable {
 		FacesContext context = FacesContext.getCurrentInstance();
 		HttpSession session = (HttpSession) context.getExternalContext().getSession(true);
 		eid = (String) session.getAttribute("eid");
+		
 		JDBCLogin login = new JDBCLogin();
 		String dept = login.getDep(eid);
 		

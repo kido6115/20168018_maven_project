@@ -52,8 +52,7 @@ public class PSESearch implements Serializable {
 		LOGGER.debug("End time is "+sdf.format(endDate));
 		String enddate = sdf.format(endDate);
 		String startdate = sdf.format(startDate);
-        String[] k = kindConditions;
-        String[] s = statusConditions;
+     
 
 		JDBCPSESearch sc = new JDBCPSESearch();
 		
