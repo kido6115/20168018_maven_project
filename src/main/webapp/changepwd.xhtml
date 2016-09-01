@@ -8,7 +8,7 @@
                 
                 
                 	<h1><img src="img/PDW.png"/></h1>
-
+<table align = "center"><tr><td>
 						<h:form>
 							<table class="mytable"  align="center">
 								<tr><td><p align="center">
@@ -39,5 +39,19 @@
 								</table>
 				
 						</h:form>
+						</td>
+						<td>
+						<h:form>
+								<h:inputText type="text"  value="#{changepassword.oldPwd}" />
+								<br/>
+								<h:inputText type="text"  value="#{changepassword.newPwd}" />
+								<br/>
+								<h:inputText type="text"  value="#{changepassword.checkPwd}" />
+								<br/>
+								<h:commandButton class="btn btn-info btn-lg" value="更改" action="#{changepassword.change}" />
+								</h:form>
+								</td>
+								</tr>
+								</table>
 						</ui:define>
                 </ui:composition>
