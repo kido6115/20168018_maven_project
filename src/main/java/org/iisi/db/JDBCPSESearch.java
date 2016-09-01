@@ -293,7 +293,7 @@ int dd=Integer.parseInt(dep);
 		String endtime = null;
 		String sname = null;
 		String type = "";
-		String stat = " ";
+		String stat = "";
 
 		if (Kind != null) {
 			for (int j = 1; j < Kind.length; j++) {

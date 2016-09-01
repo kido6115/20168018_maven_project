@@ -60,7 +60,7 @@ public class PSESearch implements Serializable {
 			 
 			
 				try {
-					List<SearchPSE> list = sc.SearchPSE_E(eid,null, null, null, null, dept);
+					List<SearchPSE> list = sc.SearchPSE_E(eid,startdate, enddate,kindConditions,statusConditions, dept);
 					for (SearchPSE searchhour : list) {
 						
 						LOGGER.debug(searchhour.geteid());
