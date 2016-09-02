@@ -27,9 +27,7 @@ public class LoginController {
 		
 
 			
-			FacesContext context = FacesContext.getCurrentInstance();
-		    HttpSession session = (HttpSession) context.getExternalContext().getSession(true);
-		    session.setAttribute("eid",employee.getEid());
+		
 		    
 			return "index2.xhtml";
 		} else {

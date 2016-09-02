@@ -23,10 +23,7 @@ public class HourSearchController implements Eid {
     private List<SearchHourEmp> searchHourEmpList=null;
 
 	public String empHourSearch() {
-		
-		FacesContext context = FacesContext.getCurrentInstance();
-		HttpSession session = (HttpSession) context.getExternalContext().getSession(true);
-		eid = (String) session.getAttribute("eid");
+
 		
 		JDBCLogin login = new JDBCLogin();
 		String dept = login.getDep(eid);

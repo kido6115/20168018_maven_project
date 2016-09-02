@@ -40,21 +40,7 @@ public class EditJDBC extends JDBCCore {
 			LOGGER.error(e.getMessage(),e);
 			throw e;
 		}
-		return showed;// 回傳sditServlet1
+		return showed;// 回傳editServlet1
 	}
 }
 
-/*
- * public String getName(String Name) { String eName =""; try { Connection conn;
- * conn = makeConnection(); PreparedStatement st = conn .prepareStatement(
- * "Select Name from EMPLOYEE where Name ='"+Name+"'"); // st.setString(1,
- * Name); ResultSet rs = st.executeQuery(); while(rs.next()) {
- * eName=rs.getString("Name"); }
- * 
- * } catch (Exception e) { eName = "???"; //發生錯誤 }
- * 
- * return eName; }
- * 
- * 
- * }
- */

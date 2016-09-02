@@ -16,10 +16,7 @@ public class ChangePasswordController implements Eid {
 	private String newPwd;
 	private String checkPwd;
 	public String change(){
-//		String eid;
-//		FacesContext context = FacesContext.getCurrentInstance();
-//		HttpSession session = (HttpSession) context.getExternalContext().getSession(true);
-//		eid = (String) session.getAttribute("eid");
+
 		LOGGER.debug(oldPwd);
 		LOGGER.debug(newPwd);
 		LOGGER.debug(checkPwd);
