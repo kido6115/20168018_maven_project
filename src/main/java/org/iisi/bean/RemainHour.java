@@ -1,6 +1,10 @@
 package org.iisi.bean;
 
-public class RemainHour {
+import java.io.Serializable;
+
+public class RemainHour implements Serializable{
+	private static final long serialVersionUID = -2322823282417821899L;
+
 	private float remainHour;
 	private String kname;
 	

@@ -4,16 +4,21 @@ import java.sql.*;
 import java.util.*;
 
 import org.iisi.bean.Edit;
+import org.iisi.controller.HourSearchController;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class EditJDBC extends JDBCCore {
+	private static final Logger LOGGER = LoggerFactory.getLogger(HourSearchController.class);
+
 	public List<Edit> edit(String eid) throws Exception {
 		ArrayList<Edit> showed = new ArrayList<Edit>();
 
 		try {
 			Connection conn;
 			conn = makeConnection();
-			PreparedStatement pstmt = conn
-					.prepareStatement("select pid,applytime,reply from pse_main where eid=? and status=2 order by pid desc");
+			PreparedStatement pstmt = conn.prepareStatement(
+					"select pid,applytime,reply from pse_main where eid=? and status=2 order by pid desc");
 			pstmt.setString(1, eid);
 			ResultSet rs = pstmt.executeQuery();
 			while (rs.next()) {
@@ -23,7 +28,8 @@ public class EditJDBC extends JDBCCore {
 				String rsreply = rs.getString(3);
 
 				org.iisi.bean.Edit edl = new org.iisi.bean.Edit(rspid, rstime, rsreply);
-				showed.add(i, edl);//ArrayList<edit> showed = new ArrayList<edit>();
+				showed.add(i, edl);// ArrayList<edit> showed = new
+									// ArrayList<edit>();
 				i++;
 			}
 			rs.close();
@@ -31,17 +37,18 @@ public class EditJDBC extends JDBCCore {
 			conn.close();
 
 		} catch (Exception e) {
-throw e;
+			LOGGER.error(e.getMessage(),e);
+			throw e;
 		}
-		return showed;//回傳sditServlet1
+		return showed;// 回傳sditServlet1
 	}
 }
 
 /*
  * public String getName(String Name) { String eName =""; try { Connection conn;
- * conn = makeConnection(); PreparedStatement st = conn
- * .prepareStatement("Select Name from EMPLOYEE where Name ='"+Name+"'"); //
- * st.setString(1, Name); ResultSet rs = st.executeQuery(); while(rs.next()) {
+ * conn = makeConnection(); PreparedStatement st = conn .prepareStatement(
+ * "Select Name from EMPLOYEE where Name ='"+Name+"'"); // st.setString(1,
+ * Name); ResultSet rs = st.executeQuery(); while(rs.next()) {
  * eName=rs.getString("Name"); }
  * 
  * } catch (Exception e) { eName = "???"; //發生錯誤 }

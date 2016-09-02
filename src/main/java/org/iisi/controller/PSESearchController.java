@@ -1,26 +1,24 @@
 package org.iisi.controller;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.iisi.bean.SearchPSE;
 import org.iisi.db.JDBCLogin;
 import org.iisi.db.JDBCPSESearch;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-import javax.faces.context.FacesContext;
-import javax.servlet.http.HttpSession;
+
 
 @ManagedBean(name = "psesearch")
 @SessionScoped
-public class PSESearch implements Serializable {
-	private static final long serialVersionUID = -2322823282417821899L;
-	private static final Logger LOGGER = LoggerFactory.getLogger(PSESearch.class);
+public class PSESearchController implements Eid {
+	private static final Logger LOGGER = LoggerFactory.getLogger(PSESearchController.class);
 
 	private String[] kindConditions;
 	private String[] statusConditions;
@@ -31,10 +29,8 @@ public class PSESearch implements Serializable {
     
 	
 	public String empPSESearch() {
-		String eid;
-		FacesContext context = FacesContext.getCurrentInstance();
-		HttpSession session = (HttpSession) context.getExternalContext().getSession(true);
-		eid = (String) session.getAttribute("eid");
+		
+		
 
 		JDBCLogin login = new JDBCLogin();
 		String dept = login.getDep(eid);
@@ -61,12 +57,9 @@ public class PSESearch implements Serializable {
 				try {
 					List<SearchPSE> list = sc.SearchPSE_E(eid,startdate, enddate,kindConditions,statusConditions, dept);
 					for (SearchPSE searchhour : list) {
+						LOGGER.debug(ToStringBuilder.reflectionToString(searchhour)
+								);
 						
-						LOGGER.debug(searchhour.geteid());
-						LOGGER.debug(searchhour.getstarttime());
-						LOGGER.debug(searchhour.getendtime());
-						LOGGER.debug(searchhour.getkname());
-						LOGGER.debug(searchhour.getsname());
 						searchPSEList=list;
 					}
 				} catch (Exception e) {

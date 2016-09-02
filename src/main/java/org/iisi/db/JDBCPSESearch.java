@@ -1,19 +1,15 @@
 
 package org.iisi.db;
 
-
 import java.sql.*;
-import java.util.*;
 
-import java.io.BufferedWriter;
-import java.io.File;
 import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.OutputStreamWriter;
+
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
+
 //excel
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
@@ -21,12 +17,15 @@ import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.iisi.bean.Hours;
 import org.iisi.bean.SearchPSE;
-import org.iisi.bean.SearchPSE2;
+import org.iisi.controller.HourSearchController;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 //
 import au.com.bytecode.opencsv.CSVWriter;
 
 public class JDBCPSESearch extends JDBCCore {
+	private static final Logger LOGGER = LoggerFactory.getLogger(HourSearchController.class);
 
 	public List<Hours> getYear() {
 
@@ -37,8 +36,7 @@ public class JDBCPSESearch extends JDBCCore {
 		try {
 			Connection conn;
 			conn = makeConnection();
-			PreparedStatement pstmt = conn
-					.prepareStatement("select Year from Hours group by year order by Year desc");
+			PreparedStatement pstmt = conn.prepareStatement("select Year from Hours group by year order by Year desc");
 
 			ResultSet rs = pstmt.executeQuery();
 			while (rs.next()) {
@@ -54,14 +52,15 @@ public class JDBCPSESearch extends JDBCCore {
 			conn.close();
 
 		} catch (Exception e) {
+			LOGGER.error(e.getMessage(), e);
 		}
 		return dy;
 	}
 
 	// 主管查詢
-	public List<SearchPSE> SearchPSE(String emp, String ename, String sdate,
-			String edate, String[] Kind, String[] Status,String dep) throws Exception {
-int dd=Integer.parseInt(dep);
+	public List<SearchPSE> SearchPSE(String emp, String ename, String sdate, String edate, String[] Kind,
+			String[] Status, String dep) throws Exception {
+		int dd = Integer.parseInt(dep);
 		ArrayList<SearchPSE> sh = new ArrayList<SearchPSE>();
 		int i = 0;
 		String applytime = null;
@@ -110,21 +109,16 @@ int dd=Integer.parseInt(dep);
 			Connection conn;
 			conn = makeConnection();
 			PreparedStatement pstmt;
-			if (emp == null && ename == null && sdate == null && edate == null
-					&& Kind == null && Status == null) {
-				pstmt = conn
-						.prepareStatement("select to_char(main.applytime, 'yyyy-mm-dd'),main.eid,emp.name,main.pid,kind.kname,to_char(sub.startdatetime, 'yyyy-mm-dd HH:mi'),to_char(sub.enddatetime, 'yyyy-mm-dd HH:mi'),status.sname from employee emp,pse_main main , pse_sub sub, pse_kind kind,pse_status status where emp.eid=main.eid and main.pid=sub.pid and sub.kid=kind.kid and main.status=status.status and (emp.dep_id=? or ? is NULL) and main.status!=4 order by main.applytime desc");
+			if (emp == null && ename == null && sdate == null && edate == null && Kind == null && Status == null) {
+				pstmt = conn.prepareStatement(
+						"select to_char(main.applytime, 'yyyy-mm-dd'),main.eid,emp.name,main.pid,kind.kname,to_char(sub.startdatetime, 'yyyy-mm-dd HH:mi'),to_char(sub.enddatetime, 'yyyy-mm-dd HH:mi'),status.sname from employee emp,pse_main main , pse_sub sub, pse_kind kind,pse_status status where emp.eid=main.eid and main.pid=sub.pid and sub.kid=kind.kid and main.status=status.status and (emp.dep_id=? or ? is NULL) and main.status!=4 order by main.applytime desc");
 				pstmt.setInt(1, dd);
 				pstmt.setInt(2, dd);
 
-
 			} else {
-				pstmt = conn
-						.prepareStatement("select to_char(main.applytime, 'yyyy-mm-dd'),main.eid,emp.name,main.pid,kind.kname,to_char(sub.startdatetime, 'yyyy-mm-dd HH:mi'),to_char(sub.enddatetime, 'yyyy-mm-dd HH:mi'),status.sname from employee emp,pse_main main , pse_sub sub, pse_kind kind,pse_status status where emp.eid=main.eid and main.pid=sub.pid and sub.kid=kind.kid and main.status=status.status and (main.eid = ? or ? is null) and (emp.name like ? or ? is null) and (sub.startdatetime  BETWEEN  to_date(?,'yyyy-mm-dd') and to_date(?,'yyyy-mm-dd')) "
-								+ type
-								+ " "
-								+ stat
-								+ " and (emp.dep_id=? or ? is NULL) order by main.applytime desc");
+				pstmt = conn.prepareStatement(
+						"select to_char(main.applytime, 'yyyy-mm-dd'),main.eid,emp.name,main.pid,kind.kname,to_char(sub.startdatetime, 'yyyy-mm-dd HH:mi'),to_char(sub.enddatetime, 'yyyy-mm-dd HH:mi'),status.sname from employee emp,pse_main main , pse_sub sub, pse_kind kind,pse_status status where emp.eid=main.eid and main.pid=sub.pid and sub.kid=kind.kid and main.status=status.status and (main.eid = ? or ? is null) and (emp.name like ? or ? is null) and (sub.startdatetime  BETWEEN  to_date(?,'yyyy-mm-dd') and to_date(?,'yyyy-mm-dd')) "
+								+ type + " " + stat + " and (emp.dep_id=? or ? is NULL) order by main.applytime desc");
 
 				pstmt.setString(1, emp);
 				pstmt.setString(2, emp);
@@ -136,7 +130,6 @@ int dd=Integer.parseInt(dep);
 				pstmt.setString(6, edate);
 				pstmt.setInt(7, dd);
 				pstmt.setInt(8, dd);
-
 
 			}
 			ResultSet rs = pstmt.executeQuery();
@@ -151,8 +144,7 @@ int dd=Integer.parseInt(dep);
 				endtime = rs.getString(7);
 				sname = rs.getString(8);
 
-				SearchPSE dl = new SearchPSE(applytime, eid, name, pid, kname,
-						starttime, endtime, sname);
+				SearchPSE dl = new SearchPSE(applytime, eid, name, pid, kname, starttime, endtime, sname);
 				sh.add(i, dl);
 				i++;
 			}
@@ -161,13 +153,14 @@ int dd=Integer.parseInt(dep);
 			conn.close();
 
 		} catch (Exception e) {
+			LOGGER.error(e.getMessage(), e);
 			throw e;
 		}
 		return sh;
 	}
 
-	
-	public List<SearchPSE> SearchPSE2(String emp, String ename,String[] Kind, String[] Status,String dep) throws Exception {
+	public List<SearchPSE> SearchPSE2(String emp, String ename, String[] Kind, String[] Status, String dep)
+			throws Exception {
 
 		ArrayList<SearchPSE> sh = new ArrayList<SearchPSE>();
 		int i = 0;
@@ -218,23 +211,19 @@ int dd=Integer.parseInt(dep);
 			conn = makeConnection();
 			PreparedStatement pstmt;
 			if (emp == null && ename == null && Kind == null && Status == null) {
-				pstmt = conn
-						.prepareStatement("select to_char(main.applytime, 'yyyy-mm-dd'),main.eid,emp.name,main.pid,kind.kname,to_char(sub.startdatetime, 'yyyy-mm-dd HH:mi'),to_char(sub.enddatetime, 'yyyy-mm-dd HH:mi'),status.sname from employee emp,pse_main main , pse_sub sub, pse_kind kind,pse_status status where emp.eid=main.eid and main.pid=sub.pid and sub.kid=kind.kid and main.status=status.status  order by main.applytime desc");
+				pstmt = conn.prepareStatement(
+						"select to_char(main.applytime, 'yyyy-mm-dd'),main.eid,emp.name,main.pid,kind.kname,to_char(sub.startdatetime, 'yyyy-mm-dd HH:mi'),to_char(sub.enddatetime, 'yyyy-mm-dd HH:mi'),status.sname from employee emp,pse_main main , pse_sub sub, pse_kind kind,pse_status status where emp.eid=main.eid and main.pid=sub.pid and sub.kid=kind.kid and main.status=status.status  order by main.applytime desc");
 
 			} else {
-				pstmt = conn
-						.prepareStatement("select to_char(main.applytime, 'yyyy-mm-dd'),main.eid,emp.name,main.pid,kind.kname,to_char(sub.startdatetime, 'yyyy-mm-dd HH:mi'),to_char(sub.enddatetime, 'yyyy-mm-dd HH:mi'),status.sname from employee emp,pse_main main , pse_sub sub, pse_kind kind,pse_status status where emp.eid=main.eid and main.pid=sub.pid and sub.kid=kind.kid and main.status=status.status and (main.eid = ? or ? is null) and (emp.name like ? or ? is null)"
-								+ type
-								+ " "
-								+ stat
-								+ "  order by main.applytime desc");
+				pstmt = conn.prepareStatement(
+						"select to_char(main.applytime, 'yyyy-mm-dd'),main.eid,emp.name,main.pid,kind.kname,to_char(sub.startdatetime, 'yyyy-mm-dd HH:mi'),to_char(sub.enddatetime, 'yyyy-mm-dd HH:mi'),status.sname from employee emp,pse_main main , pse_sub sub, pse_kind kind,pse_status status where emp.eid=main.eid and main.pid=sub.pid and sub.kid=kind.kid and main.status=status.status and (main.eid = ? or ? is null) and (emp.name like ? or ? is null)"
+								+ type + " " + stat + "  order by main.applytime desc");
 
 				pstmt.setString(1, emp);
 				pstmt.setString(2, emp);
 
 				pstmt.setString(3, "%" + ename + "%");
 				pstmt.setString(4, ename);
-
 
 			}
 			ResultSet rs = pstmt.executeQuery();
@@ -249,8 +238,7 @@ int dd=Integer.parseInt(dep);
 				endtime = rs.getString(7);
 				sname = rs.getString(8);
 
-				SearchPSE dl = new SearchPSE(applytime, eid, name, pid, kname,
-						starttime, endtime, sname);
+				SearchPSE dl = new SearchPSE(applytime, eid, name, pid, kname, starttime, endtime, sname);
 				sh.add(i, dl);
 				i++;
 			}
@@ -259,28 +247,15 @@ int dd=Integer.parseInt(dep);
 			conn.close();
 
 		} catch (Exception e) {
+			LOGGER.error(e.getMessage(), e);
 			throw e;
 		}
 		return sh;
 	}
 
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	// 員工查詢
-	public List<SearchPSE> SearchPSE_E(String emp, String sdate, String edate,String[] Kind, String[] Status,String dep) throws Exception {
+	public List<SearchPSE> SearchPSE_E(String emp, String sdate, String edate, String[] Kind, String[] Status,
+			String dep) throws Exception {
 
 		ArrayList<SearchPSE> sh = new ArrayList<SearchPSE>();
 		int i = 0;
@@ -330,20 +305,15 @@ int dd=Integer.parseInt(dep);
 			Connection conn;
 			conn = makeConnection();
 			PreparedStatement pstmt;
-			if (sdate == null && edate == null && Kind == null
-					&& Status == null) {
-				pstmt = conn
-						.prepareStatement("select to_char(main.applytime, 'yyyy-mm-dd'),main.eid,emp.name,main.pid,kind.kname,to_char(sub.startdatetime, 'yyyy-mm-dd HH:mi'),to_char(sub.enddatetime, 'yyyy-mm-dd HH:mi'),status.sname from employee emp,pse_main main , pse_sub sub, pse_kind kind,pse_status status where emp.eid=main.eid and main.pid=sub.pid and sub.kid=kind.kid and main.status=status.status  and main.eid=? and main.status!=4  order by main.applytime desc");
+			if (sdate == null && edate == null && Kind == null && Status == null) {
+				pstmt = conn.prepareStatement(
+						"select to_char(main.applytime, 'yyyy-mm-dd'),main.eid,emp.name,main.pid,kind.kname,to_char(sub.startdatetime, 'yyyy-mm-dd HH:mi'),to_char(sub.enddatetime, 'yyyy-mm-dd HH:mi'),status.sname from employee emp,pse_main main , pse_sub sub, pse_kind kind,pse_status status where emp.eid=main.eid and main.pid=sub.pid and sub.kid=kind.kid and main.status=status.status  and main.eid=? and main.status!=4  order by main.applytime desc");
 				pstmt.setString(1, emp);
 
-
 			} else {
-				pstmt = conn
-						.prepareStatement("select to_char(main.applytime, 'yyyy-mm-dd'),main.eid,emp.name,main.pid,kind.kname,to_char(sub.startdatetime, 'yyyy-mm-dd HH:mi'),to_char(sub.enddatetime, 'yyyy-mm-dd HH:mi'),status.sname from employee emp,pse_main main , pse_sub sub, pse_kind kind,pse_status status where emp.eid=main.eid and main.pid=sub.pid and sub.kid=kind.kid and main.status=status.status and main.eid = ? and (sub.startdatetime  BETWEEN  to_date(?,'yyyy-mm-dd') and to_date(?,'yyyy-mm-dd')) "
-								+ type
-								+ " "
-								+ stat
-								+ " order by main.applytime desc");
+				pstmt = conn.prepareStatement(
+						"select to_char(main.applytime, 'yyyy-mm-dd'),main.eid,emp.name,main.pid,kind.kname,to_char(sub.startdatetime, 'yyyy-mm-dd HH:mi'),to_char(sub.enddatetime, 'yyyy-mm-dd HH:mi'),status.sname from employee emp,pse_main main , pse_sub sub, pse_kind kind,pse_status status where emp.eid=main.eid and main.pid=sub.pid and sub.kid=kind.kid and main.status=status.status and main.eid = ? and (sub.startdatetime  BETWEEN  to_date(?,'yyyy-mm-dd') and to_date(?,'yyyy-mm-dd')) "
+								+ type + " " + stat + " order by main.applytime desc");
 
 				pstmt.setString(1, emp);
 				pstmt.setString(2, sdate);
@@ -363,8 +333,7 @@ int dd=Integer.parseInt(dep);
 				endtime = rs.getString(7);
 				sname = rs.getString(8);
 
-				SearchPSE dl = new SearchPSE(applytime, eid, name, pid, kname,
-						starttime, endtime, sname);
+				SearchPSE dl = new SearchPSE(applytime, eid, name, pid, kname, starttime, endtime, sname);
 				sh.add(i, dl);
 				i++;
 			}
@@ -373,6 +342,7 @@ int dd=Integer.parseInt(dep);
 			conn.close();
 
 		} catch (Exception e) {
+			LOGGER.error(e.getMessage(), e);
 			throw e;
 		}
 		return sh;
@@ -408,7 +378,8 @@ int dd=Integer.parseInt(dep);
 	public String Array2Csv(List<SearchPSE> list) {
 
 		// 01.檔案名稱
-	//	final String disk = "C:\\workspace\\DemoIO-0527 V9.0\\WebContent\\WEB-INF\\export\\";
+		// final String disk = "C:\\workspace\\DemoIO-0527
+		// V9.0\\WebContent\\WEB-INF\\export\\";
 		final String disk = "C:\\";
 		final String fileName = "PSE";
 
@@ -417,17 +388,15 @@ int dd=Integer.parseInt(dep);
 
 		for (int i = 0; i < list.size(); i++) {
 
-			source.add(new String[] { list.get(i).getapplytime(),
-					list.get(i).geteid(), list.get(i).getname(),
-					String.valueOf(list.get(i).getpid()),
-					list.get(i).getkname(), list.get(i).getstarttime(),
+			source.add(new String[] { list.get(i).getapplytime(), list.get(i).geteid(), list.get(i).getname(),
+					String.valueOf(list.get(i).getpid()), list.get(i).getkname(), list.get(i).getstarttime(),
 					list.get(i).getendtime(), list.get(i).getsname() });
 
 		}
 
 		// 02.a 檔案名稱(加上隨機ID結尾以避免檔案重複)
 		String file = fileName + ".csv";
-		//String file = fileName + UUID.randomUUID() + ".csv";
+		// String file = fileName + UUID.randomUUID() + ".csv";
 
 		final String filePath = disk + file;
 
@@ -442,7 +411,8 @@ int dd=Integer.parseInt(dep);
 	public String ArrayCsv(List<SearchPSE> list) {
 
 		// 01.檔案名稱
-	//	final String disk = "C:\\workspace\\DemoIO-0527 V9.0\\WebContent\\WEB-INF\\export\\";
+		// final String disk = "C:\\workspace\\DemoIO-0527
+		// V9.0\\WebContent\\WEB-INF\\export\\";
 		final String disk = "C:\\";
 		final String fileName = "PSE";
 
@@ -451,16 +421,15 @@ int dd=Integer.parseInt(dep);
 
 		for (int i = 0; i < list.size(); i++) {
 
-			source.add(new String[] { list.get(i).getapplytime(),
-					list.get(i).geteid(),String.valueOf(list.get(i).getpid()),
-					list.get(i).getkname(), list.get(i).getstarttime(),
+			source.add(new String[] { list.get(i).getapplytime(), list.get(i).geteid(),
+					String.valueOf(list.get(i).getpid()), list.get(i).getkname(), list.get(i).getstarttime(),
 					list.get(i).getendtime(), list.get(i).getsname() });
 
 		}
 
 		// 02.a 檔案名稱(加上隨機ID結尾以避免檔案重複)
 		String file = fileName + ".csv";
-		//String file = fileName + UUID.randomUUID() + ".csv";
+		// String file = fileName + UUID.randomUUID() + ".csv";
 
 		final String filePath = disk + file;
 
@@ -472,78 +441,78 @@ int dd=Integer.parseInt(dep);
 		return file;
 	}
 
-
-	private FileStatus outputCsv(final List<String[]> source,
-			final String filePath) {
+	private FileStatus outputCsv(final List<String[]> source, final String filePath) {
 		try {
 			CSVWriter writer = new CSVWriter(new FileWriter(filePath));
 			writer.writeAll(source);
 			writer.close();
 		} catch (IOException e) {
 			System.out.println(e);
+			LOGGER.error(e.getMessage(), e);
 			return FileStatus.Fail.path(filePath);
 		}
 		return FileStatus.Success.path(filePath);
 	}
-	
-	
-	//匯出excel
-	public String exportpse(List<SearchPSE> list){
-		String file = "PSE.xls";//檔名
-		 try{
-		HSSFWorkbook workbook = new HSSFWorkbook();//建立一個Excel活頁簿
-		HSSFSheet sheet = workbook.createSheet("TEST"); //在活頁簿中建立一個Sheet
-		
-		         
-		
-		//印出表頭
-		 Row headRow = sheet.createRow(0);
-         String[] head = { "申請日期", "員工編號", "員工姓名", "假單編號", "假單種類", "開始時間","結束時間","假單狀態"};
-         for( int i = 0 ; i < head.length ; i++ ){
-             Cell cell = headRow.createCell(i);
-             cell.setCellValue(head[i]);
 
-         }
-         //印出資料
-         int i=1;
-         for(SearchPSE pse :list){
-         Row dataRow = sheet.createRow(i);
-         
-        	 Cell cell0 = dataRow.createCell(0);
-             cell0.setCellValue(pse.getapplytime());
-             Cell cell1 = dataRow.createCell(1);
-             cell1.setCellValue(pse.geteid());
-             Cell cell2 = dataRow.createCell(2);
-             cell2.setCellValue(pse.getname());
-             Cell cell3 = dataRow.createCell(3);
-             cell3.setCellValue(pse.getpid());
-             Cell cell4 = dataRow.createCell(4);
-             cell4.setCellValue(pse.getkname());
-             Cell cell5 = dataRow.createCell(5);
-             cell5.setCellValue(pse.getstarttime());
-             Cell cell6 = dataRow.createCell(6);
-             cell6.setCellValue(pse.getendtime());
-             Cell cell7 = dataRow.createCell(7);
-             cell7.setCellValue(pse.getsname());
-            
-         i++;
-         }
-         //排版
-         sheet.autoSizeColumn((short)0);
-         sheet.autoSizeColumn((short)1);
-         sheet.autoSizeColumn((short)2);
-         sheet.autoSizeColumn((short)3);
-         sheet.autoSizeColumn((short)4);
-         sheet.autoSizeColumn((short)5);
-         sheet.autoSizeColumn((short)6);
-         sheet.autoSizeColumn((short)7);
-		//暫存位子
-		FileOutputStream fOut = new FileOutputStream("c://PSE.xls");
-		workbook.write(fOut);
-		fOut.close();}catch(Exception e){}
-		
+	// 匯出excel
+	public String exportpse(List<SearchPSE> list) {
+		String file = "PSE.xls";// 檔名
+		try {
+			HSSFWorkbook workbook = new HSSFWorkbook();// 建立一個Excel活頁簿
+			HSSFSheet sheet = workbook.createSheet("TEST"); // 在活頁簿中建立一個Sheet
+
+			// 印出表頭
+			Row headRow = sheet.createRow(0);
+			String[] head = { "申請日期", "員工編號", "員工姓名", "假單編號", "假單種類", "開始時間", "結束時間", "假單狀態" };
+			for (int i = 0; i < head.length; i++) {
+				Cell cell = headRow.createCell(i);
+				cell.setCellValue(head[i]);
+
+			}
+			// 印出資料
+			int i = 1;
+			for (SearchPSE pse : list) {
+				Row dataRow = sheet.createRow(i);
+
+				Cell cell0 = dataRow.createCell(0);
+				cell0.setCellValue(pse.getapplytime());
+				Cell cell1 = dataRow.createCell(1);
+				cell1.setCellValue(pse.geteid());
+				Cell cell2 = dataRow.createCell(2);
+				cell2.setCellValue(pse.getname());
+				Cell cell3 = dataRow.createCell(3);
+				cell3.setCellValue(pse.getpid());
+				Cell cell4 = dataRow.createCell(4);
+				cell4.setCellValue(pse.getkname());
+				Cell cell5 = dataRow.createCell(5);
+				cell5.setCellValue(pse.getstarttime());
+				Cell cell6 = dataRow.createCell(6);
+				cell6.setCellValue(pse.getendtime());
+				Cell cell7 = dataRow.createCell(7);
+				cell7.setCellValue(pse.getsname());
+
+				i++;
+			}
+			// 排版
+			sheet.autoSizeColumn((short) 0);
+			sheet.autoSizeColumn((short) 1);
+			sheet.autoSizeColumn((short) 2);
+			sheet.autoSizeColumn((short) 3);
+			sheet.autoSizeColumn((short) 4);
+			sheet.autoSizeColumn((short) 5);
+			sheet.autoSizeColumn((short) 6);
+			sheet.autoSizeColumn((short) 7);
+			// 暫存位子
+			FileOutputStream fOut = new FileOutputStream("c://PSE.xls");
+			workbook.write(fOut);
+			fOut.close();
+			workbook.close();
+		} catch (Exception e) {
+			LOGGER.error(e.getMessage(), e);
+		}
+
 		return file;
-		
+
 	}
 
 }

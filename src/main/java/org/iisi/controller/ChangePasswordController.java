@@ -6,23 +6,20 @@ import javax.faces.bean.SessionScoped;
 import org.iisi.db.JDBCChangePwd;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import java.io.Serializable;
-import javax.faces.context.FacesContext;
-import javax.servlet.http.HttpSession;
+
 @ManagedBean(name = "changepassword")
 @SessionScoped
 
-public class ChangePassword implements Serializable {
-	private static final long serialVersionUID = -2322823282417821899L;
-	private static final Logger LOGGER = LoggerFactory.getLogger(ChangePassword.class);
+public class ChangePasswordController implements Eid {
+	private static final Logger LOGGER = LoggerFactory.getLogger(ChangePasswordController.class);
 	private String oldPwd;
 	private String newPwd;
 	private String checkPwd;
 	public String change(){
-		String eid;
-		FacesContext context = FacesContext.getCurrentInstance();
-		HttpSession session = (HttpSession) context.getExternalContext().getSession(true);
-		eid = (String) session.getAttribute("eid");
+//		String eid;
+//		FacesContext context = FacesContext.getCurrentInstance();
+//		HttpSession session = (HttpSession) context.getExternalContext().getSession(true);
+//		eid = (String) session.getAttribute("eid");
 		LOGGER.debug(oldPwd);
 		LOGGER.debug(newPwd);
 		LOGGER.debug(checkPwd);

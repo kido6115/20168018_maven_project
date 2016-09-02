@@ -7,9 +7,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.iisi.bean.RemainHour;
-import org.iisi.bean.SearchHour;
+import org.iisi.controller.HourSearchController;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class JDBCIndex2 extends JDBCCore {
+	private static final Logger LOGGER = LoggerFactory.getLogger(HourSearchController.class);
 
 	public List<RemainHour> remainHour(String eid) {
 
@@ -19,8 +22,8 @@ public class JDBCIndex2 extends JDBCCore {
 			Connection conn;
 			conn = makeConnection();
 
-			PreparedStatement pstmt = conn
-					.prepareStatement("select b.credit-sum(a.pctotal),e.kname,e.kid from PSE_SUB a, Hours b ,PSE_main c,employee d,PSE_Kind e where b.eid=? and a.Kid=b.Kid and b.year=to_char(sysdate, 'yyyy')  and c.pid=a.pid and c.eid=b.eid and d.eid=b.eid and e.kid=a.kid and a.kid!=1 group by b.credit , d.name,e.kname,e.kid order by e.kid desc");
+			PreparedStatement pstmt = conn.prepareStatement(
+					"select b.credit-sum(a.pctotal),e.kname,e.kid from PSE_SUB a, Hours b ,PSE_main c,employee d,PSE_Kind e where b.eid=? and a.Kid=b.Kid and b.year=to_char(sysdate, 'yyyy')  and c.pid=a.pid and c.eid=b.eid and d.eid=b.eid and e.kid=a.kid and a.kid!=1 group by b.credit , d.name,e.kname,e.kid order by e.kid desc");
 			pstmt.setString(1, eid);
 
 			ResultSet rs = pstmt.executeQuery();
@@ -38,6 +41,7 @@ public class JDBCIndex2 extends JDBCCore {
 			conn.close();
 
 		} catch (Exception e) {
+			LOGGER.error(e.getMessage(), e);
 		}
 		return sh;
 	}
@@ -46,14 +50,12 @@ public class JDBCIndex2 extends JDBCCore {
 
 		Float[] takeoff = new Float[5];
 		try {
-			
 
-			
 			for (int i = 0; i < 5; i++) {
 				Connection conn;
 				conn = makeConnection();
-				PreparedStatement pstmt = conn
-						.prepareStatement("select sum(c.pctotal) from PSE_main a,employee b, PSE_sub c where  a.pid=c.pid and b.eid=a.eid  and b.eid=? and c.kid=? and a.status!=2 and a.status!=4");
+				PreparedStatement pstmt = conn.prepareStatement(
+						"select sum(c.pctotal) from PSE_main a,employee b, PSE_sub c where  a.pid=c.pid and b.eid=a.eid  and b.eid=? and c.kid=? and a.status!=2 and a.status!=4");
 
 				pstmt.setString(1, eid);
 				pstmt.setInt(2, (i + 1));
@@ -68,6 +70,7 @@ public class JDBCIndex2 extends JDBCCore {
 			}
 
 		} catch (Exception e) {
+			LOGGER.error(e.getMessage(), e);
 		}
 		return takeoff;
 	}
@@ -76,14 +79,12 @@ public class JDBCIndex2 extends JDBCCore {
 
 		Float[] pending = new Float[5];
 		try {
-			
 
-			
 			for (int i = 0; i < 5; i++) {
 				Connection conn;
 				conn = makeConnection();
-				PreparedStatement pstmt = conn
-						.prepareStatement("select sum(c.pctotal) from PSE_main a,employee b, PSE_sub c where  a.pid=c.pid and b.eid=a.eid  and b.eid=? and c.kid=? and a.status=3");
+				PreparedStatement pstmt = conn.prepareStatement(
+						"select sum(c.pctotal) from PSE_main a,employee b, PSE_sub c where  a.pid=c.pid and b.eid=a.eid  and b.eid=? and c.kid=? and a.status=3");
 
 				pstmt.setString(1, eid);
 				pstmt.setInt(2, (i + 1));
@@ -98,12 +99,11 @@ public class JDBCIndex2 extends JDBCCore {
 			}
 
 		} catch (Exception e) {
+			LOGGER.error(e.getMessage(), e);
 		}
 		return pending;
 	}
-	
-	
-	
+
 	public List<RemainHour> getcredit(String eid) {
 
 		ArrayList<RemainHour> sh = new ArrayList<RemainHour>();
@@ -111,8 +111,8 @@ public class JDBCIndex2 extends JDBCCore {
 
 			Connection conn;
 			conn = makeConnection();
-			PreparedStatement pstmt = conn
-					.prepareStatement("select a.CREDIT,b.kname from Hours a,PSE_KIND b where a.Eid=? and a.kid=b.kid  and a.year=to_char(sysdate, 'YYYY') order by a.kid asc");
+			PreparedStatement pstmt = conn.prepareStatement(
+					"select a.CREDIT,b.kname from Hours a,PSE_KIND b where a.Eid=? and a.kid=b.kid  and a.year=to_char(sysdate, 'YYYY') order by a.kid asc");
 			pstmt.setString(1, eid);
 
 			ResultSet rs = pstmt.executeQuery();
@@ -130,6 +130,7 @@ public class JDBCIndex2 extends JDBCCore {
 			conn.close();
 
 		} catch (Exception e) {
+			LOGGER.error(e.getMessage(), e);
 		}
 		return sh;
 	}

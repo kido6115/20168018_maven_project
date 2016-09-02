@@ -1,6 +1,10 @@
 package org.iisi.bean;
 
-public class Hours {
+import java.io.Serializable;
+
+public class Hours implements Serializable{
+	private static final long serialVersionUID = -2322823282417821899L;
+
 	private String Eid;
 
 	private String Year;

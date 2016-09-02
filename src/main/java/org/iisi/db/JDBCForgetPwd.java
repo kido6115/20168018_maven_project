@@ -1,8 +1,6 @@
 package org.iisi.db;
 
-
 import java.sql.*;
-import java.util.*;
 
 import java.util.Properties;
 
@@ -15,7 +13,12 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
+import org.iisi.controller.HourSearchController;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 public class JDBCForgetPwd extends JDBCCore {
+	private static final Logger LOGGER = LoggerFactory.getLogger(HourSearchController.class);
 
 	public int ForgetPwd(String Eid, String Email) {
 		int status = 0;
@@ -24,8 +27,7 @@ public class JDBCForgetPwd extends JDBCCore {
 
 			Connection conn;
 			conn = makeConnection();
-			PreparedStatement st = conn
-					.prepareStatement("Select Email from EMPLOYEE where EID=?");
+			PreparedStatement st = conn.prepareStatement("Select Email from EMPLOYEE where EID=?");
 			st.setString(1, Eid);
 			ResultSet rs = st.executeQuery();
 
@@ -43,6 +45,7 @@ public class JDBCForgetPwd extends JDBCCore {
 			conn.close();
 		} catch (Exception e) {
 			status = 4;// 發生錯誤
+			LOGGER.error(e.getMessage(), e);
 		}
 
 		return status;
@@ -74,8 +77,7 @@ public class JDBCForgetPwd extends JDBCCore {
 
 			Message message = new MimeMessage(session);
 			message.setFrom(new InternetAddress("littletree04240@gmail.com"));
-			message.setRecipients(Message.RecipientType.TO,
-					InternetAddress.parse(Email));
+			message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(Email));
 			message.setSubject("IISI-員工忘記密碼");
 
 			int[] pwd = new int[8];
@@ -97,19 +99,18 @@ public class JDBCForgetPwd extends JDBCCore {
 				newPwd.append((char) pwd[j]);
 			}
 
-			message.setText("親愛的 " + name + "您好,\n\n 您的新密碼為:" + newPwd
-					+ "\n\n請重新登入並修改密碼");
+			message.setText("親愛的 " + name + "您好,\n\n 您的新密碼為:" + newPwd + "\n\n請重新登入並修改密碼");
 
 			Transport transport = session.getTransport("smtp");
 			transport.connect(host, port, username, password);
 
 			transport.sendMessage(message, message.getAllRecipients());
-			String npwd = newPwd.toString();
 
 			System.out.println("Done");
 			status = 1;
 		} catch (MessagingException e) {
 			status = 2;
+			LOGGER.error(e.getMessage(), e);
 			throw new RuntimeException(e);
 		}
 
@@ -120,8 +121,7 @@ public class JDBCForgetPwd extends JDBCCore {
 
 			String npwd = newPwd.toString();
 
-			PreparedStatement st = conn
-					.prepareStatement("Update Employee set PWD=? where Eid=?");
+			PreparedStatement st = conn.prepareStatement("Update Employee set PWD=? where Eid=?");
 			st.setString(1, npwd);
 			st.setString(2, Eid);
 
@@ -135,6 +135,7 @@ public class JDBCForgetPwd extends JDBCCore {
 
 		catch (Exception e) {
 			status = 5;// 發生錯誤
+			LOGGER.error(e.getMessage(), e);
 		}
 
 		return status;

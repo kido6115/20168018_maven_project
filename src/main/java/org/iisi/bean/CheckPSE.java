@@ -1,8 +1,11 @@
 package org.iisi.bean;
 
+import java.io.Serializable;
 import java.sql.Date;
 
-public class CheckPSE {
+public class CheckPSE implements Serializable{
+	private static final long serialVersionUID = -2322823282417821899L;
+
 
 	private int pid;
 	private String eid;

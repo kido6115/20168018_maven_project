@@ -1,6 +1,10 @@
 package org.iisi.bean;
 
-public class Holiday {
+import java.io.Serializable;
+
+public class Holiday implements Serializable{
+	private static final long serialVersionUID = -2322823282417821899L;
+
 
 	private String h_date;
 	private String h_name;

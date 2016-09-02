@@ -1,6 +1,10 @@
 package org.iisi.bean;
 
-public class ViewSub {
+import java.io.Serializable;
+
+public class ViewSub implements Serializable{
+	private static final long serialVersionUID = -2322823282417821899L;
+
 
 	private String Pid;
 	private String Pcid;

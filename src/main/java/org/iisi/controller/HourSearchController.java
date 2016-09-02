@@ -1,6 +1,5 @@
 package org.iisi.controller;
 
-import java.io.Serializable;
 import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory; 
@@ -16,9 +15,8 @@ import org.iisi.db.JDBCSearchHour;
 
 @ManagedBean(name = "hoursearch")
 @SessionScoped
-public class HourSearch implements Serializable {
-	private static final long serialVersionUID = -2322823282417821899L;
-	private static final Logger LOGGER = LoggerFactory.getLogger(HourSearch.class);
+public class HourSearchController implements Eid {
+	private static final Logger LOGGER = LoggerFactory.getLogger(HourSearchController.class);
 
 	private String year;
 	private String eid;

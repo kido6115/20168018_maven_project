@@ -1,6 +1,10 @@
 package org.iisi.bean;
 
-public class SearchPSE {
+import java.io.Serializable;
+
+public class SearchPSE implements Serializable{
+	private static final long serialVersionUID = -2322823282417821899L;
+
 
 	private String applytime;
 	private String eid;

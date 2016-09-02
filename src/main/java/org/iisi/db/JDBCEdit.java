@@ -3,19 +3,13 @@ package org.iisi.db;
 import java.sql.*;
 import java.util.*;
 
-import javax.servlet.http.HttpSession;
-
-import org.iisi.bean.SearchHourEmp;
 import org.iisi.bean.ViewSub;
-
-import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletException;
-import javax.servlet.ServletRequest;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import org.iisi.controller.HourSearchController;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class JDBCEdit extends JDBCCore {
+	private static final Logger LOGGER = LoggerFactory.getLogger(HourSearchController.class);
 
 	public List<ViewSub> view_sub(String Pid) {
 
@@ -24,8 +18,8 @@ public class JDBCEdit extends JDBCCore {
 
 			Connection conn;
 			conn = makeConnection();
-			PreparedStatement pstmt = conn
-					.prepareStatement("Select  PID,PCID,to_char(STARTDATETIME,'yyyy/mm/dd'),to_char(STARTDATETIME,'HH24:mi'),to_char(ENDDATETIME,'yyyy/mm/dd'),to_char(ENDDATETIME,'HH24:mi'),PCTOTAL , KID,PS from PSE_SUb where pid=? order by pcid DESC");
+			PreparedStatement pstmt = conn.prepareStatement(
+					"Select  PID,PCID,to_char(STARTDATETIME,'yyyy/mm/dd'),to_char(STARTDATETIME,'HH24:mi'),to_char(ENDDATETIME,'yyyy/mm/dd'),to_char(ENDDATETIME,'HH24:mi'),PCTOTAL , KID,PS from PSE_SUb where pid=? order by pcid DESC");
 
 			pstmt.setString(1, Pid);
 
@@ -44,8 +38,7 @@ public class JDBCEdit extends JDBCCore {
 				String skid = rs.getString(8);
 				String sPS = rs.getString(9);
 
-				ViewSub dl = new ViewSub(sPid, sPcid, sStartTime, sStarDate,
-						sEndTime, sEndDate, sPctatol, skid, sPS);// bean裡有,這裡就要有
+				ViewSub dl = new ViewSub(sPid, sPcid, sStartTime, sStarDate, sEndTime, sEndDate, sPctatol, skid, sPS);// bean裡有,這裡就要有
 				sh.add(i, dl);
 				i++;
 			}
@@ -54,23 +47,9 @@ public class JDBCEdit extends JDBCCore {
 			conn.close();
 
 		} catch (Exception e) {
+			LOGGER.error(e.getMessage(), e);
 		}
 		return sh;
 	}
 
 }
-
-/*
- * public String getName(String Name) { String eName =""; try { Connection conn;
- * conn = makeConnection(); PreparedStatement st = conn
- * .prepareStatement("Select Name from EMPLOYEE where Name ='"+Name+"'"); //
- * st.setString(1, Name); ResultSet rs = st.executeQuery(); while(rs.next()) {
- * eName=rs.getString("Name"); }
- * 
- * } catch (Exception e) { eName = "???"; //發生錯誤 }
- * 
- * return eName; }
- * 
- * 
- * }
- */

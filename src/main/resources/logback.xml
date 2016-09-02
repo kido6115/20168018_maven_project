@@ -19,7 +19,7 @@
 		</encoder>
 	</appender>
 
-	<logger name="org.iisi.controller" level="debug"
+	<logger name="org.iisi" level="debug"
 		additivity="false">
 		<appender-ref ref="STDOUT" />
 	</logger>

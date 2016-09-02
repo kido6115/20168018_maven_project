@@ -12,8 +12,8 @@ import org.slf4j.LoggerFactory;
 
 @ManagedBean(name = "login")
 @SessionScoped
-public class Login {
-	private static final Logger LOGGER = LoggerFactory.getLogger(HourSearch.class);
+public class LoginController {
+	private static final Logger LOGGER = LoggerFactory.getLogger(HourSearchController.class);
 
 	
 	private Employee employee = new Employee();

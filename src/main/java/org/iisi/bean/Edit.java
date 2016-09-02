@@ -1,6 +1,10 @@
 package org.iisi.bean;
 
-public class Edit {
+import java.io.Serializable;
+
+public class Edit implements Serializable{
+	private static final long serialVersionUID = -2322823282417821899L;
+
 	private String Pid;
 	private String Time;
 	private String Reply;

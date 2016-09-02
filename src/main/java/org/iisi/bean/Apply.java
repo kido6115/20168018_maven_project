@@ -1,8 +1,11 @@
 package org.iisi.bean;
+import java.io.Serializable;
 
-import java.sql.Date;
 
-public class Apply {
+
+public class Apply implements Serializable {
+private static final long serialVersionUID = -2322823282417821899L;
+
 
 
 
@@ -24,7 +27,7 @@ public class Apply {
 
 	
 	
-	public Apply(int aPID, String eid, String name, int dep_id,
+	public Apply (int aPID, String eid, String name, int dep_id,
 			String dep_name, int job_id, String job_name, int ap_dep_id,
 			String ap_dep_name, int ap_job_id, String ap_job_name,
 			String reason, String ap_date) {

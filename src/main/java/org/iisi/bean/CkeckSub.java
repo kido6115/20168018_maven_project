@@ -1,8 +1,10 @@
 package org.iisi.bean;
 
-import java.sql.Date;
+import java.io.Serializable;
 
-public class CkeckSub {
+public class CkeckSub implements Serializable{
+	private static final long serialVersionUID = -2322823282417821899L;
+
 private int pcid;
 private String kname;
 private int pctotal;

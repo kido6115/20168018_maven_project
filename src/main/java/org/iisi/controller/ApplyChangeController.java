@@ -6,24 +6,18 @@ import org.iisi.db.JDBCApplyChange;
 import org.iisi.db.JDBCLogin;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import java.io.Serializable;
-import javax.faces.context.FacesContext;
-import javax.servlet.http.HttpSession;
 
 @ManagedBean(name = "applychange")
 @SessionScoped
 
-public class ApplyChange implements Serializable {
-	private static final long serialVersionUID = -2322823282417821899L;
-	private static final Logger LOGGER = LoggerFactory.getLogger(ApplyChange.class);
+public class ApplyChangeController implements Eid {
+	
+	private static final Logger LOGGER = LoggerFactory.getLogger(ApplyChangeController.class);
 	private String newDeptId;
 	private String newJobId;
 	private String ps;
 	
 	public String applyChange(){
-		FacesContext context = FacesContext.getCurrentInstance();
-		HttpSession session = (HttpSession) context.getExternalContext().getSession(true);
-		String eid = (String) session.getAttribute("eid");
 		
 		java.text.SimpleDateFormat Formatr = new java.text.SimpleDateFormat(
 				"yyyy/MM/dd HH/mm");
