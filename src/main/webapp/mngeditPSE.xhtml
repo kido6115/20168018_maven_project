@@ -1,0 +1,73 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core" template="/mngtemplate.xhtml">
+	<ui:define name="title">
+<h1>修改/刪除假單</h1>
+						<!-- <form action="deleteServlet" method="post"> -->
+
+							<table class="CSSTableGenerator">
+								<tr>
+									<td scope="col">選取</td>
+									<td scope="col">主假單編號</td>
+									<td scope="col">申請時間</td>
+									<td scope="col">退回原因</td>
+									<td scope="col">查看內容</td>
+								</tr>
+
+
+
+								<!-- <%
+									ArrayList<Edit> showed = (ArrayList<Edit>) request.getAttribute("edit");
+																						int i=0;					//editJDBC的ArrayList<edit> showed		
+																		for(Edit ee : showed) {
+																			i++;
+								%> -->
+								<tr>
+									<td scope="row"><input type="checkbox" name="checkbox"
+										value="" id="checkbox" /></td>
+
+									<td>
+										<!-- <%
+											out.println(ee.getPid());
+										%> -->
+									</td>
+									<td>
+										<!-- <%
+											out.println(ee.getTime());
+										%> -->
+									</td>
+									<td>
+										<!-- <%
+											if(ee.getReply()==null)
+																		{out.println("無");}
+																	else {out.println(ee.getReply());
+																	}
+										%> -->
+									</td>
+									<td width="20%">
+									<h:form>
+									<h:commandButton class="btn btn-info btn-lg" value="查看內容" action="viewPSE.xhtml" /> 
+									</h:form>	<!-- javascript:location.href='view_pseServlet?pid_n=<%=i%>' -->
+										
+										<h:form>
+									<h:commandButton class="btn btn-info btn-lg" value="修改假單" action="modifyPSE.xhtml" /> 
+									</h:form></td>
+<!-- 										javascript:location.href='modifyPSEServlet?pid_n=<%=i%>'
+ -->										<!-- <%
+										session.setAttribute("PID"+i,ee.getPid()); %> -->
+								</tr>
+								<!-- <%
+									}
+								%> -->
+							</table>
+
+							<br/> <input class="btn btn-primary" type="button"
+								name="button2" id="button2" value="刪除假單"
+								onclick="if(confirm('確認要刪除嗎？')) this.form.submit();" />
+						<!-- </form> -->
+
+					
+
+	</ui:define>
+</ui:composition>

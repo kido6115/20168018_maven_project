@@ -1,0 +1,327 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core" template="/mngtemplate.xhtml">
+	<ui:define name="title">
+		<div id="page-content-wrapper">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-lg-12">
+
+
+				
+
+			<h1><img src="img/add.png"/></h1>
+						<p></p>
+						<div id="form">
+							<!-- <%
+								for (int i = 1; i <= 5; i++) {
+													
+													if (request.getParameterValues("pkind" + i) != null) {
+							%> -->
+							<input type="hidden" id=""
+								value=""/> <input
+								type="hidden" id=""
+								value=""/> <input
+								type="hidden" id=""
+								value=""/> <input
+								type="hidden" id=""
+								value=""/> <input
+								type="hidden" id=""
+								value=""/> <input
+								type="hidden" id=""
+								value=""/> <input
+								type="hidden" id=""
+								value=""/>
+
+							<!-- <%
+								}}
+							%>
+
+							<%
+								for (int i = 0; i < 4; i++) {
+							%> -->
+							<input type="hidden" id=""
+								value=""/>
+							<!-- <%
+								}
+							%> -->
+							<form action="addCheckServlet" method="post">
+								<table class="CSSTableGenerator " id="tt">
+									<tr>
+										<td colspan="2" scope="col"><label for="textfield3">姓名
+												:</label></td>
+										<td colspan="3" scope="col"></td>
+									</tr>
+									<tr id="star">
+										<td colspan="2" scope="row"><label for="textfield4">員工編號:</label></td>
+										<td colspan="3"></td>
+									</tr>
+									<tr>
+										<td colspan="2">各假別剩餘額度(待審核)</td>
+										<td colspan="3">
+											<!-- <%
+												for (int i = 0; i < 4; i++) {
+													
+											%> <%=pkl[i]%>:<%=credit.get(i).getremainHour()-remain[i+1]%>(<%=pend[i+1]%>)
+											| <%
+ 	}
+ %> -->
+										</td>
+
+									</tr>
+
+
+
+
+									<!-- <%
+										if(request.getAttribute("count")!=null)/* &&!((String)session.getAttribute("check")).equals("2") */
+																	{ 
+											
+																	int k = Integer.parseInt((String)request.getAttribute("count"));
+																	nn=k;
+																	for(int i=1;i<=k;i++)
+																	{
+									%> --><tr class="">
+										<td rowspan="5" scope="row"><p>
+												子假單</p>
+											<p>
+												
+												<button class="btn btn-sm btn-danger" id=""
+													>X</button>
+												
+											</p></td>
+										<td scope="row">假別</td>
+										<td colspan="3" id=""><input type="radio"
+											name="" id="k1" value="1" /> 事假 <input
+											type="radio" name="" id="k2" value="2"/> 病假
+											<input type="radio" name="" id="k3" value="3"/>
+											喪假 <input type="radio" name="" id="k4" value="4"/>
+											產假 <input type="radio" name="" id="k5" value="5"/>
+											特休</td>
+									</tr>
+									<tr class="">
+										<td scope="row">假別起始日期:</td>
+										<td><input type="date" id=""
+											name="" style="background-color: white" 
+											onchange="" /></td>
+										<td>假別起始時間:</td>
+										<td><select name="" id=""
+											onchange="">
+												<option>請選擇</option>
+												<option>9:00</option>
+												<option>9:30</option>
+												<option>10:00</option>
+												<option>10:30</option>
+												<option>11:00</option>
+												<option>11:30</option>
+												<option>12:00</option>
+												<option>13:00</option>
+												<option>13:30</option>
+												<option>14:00</option>
+												<option>14:30</option>
+												<option>15:00</option>
+												<option>15:30</option>
+												<option>16:00</option>
+												<option>16:30</option>
+												<option>17:00</option>
+												<option>17:30</option>
+												<option>18:00</option>
+										</select></td>
+									</tr>
+									<tr class="">
+										<td scope="row">假別結束日期:</td>
+										<td><input type="date" name="" 
+											id="" style="background-color: white"
+											onchange="" /></td>
+										<td>假別結束時間:</td>
+										<td><select name="" id=""
+											onchange="">
+												<option>請選擇</option>
+												<option>9:00</option>
+												<option>9:30</option>
+												<option>10:00</option>
+												<option>10:30</option>
+												<option>11:00</option>
+												<option>11:30</option>
+												<option>12:00</option>
+												<option>13:00</option>
+												<option>13:30</option>
+												<option>14:00</option>
+												<option>14:30</option>
+												<option>15:00</option>
+												<option>15:30</option>
+												<option>16:00</option>
+												<option>16:30</option>
+												<option>17:00</option>
+												<option>17:30</option>
+												<option>18:00</option>
+										</select></td>
+									</tr>
+									<tr class="">
+										<td scope="row">請假時數:</td>
+										<td colspan="3"><input type="text" name=""
+											id="" /></td>
+
+									</tr>
+									<tr id="" class="">
+										<td scope="row">員工備註:</td>
+										<td colspan="3"><!-- <textarea name="" id=""
+												cols="40" rows="2" id="ps"></textarea> --></td>
+									</tr>
+									
+									<!-- <%
+										
+																	
+																	}}
+																	else{
+									%> -->
+									<tr class="d1">
+										<td rowspan="5" scope="row"><p>子假單1</p>
+											<p>
+												<button class="btn btn-sm btn-danger" id="delete1"
+													>X</button> 
+											</p></td>
+										<td scope="row">假別</td>
+										<td colspan="3" id="k_n1"><input type="radio"
+											name="pkind1" id="k1" value="1" /> 事假 <input
+											type="radio" name="pkind1" id="k2" value="2"/> 病假 <input
+											type="radio" name="pkind1" id="k3" value="3"/> 喪假 <input
+											type="radio" name="pkind1" id="k4" value="4"/> 產假 <input
+											type="radio" name="pkind1" id="k5" value="5"/> 特休</td>
+									</tr>
+									<tr class="d1">
+										<td scope="row">假別起始日期:</td>
+										<td><input type="date" id="date_s1" name="date_s1"
+											style="background-color: white" onchange="setMin(1)" /></td>
+										<td>假別起始時間:</td>
+										<td><select name="time_s1" id="time_s1"
+											onchange="countt(1)">
+												<option>請選擇</option>
+												<option>9:00</option>
+												<option>9:30</option>
+												<option>10:00</option>
+												<option>10:30</option>
+												<option>11:00</option>
+												<option>11:30</option>
+												<option>12:00</option>
+												<option>13:00</option>
+												<option>13:30</option>
+												<option>14:00</option>
+												<option>14:30</option>
+												<option>15:00</option>
+												<option>15:30</option>
+												<option>16:00</option>
+												<option>16:30</option>
+												<option>17:00</option>
+												<option>17:30</option>
+												<option>18:00</option>
+										</select></td>
+									</tr>
+									<tr class="d1">
+										<td scope="row">假別結束日期:</td>
+										<td><input type="date" name="date_e1" id="date_e1"
+											style="background-color: white" onchange="setMax(1)" /></td>
+										<td>假別結束時間:</td>
+										<td><select name="time_e1" id="time_e1"
+											onchange="countt(1)">
+												<option>請選擇</option>
+												<option>9:00</option>
+												<option>9:30</option>
+												<option>10:00</option>
+												<option>10:30</option>
+												<option>11:00</option>
+												<option>11:30</option>
+												<option>12:00</option>
+												<option>13:00</option>
+												<option>13:30</option>
+												<option>14:00</option>
+												<option>14:30</option>
+												<option>15:00</option>
+												<option>15:30</option>
+												<option>16:00</option>
+												<option>16:30</option>
+												<option>17:00</option>
+												<option>17:30</option>
+												<option>18:00</option>
+										</select></td>
+									</tr>
+									<tr class="d1">
+										<td scope="row">請假時數:</td>
+										<td colspan="3"><input type="text" name="total1"
+											id="total1" /></td>
+
+									</tr>
+									<tr id="end1" class="d1">
+										<td scope="row">員工備註:</td>
+										<td colspan="3"><!-- <textarea name="ps1" id="ps1" cols="40"
+												rows="2" id="ps"></textarea> --></td>
+									</tr>
+
+									<!-- <%
+										}
+									%> -->
+
+
+
+								</table>
+								<br/>
+
+								<button class="btn btn-primary" type="button"
+									style="float: right;" id="add">
+									新增假別 <span class="glyphicon glyphicon-plus-sign"></span>
+								</button>
+
+								<p></p>
+								
+									<button  class="btn btn-primary" type="submit" name="submit"
+										id="submit"><img src="img/paper-plane.png"/>送出</button>
+									<!-- onclick="javascript:location.href='addPSEview.jsp'" -->
+								
+							</form>
+                                                         							<!-- 匯入假單 -->
+						
+							<br/><br/>
+				    <div style="border:3px solid #2c3e50;border-radius:20px;font-size:2.2rem;padding-right:50px;width:30%;">
+						<div style="background-color:#2c3e50; border-radius:15px 0px 15px 0px; color:white; float:left;" >匯入假單:</div><br/><br/>
+						<div style="padding-left:50px;">
+						<form name="myform2" action="downloadServlet" method="post" >  
+                        <button class="btn btn-sm btn-default" type="submit" name="submit"><img src="img/download.png"/>下載範本</button>
+       
+    </form> 
+						       
+							<br/><br/>
+							<form name="myform" action="importServlet" method="post"  enctype="multipart/form-data">  
+       <input style="background-color: white" type="file" name="myfile" />
+         <br/>
+       
+       <button class="btn btn-danger" type="submit" name="submit" style="float:right;">匯入假單</button>
+       <br/>
+    </form>          
+    
+    </div>
+    
+    
+    
+          
+  
+    
+    <!-- 結束 -->
+
+
+							
+							<p></p>
+							</div>
+						</div>
+
+						
+					</div>
+
+				</div>
+			</div>
+		</div>
+
+
+
+	</ui:define>
+</ui:composition>

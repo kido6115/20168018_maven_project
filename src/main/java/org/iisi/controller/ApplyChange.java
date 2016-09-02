@@ -16,8 +16,8 @@ import javax.servlet.http.HttpSession;
 public class ApplyChange implements Serializable {
 	private static final long serialVersionUID = -2322823282417821899L;
 	private static final Logger LOGGER = LoggerFactory.getLogger(ApplyChange.class);
-	private String newDept;
-	private String newJob;
+	private String newDeptId;
+	private String newJobId;
 	private String ps;
 	
 	public String applyChange(){
@@ -29,31 +29,31 @@ public class ApplyChange implements Serializable {
 				"yyyy/MM/dd HH/mm");
 		java.util.Date currentime = new java.util.Date();
 		String nowtTime = Formatr.format(currentime);// 抓現在時間
-		String ps = "1";
+		
 		JDBCLogin login = new JDBCLogin();
 		JDBCApplyChange applychange = new JDBCApplyChange();
 		int jobId = login.getJobId(eid);
 	    int deptId = login.getStatus(eid);
 		LOGGER.debug("job is "+jobId);
 		LOGGER.debug("dept is "+deptId);
-		LOGGER.debug("newdept is "+newDept);
-		LOGGER.debug("newjob is "+newJob);
-		int status = applychange.applyjob(eid, nowtTime, deptId, jobId, Integer.parseInt(newDept), Integer.parseInt(newJob), ps);
+		LOGGER.debug("newdept is "+newDeptId);
+		LOGGER.debug("newjob is "+newJobId);
+		int status = applychange.applyjob(eid, nowtTime, deptId, jobId, Integer.parseInt(newDeptId), Integer.parseInt(newJobId), ps);
 		LOGGER.debug("status is "+status);
 
 		return null;
 	}
 	public String getNewDept() {
-		return newDept;
+		return newDeptId;
 	}
 	public void setNewDept(String newDept) {
-		this.newDept = newDept;
+		this.newDeptId = newDept;
 	}
 	public String getNewJob() {
-		return newJob;
+		return newJobId;
 	}
 	public void setNewJob(String newJob) {
-		this.newJob = newJob;
+		this.newJobId = newJob;
 	}
 	public String getPs() {
 		return ps;

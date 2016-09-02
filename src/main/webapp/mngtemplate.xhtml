@@ -1,0 +1,121 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+ xmlns:f="http://java.sun.com/jsf/core"
+ xmlns:ui="http://java.sun.com/jsf/facelets"
+   xmlns:h="http://java.sun.com/jsf/html">
+
+<h:head>
+<!-- 
+    <title>test</title>
+   <h:outputStylesheet name="css/bootstrap.min.css" />
+    <h:outputStylesheet name="css/simple-sidebar.css" />
+    <h:outputStylesheet name="css/tableCss.css" />
+    <h:outputScript name="css/myCss.css" />
+    <h:outputScript name="js/sweetalert.min.js" />
+    <h:outputScript name="css/sweetalert.css" /> -->
+
+ <link href="css/bootstrap.min.css" rel="stylesheet"/>
+<!-- Custom CSS -->
+<link href="css/simple-sidebar.css" rel="stylesheet"/>
+<link href="css/tableCss.css" rel="stylesheet"/>
+<link href="css/myCss.css" rel="stylesheet"/>
+<script src="js/sweetalert.min.js"></script>
+<link rel="stylesheet" type="text/css" href="css/sweetalert.css"/>
+ 
+</h:head>
+
+<h:body>
+<div>
+ <div id="sidebar-wrapper">
+<ul class="sidebar-nav">
+		<li class="sidebar-brand"><a href=""> 請假系統 </a></li>
+
+		<li id="manage"><a href="#">&nbsp;&nbsp;假單管理</a></li>
+		<li id=""><a href="mngaddPSE.xhtml">&nbsp;&nbsp;&nbsp;-新增假單 <!-- <%
+			if (status.equals("addPSE")) {
+		% --><span class="glyphicon glyphicon-hand-left" aria-hidden="true"></span>
+				<!-- <%
+					}
+				%> -->
+
+		</a></li>
+		<li id=""><a href="mngeditPSE.xhtml">&nbsp;&nbsp;&nbsp;-修改/刪除假單<!-- <%
+			if (status.equals("editPSE")) {
+		%> --><span class="glyphicon glyphicon-hand-left" aria-hidden="true"></span>
+				<!-- <%
+					}
+				%> -->
+		</a></li>
+		<li><a href="mngsearchhour.xhtml">&nbsp;&nbsp;查詢時數<!-- <%
+			if (status.equals("PSEsearch_m")) {
+		%> --><span class="glyphicon glyphicon-hand-left" aria-hidden="true"></span>
+				<!-- <%
+					}
+				%> -->
+		</a></li>
+		<li><a href="mngsearchPSE.xhtml">&nbsp;&nbsp;查詢假單<!-- <%
+			if (status.equals("PSEsearch")) {
+		%> --><span class="glyphicon glyphicon-hand-left" aria-hidden="true"></span>
+				<!-- <%
+					}
+				%> -->
+		</a></li>
+		<li><a href="mngchangepwd.xhtml">&nbsp;&nbsp;修改密碼<!-- <%
+			if (status.equals("changepwd")) {
+		%> --><span class="glyphicon glyphicon-hand-left" aria-hidden="true"></span>
+				<!-- <%
+					}
+				%> -->
+		</a></li>
+
+		<li><a href="checkPSE.xhtml">&nbsp;&nbsp;審核假單<!-- <%
+			if (status.equals("checkPSE")) {
+		%> --><span class="glyphicon glyphicon-hand-left" aria-hidden="true"></span>
+				<!-- <%
+					}
+				%> -->
+		</a></li>
+
+		<li><a href="mngapplychange.xhtml">&nbsp;&nbsp;調職申請<!-- <%
+			if (status.equals("applychange")) {
+		% --><span class="glyphicon glyphicon-hand-left" aria-hidden="true"></span>
+				<!-- <%
+					}
+				%> -->
+		</a></li>
+
+	</ul>
+	 <!-- <img class="img-responsive" src="img/profile.png" alt=""
+		style="position: absolute; bottom: 0%; right: 10%; width: 80%;"/>  -->
+		
+	</div>
+	</div>
+	
+
+	<div  style="background-color: #AFEEEE">
+	
+	<img class="img-responsive" src="img/logo2.png" alt="" id="img1"
+		style="position:fixed; bottom: 88%; right: 60%; width: 15%;"/> 
+		<img
+		class="img-responsive" src="img/word.png" alt="" id="img2"
+		style="position:fixed; bottom: 88%; right: 45%; width: 15%;"/>
+	</div>
+	<br></br>
+		<div id="page-content-wrapper">
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-lg-12">
+	
+	
+	<ui:insert name="title" />
+	
+	</div>
+	</div>
+	</div>
+	</div>
+	
+
+
+</h:body>
+</html>

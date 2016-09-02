@@ -1,9 +1,7 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:p="http://primefaces.org/ui"
-	 template="/template.xhtml">
+	xmlns:f="http://java.sun.com/jsf/core" template="/mngtemplate.xhtml">
 	<ui:define name="title">
 		<div id="page-content-wrapper">
 			<div class="container-fluid">
@@ -93,8 +91,6 @@
 											<f:selectItem itemLabel="專員" itemValue="4" />
 											
 										</h:selectOneMenu>
-										
-										<p:inputTextarea rows="10" cols="50" value = "#{applychange.ps}"/>
 										<br/>
 										<h:commandButton value="提交" action="#{applychange.applyChange}" />
 									</h:form></td>
