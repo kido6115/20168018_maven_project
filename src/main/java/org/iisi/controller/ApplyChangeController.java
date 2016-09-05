@@ -10,7 +10,7 @@ import org.slf4j.LoggerFactory;
 @ManagedBean(name = "applychange")
 @SessionScoped
 
-public class ApplyChangeController implements Eid {
+public class ApplyChangeController implements Basic {
 	
 	private static final Logger LOGGER = LoggerFactory.getLogger(ApplyChangeController.class);
 	private String newDeptId;

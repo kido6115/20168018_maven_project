@@ -10,7 +10,7 @@ import org.slf4j.LoggerFactory;
 @ManagedBean(name = "changepassword")
 @SessionScoped
 
-public class ChangePasswordController implements Eid {
+public class ChangePasswordController implements Basic {
 	private static final Logger LOGGER = LoggerFactory.getLogger(ChangePasswordController.class);
 	private String oldPwd;
 	private String newPwd;

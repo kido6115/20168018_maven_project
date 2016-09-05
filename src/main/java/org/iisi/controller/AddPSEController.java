@@ -11,7 +11,7 @@ import java.util.Date;
 
 @ManagedBean(name = "addpse")
 @SessionScoped
-public class AddPSEController implements Eid {
+public class AddPSEController implements Basic {
 	
 	private static final Logger LOGGER = LoggerFactory.getLogger(AddPSEController.class);
 	private Date startDate = new Date();

@@ -13,7 +13,7 @@ import org.slf4j.LoggerFactory;
 @ManagedBean(name = "login")
 @SessionScoped
 public class LoginController {
-	private static final Logger LOGGER = LoggerFactory.getLogger(HourSearchController.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(LoginController.class);
 
 	
 	private Employee employee = new Employee();
@@ -24,6 +24,9 @@ public class LoginController {
 			
 			LOGGER.debug("EID is "+employee.getEid());
 			LOGGER.debug("Password is "+employee.getPwd());
+			FacesContext context = FacesContext.getCurrentInstance();
+			HttpSession session = (HttpSession) context.getExternalContext().getSession(true);
+			session.setAttribute("eid", employee.getEid());
 		
 
 			

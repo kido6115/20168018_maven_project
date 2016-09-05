@@ -21,12 +21,7 @@ import org.iisi.db.JDBCPSESearch;
 
 public class PSEsearchServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private String SYear;
-	private String EYear;
-	private String SMonth;
-	private String EMonth;
-	private String SDay;
-	private String EDay;
+
 
 	private String Eid;
 	private String Name;

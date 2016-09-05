@@ -13,19 +13,18 @@ import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
-@ManagedBean(name = "psesearch")
+@ManagedBean(name = "mngpsesearch")
 @SessionScoped
-public class PSESearchController implements Basic {
-	private static final Logger LOGGER = LoggerFactory.getLogger(PSESearchController.class);
-
+public class MngPSESearchController implements Basic {
+	private static final Logger LOGGER = LoggerFactory.getLogger(MngPSESearchController.class);
 	private String[] kindConditions;
 	private String[] statusConditions;
 	private Date startDate = new Date();
 	private Date endDate = new Date();
-	private List<SearchPSE> searchPSEList = null;
+	private String emp="";
+	private String name="";
 
-	public String empPSESearch() {
-
+	public String mngPSESearch(){
 		for (int i = 0; i < kindConditions.length; i++) {
 			LOGGER.debug("Kind values are " + kindConditions[i]);
 		}
@@ -42,20 +41,26 @@ public class PSESearchController implements Basic {
 		JDBCPSESearch sc = new JDBCPSESearch();
 
 		try {
-			List<SearchPSE> list = sc.SearchPSE_E(eid, startdate, enddate, kindConditions, statusConditions, dept);
+			List<SearchPSE> list = sc.SearchPSE(emp,name, startdate, enddate, kindConditions, statusConditions, dept);
 			for (SearchPSE searchhour : list) {
 				LOGGER.debug(ToStringBuilder.reflectionToString(searchhour));
 
-				searchPSEList = list;
+				
 			}
+			searchPSEList = list;
 		} catch (Exception e) {
 			LOGGER.error(e.getMessage(), e);
 		}
-
-		return "empsearchPSE.xhtml";
-
+		return null;
 	}
 
+	public String getEmp() {
+		return emp;
+	}
+
+	public void setEmp(String emp) {
+		this.emp = emp;
+	}
 	public String[] getKindConditions() {
 		return kindConditions;
 	}
@@ -88,6 +93,16 @@ public class PSESearchController implements Basic {
 		this.endDate = endDate;
 	}
 
+
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
 	public List<SearchPSE> getSearchPSEList() {
 		return searchPSEList;
 	}
@@ -95,5 +110,8 @@ public class PSESearchController implements Basic {
 	public void setSearchPSEList(List<SearchPSE> searchPSEList) {
 		this.searchPSEList = searchPSEList;
 	}
+
+	private List<SearchPSE> searchPSEList = null;
+
 
 }

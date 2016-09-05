@@ -1,233 +1,117 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
-
-
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core" template="/mngtemplate.xhtml">
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" template="/mngtemplate.xhtml">
 	<ui:define name="title">
-	<h1>
-							<img src="img/searchPSE.png"/>
-						</h1>
+		<h1>
+			<img src="img/searchPSE.png" />
+		</h1>
 
 
-						<form name="form1" class="fontstyle" method="post">
-							<table align="center" >
+		<form name="form1" class="fontstyle" method="post">
+			<table align="center">
 
-								<tr>
+				<tr>
 
-									<td><p align="left">
-											請假開始時間<input type="date" name="sdate"
-												value=""/>
-											<br/> <br/> 請假結束時間<input type="date"
-												name="edate" value=""/>
-											<br/> <br/>員工編號
-											<!-- <%
-												if(request.getAttribute("Eid")==null){
-											%> -->
-											<input type="text" name="Eid" style="width: 10%" id="Eid"
-												value=""/>
-										<!-- 	<%
-												} else {
-											%> -->
-											<input type="text" name="Eid" style="width: 10%" id="Eid"
-												value=""/>
-<!-- 											<%
-												}
-											%>
- -->											員工姓名 <!-- <%
-												if(request.getAttribute("Name")==null){
-											%> -->
-											<input type="text" name="Name" style="width: 20%" id="Name"
-												value=""/>
-											<!-- <%
-												} else {
-											%> --> <input type="text" name="Name" style="width: 20%" id="Name"
-												value=""/>
-											<!-- <%
-												}
-											%> -->
-
-										</p></td>
-									<td>
-										<table>
-											<tr>
-												<td><p align="center">
-														假別:
-														<!-- <%
-													int k0=0;
-																						     							int k1=0;
-																						     							int k2=0;
-																						     							int k3=0;
-																						     							int k4=0;
-
-																						     							if(request.getAttribute("Kind0")==null){
-																						     								 k0=99;
-																						     							}else {
-																						     								 k0=Integer.parseInt((String)request.getAttribute("Kind0"));
-
-																						     							}
-																						     							if(request.getAttribute("Kind1")==null){
-																						     								 k1=99;
-																						     							}else {
-																						     								 k1=Integer.parseInt((String)request.getAttribute("Kind1"));
-
-																						     							}
-																						     							if(request.getAttribute("Kind2")==null){
-																						     								 k2=99;
-																						     							}else {
-																						     								 k2=Integer.parseInt((String)request.getAttribute("Kind2"));
-
-																						     							}
-																						     							if(request.getAttribute("Kind3")==null){
-																						     								 k3=99;
-																						     							}else {
-																						     								 k3=Integer.parseInt((String)request.getAttribute("Kind3"));
-
-																						     							}
-																						     							if(request.getAttribute("Kind4")==null){
-																						     								 k4=99;
-																						     							}else {
-																						     							 k4=Integer.parseInt((String)request.getAttribute("Kind4"));
-
-																						     							}
-																						     							
-																						     							
-																						     							
-																						      	if(k0==1){
-												%> -->
-														<input type="checkbox" name="type" value="1"/>事假
-														<!-- <%
+					<td><p align="left"></p></td>
+					<td>
+						<table>
+							<tr>
+								<td><p align="center">
+										假別: <input type="checkbox" name="type" value="1" />事假 <input
+											type="checkbox" name="type" value="2" />病假 <input
+											type="checkbox" name="type" value="3" />喪假
+										<!-- <%
 															}else {
 														%> -->
-														<input type="checkbox" name="type" value="1"/>事假
-														<!-- <%
-															}
-																										       							if(k0==2 ||k1==2){
-														%> -->
-														<input type="checkbox" name="type" value="2" />病假
-														<!-- <%
+										<input type="checkbox" name="type" value="3" />喪假 <input
+											type="checkbox" name="type" value="4" />產假
+										<!-- <%
 															}else {
 														%> -->
-														<input type="checkbox" name="type" value="2"/>病假
-														<!-- <%
-															}
-																										       							if(k0==3 || k1==3 || k2==3){
-														%> -->
-														<input type="checkbox" name="type" value="3" />喪假
-														<!-- <%
+										<input type="checkbox" name="type" value="4" />產假 <input
+											type="checkbox" name="type" value="5" />特休
+										<!-- <%
 															}else {
 														%> -->
-														<input type="checkbox" name="type" value="3"/>喪假
-														<!-- <%
-															}
-																										       							
-																										       							if(k0==4 || k1==4 || k2==4 || k3==4){
-														%> -->
-														<input type="checkbox" name="type" value="4" />產假
-														<!-- <%
-															}else {
-														%> -->
-														<input type="checkbox" name="type" value="4"/>產假
-													<!-- 	<%
-															}
-																										       							
-																										       							
-																										      if(k0==5 || k1==5 || k2==5 || k3==5 || k4==5){
-														%> -->
-														<input type="checkbox" name="type" value="5" />特休
-														<!-- <%
-															}else {
-														%> -->
-														<input type="checkbox" name="type" value="5"/>特休
-														<!-- <%
-															}
-														%> -->
-													</p></td></tr>
-												<br/>
-											<tr>
-												<td><p align="left">
+										<input type="checkbox" name="type" value="5" />特休
+
+									</p></td>
+							</tr>
+							<tr>
+								<td><p align="left">
 
 
-														假單狀態:
-														<!-- <%
-													int s0=0;
-																						    							int s1=0;
-																						    							int s2=0;
-																						    							if(request.getAttribute("Status0")==null){
-																						    		 								 s0=99;
-																						    		 							}else {
-																						    		 								 s0=Integer.parseInt((String)request.getAttribute("Status0"));
+										假單狀態: <input type="checkbox" name="status" value="1" />通過 <input
+											type="checkbox" name="status" value="2" />退回 <input
+											type="checkbox" name="status" value="3" />待審核
 
-																						    		 							}
-																						    		 							if(request.getAttribute("Status1")==null){
-																						    		 								 s1=99;
-																						    		 							}else {
-																						    		 								 s1=Integer.parseInt((String)request.getAttribute("Status1"));
+									</p> <br /></td>
+							</tr>
+							<tr>
+								<td>
+									<p align="center">
+										<button class="btn btn-primary" type="submit"
+											onClick="return switchAndSubmit()">
+											<img src="img/interface.png" /> 查詢
+										</button>
 
-																						    		 							}
-																						    		 							if(request.getAttribute("Status2")==null){
-																						    		 								 s2=99;
-																						    		 							}else {
-																						    		 								 s2=Integer.parseInt((String)request.getAttribute("Status2"));
+										<button class="btn btn-warning" id="excel" type="submit"
+											onClick="return switchAndSubmit2()">
+											<img src="img/download.png" />匯出
+										</button>
+									</p>
+								</td>
 
-																						    		 							}
-																						    		 							
-																						    		 							
-																						    		 							
-																						    		 						  	if(s0==1){
-												%> -->
-														<input type="checkbox" name="status" value="1" />通過
-														<!-- <%
-															}else {
-														%> -->
-														<input type="checkbox" name="status" value="1"/>通過
-														<!-- <%
-															}
-																										    		 						   							if(s0==2 ||s1==2){
-														%> -->
-														<input type="checkbox" name="status" value="2" />退回
-														<!-- <%
-															}else {
-														%> -->
-														<input type="checkbox" name="status" value="2"/>退回
-														<!-- <%
-															}
-																										    		 						   							if(s0==3 || s1==3 || s2==3){
-														%> -->
-														<input type="checkbox" name="status" value="3" />待審核
-														<!-- <%
-															}else {
-														%> -->
-														<input type="checkbox" name="status" value="3"/>待審核
-														<!-- <%
-															}
-														%> -->
-													</p> <br/></td>
-											</tr>
-											<tr>
-												<td>
-													<p align="center">
-														<button class="btn btn-primary" type="submit"
-															onClick="return switchAndSubmit()">
-															<img src="img/interface.png"/> 查詢
-														</button>
-														
-														<button class="btn btn-warning" id="excel" type="submit"
-															onClick="return switchAndSubmit2()"><img src="img/download.png"/>匯出</button>
-													</p>
-												</td>
-												
-											</tr>
-											
+							</tr>
 
-										</table>
-									</td>
+
+						</table>
+					</td>
+					<td><h:form>
+							<h:selectManyCheckbox value="#{mngpsesearch.kindConditions}">
+								<f:selectItem itemLabel="事假" itemValue="1" />
+								<f:selectItem itemLabel="病假" itemValue="2" />
+								<f:selectItem itemLabel="喪假" itemValue="3" />
+								<f:selectItem itemLabel="產假" itemValue="4" />
+								<f:selectItem itemLabel="特休" itemValue="5" />
+							</h:selectManyCheckbox>
+							<h:selectManyCheckbox value="#{mngpsesearch.statusConditions}">
+								<f:selectItem itemLabel="通過" itemValue="1" />
+								<f:selectItem itemLabel="退回" itemValue="2" />
+								<f:selectItem itemLabel="待審核" itemValue="3" />
+							</h:selectManyCheckbox>
+
+
+
+							<p:outputLabel for="popup" value="Popup:" />
+							<p:calendar id="popup" value="#{mngpsesearch.startDate}"
+								pattern="yyyy-MM-dd" />
+
+							<p:outputLabel for="event" value="Select Event:" />
+							<p:calendar id="event" value="#{mngpsesearch.endDate}"
+								pattern="yyyy-MM-dd">
+
+
+
+								<br />
+								<h:commandButton value="查詢"
+									action="#{mngpsesearch.mngPSESearch}" />
+								<br />
+							姓名:<h:inputText type="text" value="#{mngpsesearch.name}" />
+								<br />
+							編號:<h:inputText type="text" value="#{mngpsesearch.emp}" />
+
+							</p:calendar>
+						</h:form></td>
 
 
 
 
 
-									<!-- <td >
+
+					<!-- <td >
 							<input class="btn btn-primary" type="submit" value="查詢"
 								onClick="return switchAndSubmit()"> &nbsp;&nbsp;&nbsp;
 							<button class="btn btn-warning" id="excel"
@@ -235,108 +119,46 @@
 							
 							
 								</td> -->
-								</tr>
-							</table>
+				</tr>
+			</table>
 
-						</form>
-						<h2></h2>
-						<br/>
+		</form>
+		<h2></h2>
+		<br />
 
-
-
-
-
-						<script language="javascript">
-							function switchAndSubmit() {
-								var formObj = document.form1;
-
-								formObj.action = "PSEsearchServlet";
-								formObj.submit();
-								return false;
-							}
-							function switchAndSubmit2() {
-								var formObj = document.form1;
-
-								formObj.action = "exportServlet";
-								formObj.submit();
-								return false;
-							}
-						</script>
-
-
-
-
-
-
-						<form name="form4" method="post" class="fontstyle">
-
-							<table class="CSSTableGenerator" border="1">
-
-
-								<tr>
-									<td>年度</td>
-									<td>員工編號</td>
-									<td>員工姓名</td>
-
-									<td>假單編號</td>
-									<td>假單種類</td>
-									<td>開始時間</td>
-									<td>結束時間</td>
-									<td>假單狀態</td>
-
-								</tr>
-
-
-
-								<!-- <%
-									if(request.getAttribute("SearchList")!=null){
-																																																																																																																																																																												if(request.getAttribute("SearchList").equals("ohno")==false){
-																																																																																																																																																																												ArrayList<SearchPSE> list = (ArrayList<SearchPSE>) request.getAttribute("SearchList");
-								%>
-
-								<%
-									for(SearchPSE searchPSE : list) {
-								%> -->
-
-
-
-								<tr>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-
-								</tr>
-
-								<!-- <%
-									}
-																																																																																																																																																																																																		}else{
-								%> -->
-
-
-								<tr>
-									<td colspan="8">查無資料</td>
-								</tr>
-								<!-- <%
-									}
-								%>
- -->
-
-							</table>
-
-						</form>
-
-
-
-
-
-						<!-- <%
-							}
-						%> -->
+<h:dataTable value="#{mngpsesearch.searchPSEList}" var="searchpse" width="1400"
+         >
+         
+         
+         <h:column>
+            <f:facet name="header">員工編號</f:facet>
+           #{searchpse.eid}
+         </h:column>
+         <h:column>
+            <f:facet name="header">員工姓名</f:facet>
+            #{searchpse.name}
+         </h:column>
+         <h:column>
+            <f:facet name="header">假單編號</f:facet>
+            #{searchpse.pid}
+         </h:column>
+         <h:column>    				
+            <f:facet name="header">假單種類</f:facet>    				
+            #{searchpse.kname}
+         </h:column>
+         <h:column>    				
+            <f:facet name="header">開始時間</f:facet>    				
+            #{searchpse.starttime}
+         </h:column>
+         <h:column>    				
+            <f:facet name="header">結束時間</f:facet>    				
+            #{searchpse.endtime}
+         </h:column>
+          <h:column>
+            <f:facet name="header">假單狀態</f:facet>
+           #{searchpse.sname}
+         </h:column>
+      </h:dataTable>
 
 
 
@@ -345,10 +167,57 @@
 
 
 
-						<br/> <br/> 
-		
 
-					
+		<form name="form4" method="post" class="fontstyle">
+
+			<table class="CSSTableGenerator" border="1">
+
+
+				<tr>
+					<td>年度</td>
+					<td>員工編號</td>
+					<td>員工姓名</td>
+
+					<td>假單編號</td>
+					<td>假單種類</td>
+					<td>開始時間</td>
+					<td>結束時間</td>
+					<td>假單狀態</td>
+
+				</tr>
+
+
+
+
+				<tr>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+
+				</tr>
+
+
+
+				<tr>
+					<td colspan="8">查無資料</td>
+				</tr>
+
+
+			</table>
+
+		</form>
+
+
+		<br />
+		<br />
+
+
+
 
 	</ui:define>
 </ui:composition>
