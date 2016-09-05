@@ -15,31 +15,7 @@
 				<td><p align="center">
 
 
-						員工編號 :
-						<!-- <%
-										if(request.getAttribute("Eid")==null){
-									%> -->
-						<input type="text" name="Eid" id="Eid" value="" />
-						<!-- 	<%
-												}else{
-											%> -->
-						<input type="text" name="Eid" id="Eid" value="" />
-						<!-- <%
-												}
-											%> -->
-						<br /> <br /> 員工姓名 :
-						<!--  -->
-						<!-- <%
- 	if(request.getAttribute("Name")==null){
- %> -->
-						<input type="text" name="Name" id="Name" value="" />
-						<!-- <%
-												}else{
-											%> -->
-						<input type="text" name="Name" id="Name" value="" />
-						<!-- <%
-												}
-											%> -->
+					
 					</p></td>
 				<td>
 					<p align="left">
@@ -83,6 +59,15 @@
 		<br />
 <h:dataTable value="#{mnghoursearch.searchHourMngList}" var="employee" width="800"
          >
+          <h:column>
+            <f:facet name="header">員工編號</f:facet>
+         </h:column>
+          <h:column>
+            <f:facet name="header">員工編號</f:facet>
+         </h:column>
+          <h:column>
+            <f:facet name="header"></f:facet>
+         </h:column>
          <h:column>    				
             <f:facet name="header">姓名</f:facet>    				
             #{employee.name}

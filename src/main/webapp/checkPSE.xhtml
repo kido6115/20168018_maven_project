@@ -1,70 +1,58 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core" template="/mngtemplate.xhtml">
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" template="/mngtemplate.xhtml">
 	<ui:define name="title">
-	<h1><img src="img/check.png"/></h1>
-						<table class="CSSTableGenerator" border="1">
-							<tbody>
-								<tr>
-									<td scope="col">主假單編號</td>
-									<td scope="col">員工編號</td>
-									<td scope="col">姓名</td>
-									<td scope="col">申請時間</td>
-									<td scope="col">查進行審核</td>
-								</tr>
+		<h1>
+			<img src="img/check.png" />
+		</h1>
+		<div align="center">
+		<h:form id= "form">
+			<h:commandButton value="submit" action="#{checkpse.checkPSE}"  />
+		</h:form>
+		</div>
+		<h:form>
+		<p:dataTable value="#{checkpse.checkPSEList}" var="check" width="1400">
+		
+			<p:column>
+				<f:facet name="header">員工編號</f:facet>
+			</p:column>
+			<p:column>
+				<f:facet name="header">假單編號</f:facet>
+           #{check.pid}
+         </p:column>
+			<p:column>
+				<f:facet name="header">員工編號</f:facet>
+            #{check.eid}
+         </p:column>
+			<p:column>
+				<f:facet name="header">員工姓名</f:facet>
+            #{check.name}
+         </p:column>
+			<p:column>
+				<f:facet name="header">申請時間</f:facet>    				
+            #{check.applytime}
+         </p:column>
+			<p:column>
+				<f:facet name="header">狀態</f:facet>    				
+            #{check.status}
+         </p:column>
+			<p:column>
+		<p:commandButton  value="審核" >
+		 <f:setPropertyActionListener value="#{check}" target="#{checkpse.checked}" />
+		</p:commandButton>
+			</p:column>
 
-								<!-- <%
-									String dep=session.getAttribute("Identity").toString();
-												   if(db.ListUnchecked(dep).size()!=0){
-													   List<CheckPSE> list=db.ListUnchecked(dep);
-													   
-													   
-													   for(CheckPSE checkpse:list){
-								%> -->
-								<tr>
-									<td></td>
-									<td></td>
-									<td></td>
+		</p:dataTable>
+		</h:form>
 
-									<td></td>
-
-
-									<td>
-									<form action="check.jsp" method="post">
-									<input type="hidden" name="pid" value=""/>
-									<input type="hidden" name="name" value=""/>
-									<input type="hidden" name="eid" value=""/>
-									
-									<input class="btn btn-info" name="進行審核" type="submit"
-										value="進行審核"/>
-										
-										</form>
-										</td>
-								</tr>
-
-								<!-- <%
-									}}else {
-								%> -->
-								<tr>
-									<td >目前沒有可以審核的假單喔!</td>
-								</tr>
-								<!-- <%
-									}
-								%> -->
+		
+		<br />
 
 
 
 
-
-
-							</tbody>
-						</table>
-						<br/> 
-					
-
-
-			
 
 	</ui:define>
 </ui:composition>

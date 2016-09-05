@@ -88,27 +88,17 @@
 		</script>
 		<br />
 <!-- #{hoursearch.searchHourEmpList} -->
-<h:dataTable border="1" var="employee" value="#{hoursearch.searchHourEmpList}">
-    <h:column headerText="Id">
-        <h:outputText value="#{employee.eid}" />
-    </h:column>
- 
-    <h:column headerText="Year">
-        <h:outputText value="#{employee.name}" />
-    </h:column>
- 
-    <h:column headerText="Brand">
-        <h:outputText value="#{employee.kname}" />
-    </h:column>
- 
-    <h:column headerText="Color">
-        <h:outputText value="#{employee.credit}" />
-    </h:column>
-</h:dataTable>
-<!-- better? -->
+
 
  <h:dataTable value="#{hoursearch.searchHourEmpList}" var="employee" width="800"
          >
+          <h:column>
+            <f:facet name="header">員工編號</f:facet>
+         </h:column>
+          <h:column>
+            <f:facet name="header">員工編號</f:facet>
+         </h:column>
+        
          <h:column>    				
             <f:facet name="header">姓名</f:facet>    				
             #{employee.name}

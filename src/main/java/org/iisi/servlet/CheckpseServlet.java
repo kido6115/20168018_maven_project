@@ -49,7 +49,6 @@ public class CheckpseServlet extends HttpServlet {
 			comment = request.getParameter("comment");
 			int check = db.check(pid, comment, 2);
 			
-			int mail=db.sendMail2(name, Email, eid,"不通過,請再次確認",pid);
 			if (check == 2) {
 				response.sendRedirect("checkPSE.jsp?status=1"); // 已成功退回假單
 
@@ -58,7 +57,6 @@ public class CheckpseServlet extends HttpServlet {
 			}
 
 		} else if (status.equals("pass")) {
-			int mail=db.sendMail2(name, Email, eid,"通過,請安心請假",pid);
 
 			int check = db.check(pid, null, 1);
 			
