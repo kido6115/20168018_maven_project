@@ -7,18 +7,19 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 
 @ManagedBean(name = "checkpse")
 @SessionScoped
 public class CheckPSEController implements Basic {
 	private List<CheckPSE> checkPSEList;
 	private CheckPSE checked=null;
+	private String pid;
 	
-
-
 	private static final Logger LOGGER = LoggerFactory.getLogger(CheckPSEController.class);
 
 	public String checkPSE() {
@@ -31,9 +32,10 @@ public class CheckPSEController implements Basic {
 		}
 		LOGGER.debug(ToStringBuilder.reflectionToString(checked));
 	
-		return "checkPSE.xhtml";
+		return null;
 	}
 	
+
 
 	public List<CheckPSE> getCheckPSEList() {
 		return checkPSEList;
@@ -50,6 +52,14 @@ public class CheckPSEController implements Basic {
 	public void setChecked(CheckPSE checked) {
 		this.checked = checked;
 	}
+	public String getPid() {
+		return pid;
+	}
+
+	public void setPid(String pid) {
+		this.pid = pid;
+	}
+
 
 
 }

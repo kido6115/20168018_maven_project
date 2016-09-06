@@ -20,6 +20,7 @@
 			</p:column>
 			<p:column>
 				<f:facet name="header">假單編號</f:facet>
+				
            #{check.pid}
          </p:column>
 			<p:column>
@@ -39,8 +40,10 @@
             #{check.status}
          </p:column>
 			<p:column>
-		<p:commandButton  value="審核" >
-		 <f:setPropertyActionListener value="#{check}" target="#{checkpse.checked}" />
+		<p:commandButton  value="審核" action="#{showcheckpse.showView}">
+		 <f:param name = "pid" value="#{check.pid}"/>
+		 <f:param name = "eid" value="#{check.eid}"/>
+		  <f:param name = "name" value="#{check.name}"/>
 		</p:commandButton>
 			</p:column>
 
