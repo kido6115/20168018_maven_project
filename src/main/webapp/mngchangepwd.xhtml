@@ -9,36 +9,7 @@
                 
                 	<h1><img src="img/PDW.png"/></h1>
 <table align = "center"><tr><td>
-						<h:form>
-							<table class="mytable"  align="center">
-								<tr><td><p align="center">
-								<br></br>
-									輸入舊密碼:
-									<h:inputSecret  name="oldpwd" 
-										 />
-								<br></br>
-								<br></br>
-							
-									輸入新密碼:
-							<h:inputSecret  id="pwd" name="newpwd"  style="width:220px"
-										maxlength="12" size="14"
-										pattern="(?=^[a-z0-9]{6,12}$)((?=.*[a-z])(?=.*[0-9]))^.*$"
-										placeholder="6~12英數字組合"  />
-							<br></br>
-							<br></br>
-								
-								重新輸入密碼:
-								<input type="password"  name="checkpwd" style="width:100"
-										required="required"/>
-								<br></br>
-							
-							<br></br> <h:commandButton class="btn btn-primary" value="更新" action="#{Changepwd.edit}">
-								<img src="img/paper-plane.png"/>
-								</h:commandButton>
-								</p></td></tr>
-								</table>
-				
-						</h:form>
+						
 						</td>
 						<td>
 						<h:form>

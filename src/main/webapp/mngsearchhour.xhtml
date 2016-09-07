@@ -19,9 +19,7 @@
 					</p></td>
 				<td>
 					<p align="left">
-						年度 : <select name="Year">
-
-						</select> <br /> <br />
+						
 
 
 
@@ -57,54 +55,37 @@
 
 
 		<br />
-<h:dataTable value="#{mnghoursearch.searchHourMngList}" var="employee" width="800"
+<p:dataTable value="#{mnghoursearch.searchHourMngList}" var="employee" width="800"
          >
-          <h:column>
+       
+          <p:column>
             <f:facet name="header">員工編號</f:facet>
-         </h:column>
-          <h:column>
-            <f:facet name="header">員工編號</f:facet>
-         </h:column>
-          <h:column>
-            <f:facet name="header"></f:facet>
-         </h:column>
-         <h:column>    				
+         </p:column>
+         
+         <p:column>    				
             <f:facet name="header">姓名</f:facet>    				
             #{employee.name}
            
-         </h:column>
-         <h:column>
+         </p:column>
+         <p:column>
             <f:facet name="header">員工編號</f:facet>
             #{employee.eid}
-         </h:column>
-         <h:column>
+         </p:column>
+         <p:column>
             <f:facet name="header">假種</f:facet>
             #{employee.kname}
-         </h:column>
-         <h:column>
+         </p:column>
+         <p:column>
             <f:facet name="header">額度</f:facet>
             #{employee.credit}
-         </h:column>
-         <h:column>
+         </p:column>
+         <p:column>
             <f:facet name="header">年度</f:facet>
             #{employee.year}
-         </h:column>
-      </h:dataTable>
+         </p:column>
+      </p:dataTable>
 
-		<table class="CSSTableGenerator" border="1">
-
-			<tr>
-				<td>員工編號</td>
-				<td>員工姓名</td>
-				<td>年度</td>
-				<td>假種</td>
-				<td>上限</td>
-
-			</tr>
-
-
-		</table>
-
+		
 
 
 

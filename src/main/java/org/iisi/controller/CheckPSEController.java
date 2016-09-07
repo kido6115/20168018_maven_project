@@ -30,7 +30,6 @@ public class CheckPSEController implements Basic {
 			LOGGER.debug(ToStringBuilder.reflectionToString(chechpse));
 
 		}
-		LOGGER.debug(ToStringBuilder.reflectionToString(checked));
 	
 		return null;
 	}

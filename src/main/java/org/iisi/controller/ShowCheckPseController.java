@@ -44,8 +44,9 @@ public class ShowCheckPseController {
 	      for(CkeckSub list : checkSubList){
 	      LOGGER.debug(ToStringBuilder.reflectionToString(list));
 	      }
-		return null;
+		return "check.xhtml";
 	}
+
 	public String getEid() {
 		return eid;
 	}

@@ -13,41 +13,19 @@
 
 			<table align="center">
 				<tr style="height: 50px;">
-					<td>年度 :</td>
+					<td></td>
 
 					<td><h:form>
-							<h:selectOneMenu id="year" value="#{hoursearch.year}"
+							年度 :<h:selectOneMenu id="year" value="#{hoursearch.year}"
 								style="width:125px">
 								<f:selectItem itemLabel="2017" itemValue="2017" />
 								<f:selectItem itemLabel="2016" itemValue="2016" />
 								<f:selectItem itemLabel="2015" itemValue="2015" />
-								<h:commandButton class="btn btn-info btn-lg" value="submit"
-									action="#{hoursearch.empHourSearch}" />
+								
 							</h:selectOneMenu>
-
-						</h:form> <select name="Year">
-							<!-- <%
-									ArrayList<Hours> list2 = (ArrayList<Hours>) request.getAttribute("YearList");
-									for(Hours hours:list2){
-									if(request.getAttribute("Year")!=null) {
-									if(request.getAttribute("Year").equals(hours.getYear())){
-										%> -->
-							<option value="2017"></option>
-
-							<!-- <%
-									}else {
-										%> -->
-							<option value="2016"></option>
-
-							<!-- <%
-									}
-									
-									}else {
-								%> -->
-							<option value="2015"></option>
-
-							<!-- <%}} %> -->
-					</select></td>
+<h:commandButton class="btn btn-info btn-lg" value="submit"
+									action="#{hoursearch.empHourSearch}" />
+						</h:form> </td>
 
 
 					<td>
@@ -70,119 +48,41 @@
 		<h2></h2>
 
 
-		<script language="javascript">
-			function switchAndSubmit() {
-				var formObj = document.form2;
-
-				formObj.action = "hoursearchServlete";
-				formObj.submit();
-				return false;
-			}
-			function switchAndSubmit2() {
-				var formObj = document.form2;
-
-				formObj.action = "exportServlet_hour_E";
-				formObj.submit();
-				return false;
-			}
-		</script>
+		
 		<br />
 <!-- #{hoursearch.searchHourEmpList} -->
 
 
- <h:dataTable value="#{hoursearch.searchHourEmpList}" var="employee" width="800"
+ <p:dataTable value="#{hoursearch.searchHourEmpList}" var="employee" width="800"
          >
-          <h:column>
+         
+          <p:column>
             <f:facet name="header">員工編號</f:facet>
-         </h:column>
-          <h:column>
-            <f:facet name="header">員工編號</f:facet>
-         </h:column>
+         </p:column>
         
-         <h:column>    				
+         <p:column>    				
             <f:facet name="header">姓名</f:facet>    				
             #{employee.name}
            
-         </h:column>
-         <h:column>
+         </p:column>
+         <p:column>
             <f:facet name="header">員工編號</f:facet>
             #{employee.eid}
-         </h:column>
-         <h:column>
+         </p:column>
+         <p:column>
             <f:facet name="header">假種</f:facet>
             #{employee.kname}
-         </h:column>
-         <h:column>
+         </p:column>
+         <p:column>
             <f:facet name="header">額度</f:facet>
             #{employee.credit}
-         </h:column>
-         <h:column>
+         </p:column>
+         <p:column>
             <f:facet name="header">年度</f:facet>
             #{employee.year}
-         </h:column>
-      </h:dataTable>
-		<form name="form4" method="post" class="fontstyle">
-			<table class="CSSTableGenerator" border="1">
-
-				<tr>
-					<td>員工編號</td>
-					<td>姓名</td>
-					<td>年度</td>
-					<td>假種</td>
-					<td>上限</td>
-
-				</tr>
-		
-				<!-- <%
-									ArrayList<SearchHourEmp> list = (ArrayList<SearchHourEmp>) request.getAttribute("SearchList");
-								%> -->
-				<!-- <script>
-									$("#first> tr").remove();
-									$("#first tr").remove();
-									$("#first td").remove();
-								</script> -->
-				<!-- <%
-									// print the information about every category of the list
-								for(SearchHourEmp searchhour : list) {
-								%> -->
-				<tr>
-
-
-					<td>
-						<!-- <%
-											out.println(searchhour.getEid());
-										%> -->
-					</td>
-					<td>
-						<!-- <%
-											out.println(searchhour.getName());
-										%> -->
-					</td>
-					<td>
-						<!-- <%
-											out.println(searchhour.getYear());
-										%> -->
-					</td>
-					<td>
-						<!-- <%
-											out.println(searchhour.getKname());
-										%> -->
-					</td>
-					<td>
-						<!-- <%
-											out.println(searchhour.getCredit());
-										%> -->
-					</td>
-
-
-				</tr>
-				<!-- <%
-									}
-								%>
- -->
-			</table>
-
-		</form>
+         </p:column>
+      </p:dataTable>
+	
 
 
 

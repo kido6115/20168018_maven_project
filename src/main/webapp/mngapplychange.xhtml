@@ -1,7 +1,9 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core" template="/mngtemplate.xhtml">
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	 template="/mngtemplate.xhtml">
 	<ui:define name="title">
 		<div id="page-content-wrapper">
 			<div class="container-fluid">
@@ -15,63 +17,7 @@
 						<table align="center">
 							<tr>
 								<td>
-									<form name="form2" action="" method="post" class="fontstyle">
-
-										<table border="0" align="center" width="60%">
-											<tr>
-												<td><table align="center">
-														<tr>
-															<td><label for="textfield3">員工姓名:</label> <!-- <%=(String) session.getAttribute("Name")%> -->
-																<br /> <br /> <label for="textfield4">員工編號:</label> <!-- <%=(String) session.getAttribute("Employee")%> -->
-
-																<br /> <br /> 原部門: <!-- <%=session.getAttribute("DEP")%> -->
-																<input type="hidden" name="dep_old" value="" /> <br /> <br />
-																原職稱: <!-- <%=session.getAttribute("JOB")%> -->
-																<input type="hidden" name="job_old" value="" /> <br />
-																<br /></td>
-														</tr>
-													</table></td>
-
-
-												<td><table align="center">
-														<tr>
-															<td>請調部門: <select name="apartment" size="1"
-																id="time">
-
-																	<option value="1">HR部門</option>
-																	<option value="2">SALE部門</option>
-																	<option value="3">IT部門</option>
-																	<option value="4">FINANCE部門</option>
-																	<option value="5">MARKETING部門</option>
-
-															</select> <br /> <br /> 請調職位:<select name="identity" size="1"
-																id="time">
-
-																	<option value="4">專員</option>
-																	<option value="2">部門經理</option>
-																	<option value="1">助理</option>
-
-															</select> <br /> <br /> 請調原因: <br /> <!-- <textarea name="ps" id="ps" cols="40"
-												rows="2" id=""></textarea>
- --> <br /> <br />
-
-
-															</td>
-														</tr>
-													</table></td>
-											</tr>
-
-
-
-
-										</table>
-										<p align="center">
-											<button class="btn btn-primary" type="submit"
-												onClick="return switchAndSubmit()">
-												<img src="img/paper-plane.png" />提交
-											</button>
-										</p>
-									</form>
+									
 								</td>
 								<td><h:form>
 										
@@ -91,7 +37,10 @@
 											<f:selectItem itemLabel="專員" itemValue="4" />
 											
 										</h:selectOneMenu>
+										
+										
 										<br/>
+										<p:inputTextarea rows="10" cols="20" value = "#{applychange.ps}"/>
 										<h:commandButton value="提交" action="#{applychange.applyChange}" />
 									</h:form></td>
 							</tr>
