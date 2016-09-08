@@ -40,7 +40,7 @@ public class addPSEServlet extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		String Eid=(String) session.getAttribute("Employee");
 		
-		java.text.SimpleDateFormat Formatr = new java.text.SimpleDateFormat("yyyy/MM/dd HH/mm");
+		java.text.SimpleDateFormat Formatr = new java.text.SimpleDateFormat("yyyy/MM/dd hh:mm");
 		java.util.Date currentime= new java.util.Date();
 		String ad=Formatr.format(currentime);
 		JDBCAddPSE db = new JDBCAddPSE();	

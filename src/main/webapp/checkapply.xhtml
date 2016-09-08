@@ -1,60 +1,70 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core" template="/hrtemplate.xhtml">
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" template="/hrtemplate.xhtml">
 	<ui:define name="title">
-<h1><img src="img/applpcheck.png"/></h1>
-						<table class="CSSTableGenerator" border="1">
-							<tbody>
-								<tr>
-									<td scope="col">申請日期</td>
-									<td scope="col">姓名</td>
-									<td scope="col">員工編號</td>
-									<td scope="col">部門</td>
-									<td scope="col">職位</td>
-									<td scope="col">申請部門</td>
-									<td scope="col">申請職位</td>
-									<td scope="col"></td>
-								</tr>
+		<h1>
+			<img src="img/applpcheck.png" />
+		</h1>
 
-								<!-- <%
-									
-									List<Apply> list=(ArrayList<Apply>)db.ListUncheckApply(0);
-															
-															
-															for(Apply apply: list){
-								%> -->
-								
-								<tr>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td><form action="checkApplyview.jsp" method="post">
-									
-									<input type="hidden" name="apid" value=""/>
-									
-									<button class="btn btn-danger" type="submit">審核</button>
-					          		</form>
-					          		</td>
-								</tr>
-							<!-- 	<%
-									}
-									%> -->
-
-
-
-
-
-
-							</tbody>
-						</table>
-						<br/> 
+		<div align="center">
+			<h:form id="form">
+				<h:commandButton value="submit" action="#{checkapplychange.check}" />
+			</h:form>
+		</div>
+		<h:form>
+			<p:dataTable value="#{checkapplychange.checkApplyList}" var="check"
+				width="1400">
+				<p:column>
+					<f:facet name="header">s</f:facet>
 					
+				</p:column>
+				<p:column>
+					<f:facet name="header"></f:facet>
+					
+				</p:column>
+				<p:column>
+					<f:facet name="header">申請日期</f:facet>
+					#{check.ap_date}
+				</p:column>
+				<p:column>
+					<f:facet name="header">員工姓名</f:facet>
 				
+           #{check.name}
+         </p:column>
+				<p:column>
+					<f:facet name="header">員工編號</f:facet>
+            #{check.eid}
+         </p:column>
+				<p:column>
+					<f:facet name="header">部門</f:facet>
+            #{check.dep_name}
+         </p:column>
+				<p:column>
+					<f:facet name="header">職務</f:facet>    				
+            #{check.job_name}
+         </p:column>
+				<p:column>
+					<f:facet name="header">申請部門</f:facet>    				
+            #{check.ap_dep_name}
+         </p:column>
+				<p:column>
+					<f:facet name="header">申請職務</f:facet>    				
+            #{check.ap_job_name}
+         </p:column>
+				<p:column>
+					<p:commandButton  value="審核" action="#{showcheckapplychange.showApplyView}">
+		 <f:param name = "aPID" value="#{check.aPID}"/>
+					</p:commandButton>
+				</p:column>
+
+			</p:dataTable>
+		</h:form>
+		
+		<br />
+
+
 
 	</ui:define>
 </ui:composition>

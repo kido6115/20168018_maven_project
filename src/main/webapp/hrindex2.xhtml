@@ -1,0 +1,94 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core" template="/hrtemplate.xhtml">
+	<ui:define name="title">
+		<h1>
+			<!-- <%=session.getAttribute("Name")%> -->
+			,您好！歡迎登入請假系統
+		</h1>
+		
+		<div class="CSSTableGenerator">
+			<table>
+
+				<tr><td></td>
+				    <td></td>
+					<td>本年度剩餘請假時數</td><td></td><td></td><td></td>
+				</tr>
+
+
+				<tr>
+					<td></td>
+					<td>事假</td>
+					<td>病假</td>
+					<td>喪假</td>
+					<td>產假</td>
+					<td>特休</td>
+
+				</tr>
+				<tr>
+					<td>請假額度</td>
+					<td>-</td>
+					<!-- <%
+										
+										for(RemainHour Credit:list){ 
+											%> -->
+					<td>1
+						<!-- <%=Credit.getremainHour() %> -->
+					</td>
+					<td>2</td>
+					<td>3</td>
+					<td>4</td>
+					<!-- <% 
+											
+										}
+										
+
+									%> -->
+				</tr>
+				<tr>
+					<td>已請時數</td>
+
+
+					<!-- <%for(int i=0;i<remain.length;i++){
+									 %> -->
+					<td></td>
+					<td>1</td>
+					<td>2</td>
+					<td>3</td>
+					<td>4</td>
+					<!-- <%=remain[i] %></td>
+									 <%
+								
+								 }
+									 %> -->
+				</tr>
+
+				<tr>
+					<td>剩餘額度</td>
+					
+					<!-- <%for(int i=0;i<4;i++){
+								
+								%> -->
+					<td></td>
+					<td>1</td>
+					<td>2</td>
+					<td>3</td>
+					<td>4</td>
+					<!-- <%=list.get(i).getremainHour()-remain[i+1] %></td>
+								<%
+								
+								}	%> -->
+				</tr>
+
+
+
+			</table>
+		</div>
+
+
+
+
+
+	</ui:define>
+</ui:composition>
