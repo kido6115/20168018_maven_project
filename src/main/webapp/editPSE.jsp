@@ -1,9 +1,11 @@
 
- <%@ page language="java" contentType="text/html; charset=BIG5"
-	pageEncoding="BIG5"%>
+ <%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ page import="java.sql.*"%>
 <%@ page import="java.util.List,java.util.ArrayList"%>
+<%@ page import="java.text.SimpleDateFormat"%>
 <%@ page import="org.iisi.bean.Edit"%>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -16,7 +18,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 <script src="js/sweetalert.min.js"></script>
-<title>½Ğ°²¨t²Î-­×§ï/§R°£°²³æ</title>
+<title>è«‹å‡ç³»çµ±-ä¿®æ”¹/åˆªé™¤å‡å–®</title>
 
 
 </head>
@@ -28,7 +30,7 @@
 		if (((String)session.getAttribute("echeck")).equals("2")){
 	%>
 	<script>
-sweetAlert('­×§ï¦¨¥\!!!');
+sweetAlert('ä¿®æ”¹æˆåŠŸ!!!');
 </script>
 	<%
 		session.setAttribute("echeck","");}
@@ -65,23 +67,23 @@ sweetAlert('­×§ï¦¨¥\!!!');
 								$("#wrapper").toggleClass("toggled");
 							});
 						</script>
-						<h1>­×§ï/§R°£°²³æ</h1>
+						<h1>ä¿®æ”¹/åˆªé™¤å‡å–®</h1>
 						<form action="deleteServlet" method="post">
 
 							<table class="CSSTableGenerator">
 								<tr>
-									<td scope="col">¿ï¨ú</td>
-									<td scope="col">¥D°²³æ½s¸¹</td>
-									<td scope="col">¥Ó½Ğ®É¶¡</td>
-									<td scope="col">°h¦^­ì¦]</td>
-									<td scope="col">¬d¬İ¤º®e</td>
+									<td scope="col">é¸å–</td>
+									<td scope="col">ä¸»å‡å–®ç·¨è™Ÿ</td>
+									<td scope="col">ç”³è«‹æ™‚é–“</td>
+									<td scope="col">é€€å›åŸå› </td>
+									<td scope="col">æŸ¥çœ‹å…§å®¹</td>
 								</tr>
 
 
 
 								<%
 									ArrayList<Edit> showed = (ArrayList<Edit>) request.getAttribute("edit");
-																						int i=0;					//editJDBCªºArrayList<edit> showed		
+																						int i=0;					//editJDBCçš„ArrayList<edit> showed		
 																		for(Edit ee : showed) {
 																			i++;
 								%>
@@ -95,24 +97,24 @@ sweetAlert('­×§ï¦¨¥\!!!');
 										%>
 									</td>
 									<td>
-										<%
-											out.println(ee.getTime());
+										<%  SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd ");
+											out.println(sdf.format(ee.getTime()));
 										%>
 									</td>
 									<td>
 										<%
 											if(ee.getReply()==null)
-																		{out.println("µL");}
+																		{out.println("ç„¡");}
 																	else {out.println(ee.getReply());
 																	}
 										%>
 									</td>
-									<td width="20%"><input class="btn btn-info" name="¬d¬İ¤º®e" type="button"
-										id="¬d¬İ¤º®e" value="¬d¬İ¤º®e"
+									<td width="20%"><input class="btn btn-info" name="æŸ¥çœ‹å…§å®¹" type="button"
+										id="æŸ¥çœ‹å…§å®¹" value="æŸ¥çœ‹å…§å®¹"
 										onclick="javascript:location.href='view_pseServlet?pid_n=<%=i%>'"> 
 										<input
 										class="btn btn-info" type="button" name="button" id="button"
-										value="­×§ï°²³æ"
+										value="ä¿®æ”¹å‡å–®"
 										onclick="javascript:location.href='modifyPSEServlet?pid_n=<%=i%>'"></td>
 										<%
 										session.setAttribute("PID"+i,ee.getPid()); %>
@@ -123,8 +125,8 @@ sweetAlert('­×§ï¦¨¥\!!!');
 							</table>
 
 							<br> <input class="btn btn-primary" type="button"
-								name="button2" id="button2" value="§R°£°²³æ"
-								onclick="if(confirm('½T»{­n§R°£¶Ü¡H')) this.form.submit();">
+								name="button2" id="button2" value="åˆªé™¤å‡å–®"
+								onclick="if(confirm('ç¢ºèªè¦åˆªé™¤å—ï¼Ÿ')) this.form.submit();">
 						</form>
 
 					</div>

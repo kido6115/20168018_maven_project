@@ -9,22 +9,23 @@ import javax.faces.context.FacesContext;
 import org.iisi.db.JDBCCheckApply;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
 @ManagedBean(name = "dclineapplychange")
 @SessionScoped
 public class DeclineApplyChangeController {
 	private static final Logger LOGGER = LoggerFactory.getLogger(DeclineApplyChangeController.class);
 	private String aPID;
-	
-	public String decline(){
+
+	public String decline() {
 		FacesContext fc = FacesContext.getCurrentInstance();
 		Map<String, String> params = fc.getExternalContext().getRequestParameterMap();
-		 aPID = params.get("aPID");
+		aPID = params.get("aPID");
 		LOGGER.debug(aPID);
 		JDBCCheckApply checkapply = new JDBCCheckApply();
 		int status = checkapply.notPassApply(Integer.parseInt(aPID));
 
 		LOGGER.debug(Integer.toString(status));
-		
+
 		return "checkapply.xhmtl";
 	}
 

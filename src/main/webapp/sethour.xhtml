@@ -1,274 +1,109 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core" template="/hrtemplate.xhtml">
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" template="/hrtemplate.xhtml">
 	<ui:define name="title">
-<h1><img src="img/sethour.png"/></h1>
-						
-						<!-- <% Date sysdate = new Date();
-						   JDBCSetHour db2 = new JDBCSetHour();
-						int nowdate= sysdate.getYear()+1901;
-						if (db2.MaxYear()<nowdate){%>   -->
-						
-						<form name="form3" method="post" action="AddNextYearServlet">
-						<input style="float: right" class="btn btn-warning" type="submit" onclick="alert('新增成功')"
-								name="button" id="button" value="新增下年度時數" 
-								/>
-						</form>
-						<!--  <%}%>  -->
-						<form name="form1" method="post" action="SetHourServlet" class="fontstyle">
-						<table align="center" ><tr><td><table align="center"><tr><td>
+		<h1>
+			<img src="img/sethour.png" />
+		</h1>
 
-							
-						
-							<p>
-								年度:<label for="year" ></label> 
-                             <select name="year" id="year">
-                                 <!--  <%JDBCPSESearch db= new JDBCPSESearch();
-									for (int i = 0; i < db.getYear().size(); i++) {
-								%>
-								<%if(db.getYear().get(i).getYear().equals(request.getAttribute("Year"))){ %> -->
-							    <option value=""></option>
-							   <!--  <%}else{ %> -->
-					            <option  value=""></option>
-					            <!-- <%} %> -->
-							    
-								
-								<!-- <%
-									}
-								%>  -->
-								
-                             </select>
-							</p>
-							<p>
-								員工編號:<label for="userid"></label> 
-								<!--  <%
-								if(request.getAttribute("Eid")==null){
-							%> -->
-							<input pattern="[A-Z]{1}[0-9]{3}" title="111" type="text" name="Eid" id="Eid" value=""/>
-							<!-- <%
-								} else {
-							%> -->
-							<input pattern="[A-Z]{1}[0-9]{3}" title="111" type="text" name="Eid" id="Eid"
-								value=""/>
-							<!-- <%
-								}
-							%> -->
-								
-							</p>
-							
-							<p>
-								員工姓名:<label for="username"></label> 
-								<!-- <%
-								if(request.getAttribute("Name")==null){
-							%> -->
-							<input type="text" name="Name" id="Name" value=""/>
-							<!-- <%
-								} else {
-							%> -->
-							<input type="text" name="Name" id="Name"
-								value=""/>
-							<!-- <%
-								}
-							%> -->
-							</p>
-							
-							</td></tr></table ></td><td></td>
-							<td><table align="center"><tr><td>
-							<p>
-								假別 :
-								<!-- <%
-								if(request.getAttribute("Sick")==null){
-							%> -->
-							<input type="checkbox" name="sick"  id="sick"  value="2"/> 病假
-							<!-- <%
-								} else {
-							%> -->
-							<input  type="checkbox" name="sick"  id="sick"  value="2"/> 病假
-							<!-- <%
-								}
-							%>
-							
-							<%
-								if(request.getAttribute("Death")==null){
-							%> -->
-							<input type="checkbox" name="death" id="death" value="3"/> 喪假 
-							<!-- <%
-								} else {
-							%> -->
-							<input  type="checkbox" name="death" id="death" value="3"/> 喪假 
-							<!-- <%
-								}
-							%>
-							
-							<%
-								if(request.getAttribute("Birth")==null){
-							%> -->
-							<input type="checkbox" name="birth" id="birth" value="4"/> 產假 
-							<!-- <%
-								} else {
-							%> -->
-							<input  type="checkbox" name="birth" id="birth" value="4"/> 產假 
-							<!-- <%
-								}
-							%>
-							
-							<%
-								if(request.getAttribute("Spe")==null){
-							%> -->
-							<input type="checkbox" name="spe"   id="spe"   value="5"/> 特休 <br/>
-							<!-- <%
-								} else {
-							%> -->
-							<input  type="checkbox" name="spe"   id="spe"   value="5"/> 特休 <br/>
-							<!-- <%
-								}
-							%> -->
-							
-							
-								
-							
-								
-							</p>
-							<br/>
-							<p>
-								<button class="btn btn-primary" type="submit" name="search"
-									id="search" ><img src="img/interface.png"/>查詢</button>
-							</p>
-                          </td></tr></table></td></tr></table>
-						</form>
-						<h2></h2>
-						<br/>
-			<!-- <%  if(request.getAttribute("SearchList")!=null){%>
-			<% ArrayList<SearchHour> list = (ArrayList<SearchHour>) request.getAttribute("SearchList");%>
-			<%if(list.size()!=0){ %>	 -->		
-<form name="form2" method="post" class="fontstyle" action="sethourconfirm.jsp">
+        <div align="right">
+		<h:form>
+		<h:commandButton value="新增下年度時數" action="#{addnextyear.addyear}"/>
+		</h:form>
+		</div>
+		<div align="center">
+			<h:form>
+				<h:selectOneMenu id="year" value="#{sethour.year}"
+					style="width:125px">
+					<f:selectItem itemLabel="2017" itemValue="2017" />
+					<f:selectItem itemLabel="2016" itemValue="2016" />
+					<f:selectItem itemLabel="2015" itemValue="2015" />
+				</h:selectOneMenu>
+				<h:selectManyCheckbox value="#{sethour.kindConditions}">
+					<f:selectItem itemLabel="病假" itemValue="2" />
+					<f:selectItem itemLabel="喪假" itemValue="3" />
+					<f:selectItem itemLabel="產假" itemValue="4" />
+					<f:selectItem itemLabel="特休" itemValue="5" />
 
-
- 
-<td>
-							<table class="CSSTableGenerator" border="1">
-								<tr>
-									<td><div align="center">年度</div></td>
-									<td><div align="center">員工編號</div></td>
-									<td><div align="center">姓名</div></td>
-									<td><div align="center">假別</div></td>
-									<td><div align="center">本年度額度</div></td>
-									<td><div align="center">已請時數</div></td>
-									<td><div align="center">待審核時數</div></td>
-									<td><div align="center">修改額度</div></td> 
-								</tr>
-								
-							
-	
-				   
-					
-					
+				</h:selectManyCheckbox>
 			
+	                                           姓名:<h:inputText type="text"
+					value="#{sethour.name}" />
+				<br />
+							編號:<h:inputText type="text" value="#{sethour.eid}" />
 
-       
-        
-		<!-- 
-               			<%// print the information about every category of the list
-               				String z="0",x="0",Class="";
-               				ArrayList<UseLeft> use = (ArrayList<UseLeft>) request.getAttribute("SearchListUse");
-               				ArrayList<UseLeft> left = (ArrayList<UseLeft>) request.getAttribute("SearchListLeft");
 
-               				
-               				//print use
-               				for(SearchHour searchhour : list) {
-               					if(request.getAttribute("SearchListUse")!=null){
-               						for(UseLeft useleft : use){
-               							if(searchhour.getEid().equals(useleft.getEid())){
-               								if(searchhour.getKname().equals(useleft.getKname())){
-               									z=useleft.getTotal();
-               									break;
-               								}
-               							
-               							}else{
-               								z="0";
-               							}
-               							
-               						}
-               						
-               					}
-               					//print left
-               					
-                   					if(request.getAttribute("SearchListLeft")!=null){
-                   						for(UseLeft useleft : left){
-                   							if(searchhour.getEid().equals(useleft.getEid())){
-                   								if(searchhour.getKname().equals(useleft.getKname())){
-                   									x=useleft.getTotal();
-                   									break;
-                   								}
-                   							
-                   							}else{
-                   								x="0";
-                   							}
-                   							
-                   						}
-                   						
-                   					};
-               		%> -->
-		<tr>
-			<td name="uyear"><div id ="1" value = "2"  ></div></td>
-		    <td name="ueid" value=""></td>
-		    <td name="uname"></td>
-		    <td name="ukname"></td>
-		    <td name="ucredit"></td>
-	<!-- 	    <%if(searchhour.getKname().equals("病假")){Class="2";} %>
-		    <%if(searchhour.getKname().equals("喪假")){Class="3";} %>
-		    <%if(searchhour.getKname().equals("產假")){Class="4";} %>
-		    <%if(searchhour.getKname().equals("特休")){Class="5";} %> -->
-		    <td name="usetime"><div class=""></div></td>
-		    <td name="lefttime"><div class=""></div></td>
-		  <!--  <%float a = Float.valueOf(z); 
-		     float b = Float.valueOf(x); %> -->
-		   
-		   <td ><input class="" name = "ucredit" style="width:130px" type="number" min="0"  step="0.5" value="" /></td>
-          
+				<br />
+				<h:commandButton value="查詢" action="#{sethour.searchHour}" />
+				<br />
+
+
+
+			</h:form>
+		</div>
+
+		<h2></h2>
+		<br />
 		
-		    
-		    
-		    
-	   </tr>
-		    				
-							<!-- <% 
-		}
-	}
-			}
-				
-	%> -->
-								
-							</table>
-							</td>
-							
-						
-							
-							
-								<!-- 	<%  if(request.getAttribute("SearchList")!=null){%> -->
-						
-						  
-							<p/>
-							<p>※請在「修改額度」欄位輸入新設定之額度，不欲設定者請保留空白即可。</p>
-								<button class="btn btn-primary" type="submit" name="submit"
-									id="submit"><img src="img/paper-plane.png"/>送出</button>
-								
-		<!-- 	<%} %> -->
-									
-							</form>
-							
-							<br/>
-						
-							
-							
-							
-						
-						<br/>
-					
-			
-					
-				
+		<p:dataTable value="#{sethour.searchHourList}" var="set">
+			<p:column>
+				<f:facet name="header">年度</f:facet>
+		#{set.year}
+		</p:column>
+			<p:column>
+				<f:facet name="header">員工編號</f:facet>
+		#{set.eid}
+		</p:column>
+			<p:column>
+				<f:facet name="header">員工姓名</f:facet>
+		#{set.name}
+		</p:column>
+			<p:column>
+				<f:facet name="header">假別</f:facet>
+		#{set.kname}
+		</p:column>
+			<p:column>
+				<f:facet name="header">本年額度</f:facet>
+		#{set.credit}
+		</p:column>
+		
+			<p:column>
+				<f:facet name="header">修改額度</f:facet>
+				<h:form>
+				<p:inputText size="6" ></p:inputText>
+				<h:commandButton value="修改" action ="#{submithour.submit}">
+					<f:param name="year" value="#{set.year}"></f:param>
+					<f:param name="eid" value="#{set.eid}"></f:param>
+					<f:param name="kname" value="#{set.kname}"></f:param>
+
+				</h:commandButton>
+				</h:form>
+			</p:column>
+		</p:dataTable>
+		
+		<p />
+		<p>※請在「修改額度」欄位輸入新設定之額度，不欲設定者請保留空白即可。</p>
+		<button class="btn btn-primary" type="submit" name="submit"
+			id="submit">
+			<img src="img/paper-plane.png" />送出
+		</button>
+
+
+
+
+		<br />
+
+
+
+
+
+		<br />
+
+
+
+
 
 	</ui:define>
 </ui:composition>

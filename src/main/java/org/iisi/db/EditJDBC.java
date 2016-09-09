@@ -1,7 +1,8 @@
 package org.iisi.db;
 
 import java.sql.*;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.iisi.bean.Edit;
 import org.iisi.controller.HourSearchController;
@@ -24,7 +25,7 @@ public class EditJDBC extends JDBCCore {
 			while (rs.next()) {
 				int i = 0;
 				String rspid = rs.getString(1);
-				String rstime = rs.getString(2);
+				Date rstime = rs.getDate(2);
 				String rsreply = rs.getString(3);
 
 				org.iisi.bean.Edit edl = new org.iisi.bean.Edit(rspid, rstime, rsreply);

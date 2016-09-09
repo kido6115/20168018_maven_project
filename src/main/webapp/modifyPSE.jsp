@@ -127,18 +127,18 @@ sweetAlert('請假時間已請!!!');
 									
 									<%
 										
-										  SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+										  SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
 									
 										       //  利用 DateFormat 來parse 日期的字串
-										         DateFormat df = DateFormat.getDateInstance();
-										        Date date = df.parse(edit.getStartDate());
-										        Date datee = df.parse(edit.getEndDate());
+/* 										         DateFormat df = DateFormat.getDateInstance();
+ */										        Date date = sdf.parse(edit.getStartDate());
+										        Date datee = sdf.parse(edit.getEndDate());
 										        Calendar calendars = Calendar.getInstance();
 										        calendars.setTime(date);
 										        Calendar calendare = Calendar.getInstance();
 										        calendare.setTime(datee);
 										       //  直接格式化輸出現在時間的方法
-									        SimpleDateFormat sdFormat = new SimpleDateFormat("yyyy-mm-dd");
+									        SimpleDateFormat sdFormat = new SimpleDateFormat("yyyy/mm/dd");
 										
 										%>
 										<td scope="row">假別起始日期:</td>

@@ -19,14 +19,14 @@ public class JDBCSetHour extends JDBCCore {
 		ArrayList<SearchHour> sh = new ArrayList<SearchHour>();
 		try {
 
-			if (sick == null) {
+			if (sick.equals("")) {
 				sick = "";
 			} else {
 				sick = " AND (  a.KID='2'";
 				i++;
 
 			}
-			if (spe == null) {
+			if (spe.equals("")) {
 				spe = "";
 			} else {
 				if (i == 0) {
@@ -36,7 +36,7 @@ public class JDBCSetHour extends JDBCCore {
 					spe = " OR a.KID='5'";
 				}
 			}
-			if (birth == null) {
+			if (birth.equals("")) {
 				birth = "";
 			} else {
 				if (i == 0) {
@@ -46,7 +46,7 @@ public class JDBCSetHour extends JDBCCore {
 					birth = " OR a.KID='4'";
 				}
 			}
-			if (death == null) {
+			if (death.equals("")) {
 				death = "";
 			} else {
 				if (i == 0) {
@@ -130,7 +130,35 @@ public class JDBCSetHour extends JDBCCore {
 		}
 		return use;
 	}
+    public String submitHour(String newCredit,String eid,String year,String kid){
+    	try {Connection conn;
+		conn = makeConnection();
 
+		PreparedStatement pstmt = conn.prepareStatement("update hours set credit=? where eid=? AND KID=?");
+		if (kid.equals("病假")) {
+			kid = "2";
+		}
+		if (kid.equals("喪假")) {
+			kid = "3";
+		}
+		if (kid.equals("產假")) {
+			kid = "4";
+		}
+		if (kid.equals("特休")) {
+			kid = "5";
+		}
+		
+				pstmt.setString(1, newCredit);
+				pstmt.setString(2, eid);
+				pstmt.setString(3, kid);
+				pstmt.executeUpdate();
+				
+    	}catch(Exception e) {
+			LOGGER.error(e.getMessage(), e);
+			return "failure";
+		}
+    	return "success";
+    }
 	public int SubmitHour(String[] credit, ArrayList<SearchHour> list) {
 		String[] update = credit;
 
