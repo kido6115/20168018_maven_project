@@ -8,18 +8,20 @@
 			<img src="img/sethour.png" />
 		</h1>
 
-        <div align="right">
-		<h:form>
-		<h:commandButton value="新增下年度時數" action="#{addnextyear.addyear}"/>
-		</h:form>
+		<div align="right">
+			<h:form>
+				<h:commandButton value="新增下年度時數" action="#{addnextyear.addyear}" />
+			</h:form>
 		</div>
 		<div align="center">
 			<h:form>
 				<h:selectOneMenu id="year" value="#{sethour.year}"
 					style="width:125px">
+					<f:selectItem itemLabel="2020" itemValue="2020" />
+					<f:selectItem itemLabel="2019" itemValue="2019" />
+					<f:selectItem itemLabel="2018" itemValue="2018" />
 					<f:selectItem itemLabel="2017" itemValue="2017" />
 					<f:selectItem itemLabel="2016" itemValue="2016" />
-					<f:selectItem itemLabel="2015" itemValue="2015" />
 				</h:selectOneMenu>
 				<h:selectManyCheckbox value="#{sethour.kindConditions}">
 					<f:selectItem itemLabel="病假" itemValue="2" />
@@ -46,50 +48,41 @@
 
 		<h2></h2>
 		<br />
-		
-		<p:dataTable value="#{sethour.searchHourList}" var="set">
-			<p:column>
-				<f:facet name="header">年度</f:facet>
-		#{set.year}
+		<h:form>
+			<p:dataTable value="#{sethour.showList}" var="set">
+				<p:column>
+					<f:facet name="header">年度</f:facet>
+		#{set.data.year}
 		</p:column>
-			<p:column>
-				<f:facet name="header">員工編號</f:facet>
-		#{set.eid}
+				<p:column>
+					<f:facet name="header">員工編號</f:facet>
+		#{set.data.eid}
 		</p:column>
-			<p:column>
-				<f:facet name="header">員工姓名</f:facet>
-		#{set.name}
+				<p:column>
+					<f:facet name="header">員工姓名</f:facet>
+		#{set.data.name}
 		</p:column>
-			<p:column>
-				<f:facet name="header">假別</f:facet>
-		#{set.kname}
+				<p:column>
+					<f:facet name="header">假別</f:facet>
+		#{set.data.kname}
 		</p:column>
-			<p:column>
-				<f:facet name="header">本年額度</f:facet>
-		#{set.credit}
+				<p:column>
+					<f:facet name="header">本年額度</f:facet>
+		#{set.data.credit}
 		</p:column>
-		
-			<p:column>
-				<f:facet name="header">修改額度</f:facet>
-				<h:form>
-				<p:inputText size="6" ></p:inputText>
-				<h:commandButton value="修改" action ="#{submithour.submit}">
-					<f:param name="year" value="#{set.year}"></f:param>
-					<f:param name="eid" value="#{set.eid}"></f:param>
-					<f:param name="kname" value="#{set.kname}"></f:param>
 
-				</h:commandButton>
-				</h:form>
-			</p:column>
-		</p:dataTable>
+				<p:column>
+					<f:facet name="header">修改額度</f:facet>
+
+					<p:inputText size="6" value="#{set.credit}"></p:inputText>
 		
+		</p:column>
+		</p:dataTable>
+		<div align="right"><h:commandButton value="送出" action="#{submithour.submit(sethour.showList)}"></h:commandButton></div>
+		</h:form>
 		<p />
 		<p>※請在「修改額度」欄位輸入新設定之額度，不欲設定者請保留空白即可。</p>
-		<button class="btn btn-primary" type="submit" name="submit"
-			id="submit">
-			<img src="img/paper-plane.png" />送出
-		</button>
-
+		
 
 
 

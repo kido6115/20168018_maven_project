@@ -4,6 +4,7 @@ import java.sql.*;
 import java.util.*;
 
 import org.iisi.bean.SearchHour;
+import org.iisi.bean.SearchHourDto;
 import org.iisi.bean.UseLeft;
 import org.iisi.controller.HourSearchController;
 import org.slf4j.Logger;
@@ -130,29 +131,43 @@ public class JDBCSetHour extends JDBCCore {
 		}
 		return use;
 	}
-    public String submitHour(String newCredit,String eid,String year,String kid){
-    	try {Connection conn;
-		conn = makeConnection();
+    public String submitHour(List<SearchHourDto> showList){
+    	String year;
+    	String eid;
+    	String kid;
+    	try {
+    		Connection conn;
+			conn = makeConnection();
+			PreparedStatement pstmt = conn.prepareStatement("update hours set credit=? where eid=? AND KID=? AND YEAR=?");
+    		for (SearchHourDto list : showList){
+    			LOGGER.debug(list.getData().getEid());
+    			LOGGER.debug(list.getData().getKname());
+    			LOGGER.debug(list.getCredit());
+    			
+    					year = list.getData().getYear();
+    					eid = list.getData().getEid();
+    					kid = list.getData().getKname();
+    					if (kid.equals("病假")) {
+    						kid = "2";
+    					}
+    					if (kid.equals("喪假")) {
+    						kid = "3";
+    					}
+    					if (kid.equals("產假")) {
+    						kid = "4";
+    					}
+    					if (kid.equals("特休")) {
+    						kid = "5";
+    					}
 
-		PreparedStatement pstmt = conn.prepareStatement("update hours set credit=? where eid=? AND KID=?");
-		if (kid.equals("病假")) {
-			kid = "2";
-		}
-		if (kid.equals("喪假")) {
-			kid = "3";
-		}
-		if (kid.equals("產假")) {
-			kid = "4";
-		}
-		if (kid.equals("特休")) {
-			kid = "5";
-		}
-		
-				pstmt.setString(1, newCredit);
-				pstmt.setString(2, eid);
-				pstmt.setString(3, kid);
-				pstmt.executeUpdate();
-				
+    					pstmt.setString(1, list.getCredit());
+    					pstmt.setString(2, eid);
+    					pstmt.setString(3, kid);
+    					pstmt.setString(4, year);
+    					pstmt.executeUpdate();
+    					
+
+    		}
     	}catch(Exception e) {
 			LOGGER.error(e.getMessage(), e);
 			return "failure";

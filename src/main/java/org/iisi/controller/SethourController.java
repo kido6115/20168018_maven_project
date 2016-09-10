@@ -1,5 +1,6 @@
 package org.iisi.controller;
 
+import java.util.LinkedList;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
@@ -7,6 +8,7 @@ import javax.faces.bean.SessionScoped;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.iisi.bean.SearchHour;
+import org.iisi.bean.SearchHourDto;
 import org.iisi.db.JDBCSetHour;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,13 +24,14 @@ public class SethourController {
 	private String name;
 
 	private List<SearchHour> searchHourList;
+	private List<SearchHourDto> showList;
 
 	public String searchHour() {
 		String sick = "";
 		String death = "";
 		String birth = "";
 		String spe = "";
-
+		LOGGER.debug(name);
 		LOGGER.debug(eid);
 		LOGGER.debug(year);
 		for (int i = 0; i < kindConditions.length; i++) {
@@ -49,11 +52,22 @@ public class SethourController {
 		LOGGER.debug(spe);
 		JDBCSetHour set = new JDBCSetHour();
 		searchHourList = set.Searchhour(year, eid, name, sick, death, birth, spe);
-		for (SearchHour list : searchHourList){
+		showList = new LinkedList<SearchHourDto>();
+		for (SearchHour list : searchHourList) {
+			showList.add(new SearchHourDto(list, list.getCredit()));
 			LOGGER.debug(ToStringBuilder.reflectionToString(list));
+
 		}
 
 		return null;
+	}
+
+	public List<SearchHourDto> getShowList() {
+		return showList;
+	}
+
+	public void setShowList(List<SearchHourDto> showList) {
+		this.showList = showList;
 	}
 
 	public List<SearchHour> getSearchHourList() {
@@ -72,6 +86,14 @@ public class SethourController {
 		this.year = year;
 	}
 
+	public String[] getKindConditions() {
+		return kindConditions;
+	}
+
+	public void setKindConditions(String[] kindConditions) {
+		this.kindConditions = kindConditions;
+	}
+
 	public String getEid() {
 		return eid;
 	}
@@ -86,14 +108,6 @@ public class SethourController {
 
 	public void setName(String name) {
 		this.name = name;
-	}
-
-	public String[] getKindConditions() {
-		return kindConditions;
-	}
-
-	public void setKindConditions(String[] kindConditions) {
-		this.kindConditions = kindConditions;
 	}
 
 }

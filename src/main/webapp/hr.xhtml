@@ -1,205 +1,101 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core" template="/hrtemplate.xhtml">
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" template="/hrtemplate.xhtml">
 	<ui:define name="title">
-<h1>
-							<img src="img/people.png"/>
-						</h1>
-
-						<form name="form1" class="fontstyle" method="post"
-							action="hrServlet">
-							<table  align="center">
-								<tr>
-									<td><table align="center">
-											<tr>
-												<td>員工編號<!--  <%
- 	if(request.getAttribute("Eid")==null){
- %> --> <input type="text" name="Eid" id="Eid" value=""/> <!-- <%
- 	} else {
- %> --> <input type="text" name="Eid" id="Eid"
-	value=""/> <!-- <%
- 	}
- %> --> <br/> <br/>員工姓名<!--  <%
- 	if(request.getAttribute("Name")==null){
- %>  --><input type="text" name="Name" id="Name" value=""/>
-													<!-- <%
-														} else {
-													%> --> <input type="text" name="Name" id="Name"
-													value=""/><!--  <%
- 	}
- %> -->
-												</td>
-											</tr>
-										</table></td>
-									<td><table align="center">
-											<tr>
-												<td>部門： <select name="dep" size="1" id="time">
-														<!-- <%
-															if(request.getAttribute("dep")!=null){
-														%> -->
-
-
-														<option value="">任意部門</option>
-														<option value="1"
-															>HR</option>
-														<option value="2"
-															>SALE</option>
-														<option value="3"
-															>IT</option>
-														<option value="4"
-															>FINANCE</option>
-														<option value="5"
-															>MARKETING</option>
-
-
-
-														<!-- <%
-															}else {
-														%> -->
-														<option value="">任意部門</option>
-														<option value="1">HR</option>
-														<option value="2">SALE</option>
-														<option value="3">IT</option>
-														<option value="4">FINANCE</option>
-														<option value="5">MARKETING</option>
-														<!-- <%
-															}
-														%> -->
-
-												</select> <br/> <br/>職稱：<select
-													name="job" size="1" id="time">
-
-														<!-- <%
-															if(request.getAttribute("job")!=null){
-														%> -->
-
-
-														<option value="">任意職稱</option>
-														<option value="4"
-															>專員</option>
-														<option value="2"
-															>部門經理</option>
-														<option value="1"
-															>助理</option>
-
-
-
-
-														<!-- <%
-															}else {
-														%> -->
-
-														<option value="">任意職稱</option>
-														<option value="4">專員</option>
-														<option value="2">部門經理</option>
-														<option value="1">助理</option>
-														<!-- <%
-															}
-														%> -->
-												</select> 
-
-
-												</td>
-											</tr>
-										</table></td>
-								</tr>
-								<tr>
-									<td >
-										<button style="float: right" class="btn btn-primary"
-											type="submit">
-											<img src="img/interface.png"/>查詢
-										</button>
-									</td>
-								</tr>
-							</table>
-
-						</form>
-
-						<br/>
-
-						<form name="form4" method="post" class="fontstyle"
-							action="hrSubmitServlet">
-							<!-- <%
-								if(request.getAttribute("hrList")!=null){
-							%> -->
-							<table class="CSSTableGenerator" border="1">
-
-
-								<tr>
-									<td>員工編號</td>
-									<td>員工姓名</td>
-									<td>部門</td>
-									<td>職稱</td>
-									<td>調動</td>
-
-								</tr>
-								<!-- <%
-									int i=0;																																								
-
-																						ArrayList<Hr> list = (ArrayList<Hr>)request.getAttribute("hrList");
-
-																						if(list.size()!=0){
-																						for(Hr hr : list) {
-								%> -->
-								<tr>
-									<td><input type="hidden" name=""
-										value=""/></td>
-									<td></td>
-									<td><input type="hidden" name=""
-										value=""/></td>
-									<td><input type="hidden" name=""
-										value=""/></td>
-									<td><select name="">
-											<option value="1" >HR</option>
-											<option value="2" >SALE</option>
-											<option value="3" >IT</option>
-											<option value="4" >FINANCE</option>
-											<option value="5" >MARKETING</option>
-									</select><select name="">
-											<option value="4" >專員</option>
-											<option value="2" >部門經理</option>
-											<option value="1" >助理</option>
-									</select></td>
-								</tr>
-								<!-- <%
-									i++;
-																																												
-																				}
-																						
-																					}
-								%> -->
-							</table>
-							<input type="hidden" name="count" value=""/> <br/>
-							<button class="btn btn-primary" type="submit" name="confirm"
-								id="confirm">
-								<img src="img/paper-plane.png"/>確認
-							</button>
-							<!-- <%
-								}else{
-							%> -->
-							<table class="CSSTableGenerator" border="1">
-								<tr>
-									<td>員工編號</td>
-									<td>員工姓名</td>
-									<td>部門</td>
-									<td>職稱</td>
-									<td>調動</td>
-
-								</tr>
-								<tr>
-									<td colspan="8">查無資料</td>
-								</tr>
-							</table>
-							<!-- <%
-								}
-							%> -->
-
-						</form>
-
-
-						<br/> <br/>
+		<h1>
+			<img src="img/people.png" />
+		</h1>
+		<div align="center">
+		<h:form>
+		<table><tr><td>
+			員工編號
+			<h:inputText size="10" value="#{hrsearch.eid}"></h:inputText>
+			<br /> 員工姓名
+			<h:inputText size="10" value="#{hrsearch.name}"></h:inputText>
+			<br /> </td>
+			<td>部門
+			<h:selectOneMenu style="width:125px" value="#{hrsearch.deptId}">
+				<f:selectItem itemLabel="任意部門" itemValue="" />
+				<f:selectItem itemLabel="HR" itemValue="1" />
+				<f:selectItem itemLabel="SALE" itemValue="2" />
+				<f:selectItem itemLabel="IT" itemValue="3" />
+				<f:selectItem itemLabel="FINANCE" itemValue="4" />
+				<f:selectItem itemLabel="MARKETING" itemValue="5" />
+			</h:selectOneMenu>
+			<br /> 職稱
+			<h:selectOneMenu style="width:125px" value="#{hrsearch.jobId}">
+				<f:selectItem itemLabel="任意職稱" itemValue="" />
+				<f:selectItem itemLabel="專員" itemValue="4"/>
+				<f:selectItem itemLabel="部門經理" itemValue="2" />
+				<f:selectItem itemLabel="助理" itemValue="1" />
 				
+			</h:selectOneMenu>
+			</td></tr></table>
+			<h:commandButton value="查詢" action="#{hrsearch.hrSearch}"></h:commandButton>
+			</h:form>
+			
+		</div>
+		<h:form>
+		<p:dataTable value="#{hrsearch.submitList}" var="hr" width="800"
+         >
+       
+          <p:column>
+            <f:facet name="header">員工編號</f:facet>
+           
+         </p:column>
+         
+         <p:column>    				
+            <f:facet name="header">員工姓名</f:facet>    				
+           #{hr.hrList.name}
+         </p:column>
+         <p:column>
+            <f:facet name="header">員工編號</f:facet>
+            #{hr.hrList.eid}
+         </p:column>
+         <p:column>
+            <f:facet name="header">部門</f:facet>
+            #{hr.hrList.depName}
+         </p:column>
+         <p:column>
+            <f:facet name="header">職稱</f:facet>
+            #{hr.hrList.jobName}
+         </p:column>
+         <p:column>
+            <f:facet name="header">調動</f:facet>
+            	<h:selectOneMenu style="width:125px" value="#{hr.deptId}">
+				
+				<f:selectItem itemLabel="HR" itemValue="1" />
+				<f:selectItem itemLabel="SALE" itemValue="2" />
+				<f:selectItem itemLabel="IT" itemValue="3" />
+				<f:selectItem itemLabel="FINANCE" itemValue="4" />
+				<f:selectItem itemLabel="MARKETING" itemValue="5" /><br/>
+			</h:selectOneMenu>
+			<h:selectOneMenu style="width:125px" value="#{hr.jobId}">
+				
+				<f:selectItem itemLabel="專員" itemValue="4"/>
+				<f:selectItem itemLabel="部門經理" itemValue="2" />
+				<f:selectItem itemLabel="助理" itemValue="1" />
+				
+			</h:selectOneMenu>
+         </p:column>
+      </p:dataTable>
+      <div align="right"><h:commandButton value="送出" action = "#{hrsubmit.submit(hrsearch.submitList)}"></h:commandButton></div>
+		</h:form>
+
+	
+
+		<br />
+
+
+		
+
+
+
+		<br />
+		<br />
+
 
 	</ui:define>
 </ui:composition>

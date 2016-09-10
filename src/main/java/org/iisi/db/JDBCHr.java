@@ -6,13 +6,43 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.iisi.bean.Hr;
+import org.iisi.bean.HrDto;
 import org.iisi.controller.HourSearchController;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class JDBCHr extends JDBCCore {
 	private static final Logger LOGGER = LoggerFactory.getLogger(HourSearchController.class);
+public String hrSubmit(List<HrDto> submitList){
+	String result="修改成功";
+	Connection conn;
+	try {
+		conn = makeConnection();
+		for (HrDto list : submitList){
+			PreparedStatement pstmt = conn.prepareStatement("update employee set job_id=?,dep_id=? where eid=?");
+			String eid = list.getHrList().geteid();
+			String depId = list.getDeptId();
+			String jobId = list.getJobId();
 
+			pstmt.setString(1, jobId);
+			pstmt.setString(2, depId);
+			pstmt.setString(3, eid);
+
+			pstmt.executeUpdate();
+
+			
+		}
+
+	} catch (Exception e) {
+		// TODO Auto-generated catch block
+		result="修改失敗";
+		LOGGER.error(e.getMessage(),e);
+	}
+
+	
+	return result;
+	
+}
 	public ArrayList<String> hrChange(List<String[]> list) throws Exception {
 		ArrayList<String> sh = new ArrayList<String>();
 
