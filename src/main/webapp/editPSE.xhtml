@@ -38,7 +38,9 @@
 			<p:column>
 				<f:facet name="header">修改假單</f:facet>    				
             <h:form>
-            <h:commandButton value="修改"></h:commandButton>
+            <h:commandButton value="修改" action="#{modifypse.modify}">
+            <f:param name="pid" value="#{edit.pid}"></f:param>
+            </h:commandButton>
             </h:form>
            
          </p:column>

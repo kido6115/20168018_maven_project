@@ -11,7 +11,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 @ManagedBean(name = "editpse")
 @SessionScoped
-public class EditPSE implements Basic{
+public class EditPSEController implements Basic{
 	private static final Logger LOGGER = LoggerFactory.getLogger(AcceptPSEController.class);
    private List<Edit> editPSEList;
 	public String editPSE(){
