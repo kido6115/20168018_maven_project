@@ -105,20 +105,38 @@ CREATE TABLE    APARTMENT (
   
   
   
---ALTER TABLE    PSE_MAIN ADD CONSTRAINT PSE_MAIN_PSE_STATUS_FK1 FOREIGN KEY (STATUS) REFERENCES    PSE_STATUS (STATUS) ON UPDATE Cascade ON DELETE Restrict;
---ALTER TABLE    PSE_SUB ADD CONSTRAINT PSE_SUB_PSE_MAIN_FK1 FOREIGN KEY (PID) REFERENCES    PSE_MAIN (PID) ON UPDATE Cascade ON DELETE Restrict;
---ALTER TABLE    PSE_SUB ADD CONSTRAINT PSE_SUB_PSE_KIND_FK1 FOREIGN KEY (KID) REFERENCES    PSE_KIND (KID) ON UPDATE Cascade ON DELETE Restrict;
---ALTER TABLE    HOURS ADD CONSTRAINT HOURS_PSE_KIND_FK1 FOREIGN KEY (KID) REFERENCES    PSE_KIND (KID) ON UPDATE Cascade ON DELETE Restrict;
---ALTER TABLE    PSE_MAIN ADD CONSTRAINT PSE_MAIN_EMPLOYEE_FK1 FOREIGN KEY (EID) REFERENCES    EMPLOYEE (EID) ON UPDATE Cascade ON DELETE Restrict;
---ALTER TABLE    HOURS ADD CONSTRAINT HOURS_EMPLOYEE_FK1 FOREIGN KEY (EID) REFERENCES    EMPLOYEE (EID) ON UPDATE Cascade ON DELETE Restrict;
+ALTER TABLE    PSE_MAIN ADD CONSTRAINT PSE_MAIN_PSE_STATUS_FK1 FOREIGN KEY (STATUS) REFERENCES    PSE_STATUS (STATUS) ON UPDATE Cascade ON DELETE Restrict;
+ALTER TABLE    PSE_SUB ADD CONSTRAINT PSE_SUB_PSE_MAIN_FK1 FOREIGN KEY (PID) REFERENCES    PSE_MAIN (PID) ON UPDATE Cascade ON DELETE Restrict;
+ALTER TABLE    PSE_SUB ADD CONSTRAINT PSE_SUB_PSE_KIND_FK1 FOREIGN KEY (KID) REFERENCES    PSE_KIND (KID) ON UPDATE Cascade ON DELETE Restrict;
+ALTER TABLE    HOURS ADD CONSTRAINT HOURS_PSE_KIND_FK1 FOREIGN KEY (KID) REFERENCES    PSE_KIND (KID) ON UPDATE Cascade ON DELETE Restrict;
+ALTER TABLE    PSE_MAIN ADD CONSTRAINT PSE_MAIN_EMPLOYEE_FK1 FOREIGN KEY (EID) REFERENCES    EMPLOYEE (EID) ON UPDATE Cascade ON DELETE Restrict;
+ALTER TABLE    HOURS ADD CONSTRAINT HOURS_EMPLOYEE_FK1 FOREIGN KEY (EID) REFERENCES    EMPLOYEE (EID) ON UPDATE Cascade ON DELETE Restrict;
  
 
+
+Insert into      PSE_STATUS (STATUS,SNAME) values (1,'通過');
+Insert into      PSE_STATUS (STATUS,SNAME) values (2,'退回');
+Insert into      PSE_STATUS (STATUS,SNAME) values (3,'待審核');
+Insert into      PSE_STATUS (STATUS,SNAME) values (4,'刪除');
 
 Insert into      APARTMENT (APAR_ID,APAR_NAME) values (1,'HR');
 Insert into      APARTMENT (APAR_ID,APAR_NAME) values (2,'SALE');
 Insert into      APARTMENT (APAR_ID,APAR_NAME) values (3,'IT');
 Insert into      APARTMENT (APAR_ID,APAR_NAME) values (4,'FINANCE');
 Insert into      APARTMENT (APAR_ID,APAR_NAME) values (5,'MARKETING');
+
+Insert into      DEP (DEP_ID,DEP_NAME) values (1,'HR');
+Insert into      DEP (DEP_ID,DEP_NAME) values (2,'SALE');
+Insert into      DEP (DEP_ID,DEP_NAME) values (3,'IT');
+Insert into      DEP (DEP_ID,DEP_NAME) values (4,'FINANCE');
+Insert into      DEP (DEP_ID,DEP_NAME) values (5,'MARKETING');
+
+Insert into      PSE_KIND (KID,KNAME) values (1,'事假');
+Insert into      PSE_KIND (KID,KNAME) values (2,'病假');
+Insert into      PSE_KIND (KID,KNAME) values (3,'喪假');
+Insert into      PSE_KIND (KID,KNAME) values (4,'產假');
+Insert into      PSE_KIND (KID,KNAME) values (5,'特休');
+
  
 Insert into      APPLY_CHANGE (APID,EID,DEP_ID,JOB_ID,AP_DEP_ID,AP_JOB_ID,WHY,STATUS,APPLY_DATE) values (100001,'E155',2,2,5,2,'挑戰自我',1,to_date('2016-01-02 00:00:00','RRRR-MM-DD HH24:MI:SS'));
 Insert into      APPLY_CHANGE (APID,EID,DEP_ID,JOB_ID,AP_DEP_ID,AP_JOB_ID,WHY,STATUS,APPLY_DATE) values (100002,'E156',3,2,4,2,'太累了',2,to_date('2016-01-03 00:00:00','RRRR-MM-DD HH24:MI:SS'));
@@ -143,11 +161,6 @@ Insert into      APPLY_CHANGE (APID,EID,DEP_ID,JOB_ID,AP_DEP_ID,AP_JOB_ID,WHY,ST
 
 
 
-Insert into      DEP (DEP_ID,DEP_NAME) values (1,'HR');
-Insert into      DEP (DEP_ID,DEP_NAME) values (2,'SALE');
-Insert into      DEP (DEP_ID,DEP_NAME) values (3,'IT');
-Insert into      DEP (DEP_ID,DEP_NAME) values (4,'FINANCE');
-Insert into      DEP (DEP_ID,DEP_NAME) values (5,'MARKETING');
 
 
 
@@ -211,86 +224,6 @@ Insert into      EMPLOYEE (EID,NAME,ID,EMAIL,PWD,JOB_ID,DEP_ID) values ('E154','
 Insert into      EMPLOYEE (EID,NAME,ID,EMAIL,PWD,JOB_ID,DEP_ID) values ('E155','Audrey Max','A271710143','aaa111@yahoo.com.tw','aaa111',2,2);
 Insert into      EMPLOYEE (EID,NAME,ID,EMAIL,PWD,JOB_ID,DEP_ID) values ('E156','Bella Paddy','A247813064','aaa111@yahoo.com.tw','aaa111',2,3);
 Insert into      EMPLOYEE (EID,NAME,ID,EMAIL,PWD,JOB_ID,DEP_ID) values ('E157','Bess Puppy','A212472831','aaa111@yahoo.com.tw','aaa111',2,4);
-
-
-
-Insert into      HOLIDAY (HID,H_DATE,H_NAME) values (1,to_date('2016-05-01 12:00:00','RRRR-MM-DD HH24:MI:SS'),'星期日');
-Insert into      HOLIDAY (HID,H_DATE,H_NAME) values (2,to_date('2016-05-07 12:00:00','RRRR-MM-DD HH24:MI:SS'),'星期六');
-Insert into      HOLIDAY (HID,H_DATE,H_NAME) values (3,to_date('2016-05-08 12:00:00','RRRR-MM-DD HH24:MI:SS'),'星期日');
-Insert into      HOLIDAY (HID,H_DATE,H_NAME) values (4,to_date('2016-05-14 12:00:00','RRRR-MM-DD HH24:MI:SS'),'星期六');
-Insert into      HOLIDAY (HID,H_DATE,H_NAME) values (5,to_date('2016-05-15 12:00:00','RRRR-MM-DD HH24:MI:SS'),'星期日');
-Insert into      HOLIDAY (HID,H_DATE,H_NAME) values (6,to_date('2016-05-21 12:00:00','RRRR-MM-DD HH24:MI:SS'),'星期六');
-Insert into      HOLIDAY (HID,H_DATE,H_NAME) values (7,to_date('2016-05-22 12:00:00','RRRR-MM-DD HH24:MI:SS'),'星期日');
-Insert into      HOLIDAY (HID,H_DATE,H_NAME) values (8,to_date('2016-05-28 12:00:00','RRRR-MM-DD HH24:MI:SS'),'星期六');
-Insert into      HOLIDAY (HID,H_DATE,H_NAME) values (9,to_date('2016-05-29 12:00:00','RRRR-MM-DD HH24:MI:SS'),'星期日');
-Insert into      HOLIDAY (HID,H_DATE,H_NAME) values (10,to_date('2016-06-04 12:00:00','RRRR-MM-DD HH24:MI:SS'),'星期六');
-Insert into      HOLIDAY (HID,H_DATE,H_NAME) values (11,to_date('2016-06-05 12:00:00','RRRR-MM-DD HH24:MI:SS'),'星期日');
-Insert into      HOLIDAY (HID,H_DATE,H_NAME) values (12,to_date('2016-06-11 12:00:00','RRRR-MM-DD HH24:MI:SS'),'星期六');
-Insert into      HOLIDAY (HID,H_DATE,H_NAME) values (13,to_date('2016-06-12 12:00:00','RRRR-MM-DD HH24:MI:SS'),'星期日');
-Insert into      HOLIDAY (HID,H_DATE,H_NAME) values (14,to_date('2016-06-18 12:00:00','RRRR-MM-DD HH24:MI:SS'),'星期六');
-Insert into      HOLIDAY (HID,H_DATE,H_NAME) values (15,to_date('2016-06-19 12:00:00','RRRR-MM-DD HH24:MI:SS'),'星期日');
-Insert into      HOLIDAY (HID,H_DATE,H_NAME) values (16,to_date('2016-06-25 12:00:00','RRRR-MM-DD HH24:MI:SS'),'星期六');
-Insert into      HOLIDAY (HID,H_DATE,H_NAME) values (17,to_date('2016-06-26 12:00:00','RRRR-MM-DD HH24:MI:SS'),'星期日');
-Insert into      HOLIDAY (HID,H_DATE,H_NAME) values (18,to_date('2016-07-02 12:00:00','RRRR-MM-DD HH24:MI:SS'),'星期六');
-Insert into      HOLIDAY (HID,H_DATE,H_NAME) values (19,to_date('2016-07-03 12:00:00','RRRR-MM-DD HH24:MI:SS'),'星期日');
-Insert into      HOLIDAY (HID,H_DATE,H_NAME) values (20,to_date('2016-07-09 12:00:00','RRRR-MM-DD HH24:MI:SS'),'星期六');
-Insert into      HOLIDAY (HID,H_DATE,H_NAME) values (21,to_date('2016-07-10 12:00:00','RRRR-MM-DD HH24:MI:SS'),'星期日');
-Insert into      HOLIDAY (HID,H_DATE,H_NAME) values (22,to_date('2016-07-16 12:00:00','RRRR-MM-DD HH24:MI:SS'),'星期六');
-Insert into      HOLIDAY (HID,H_DATE,H_NAME) values (23,to_date('2016-07-17 12:00:00','RRRR-MM-DD HH24:MI:SS'),'星期日');
-Insert into      HOLIDAY (HID,H_DATE,H_NAME) values (24,to_date('2016-07-23 12:00:00','RRRR-MM-DD HH24:MI:SS'),'星期六');
-Insert into      HOLIDAY (HID,H_DATE,H_NAME) values (25,to_date('2016-07-24 12:00:00','RRRR-MM-DD HH24:MI:SS'),'星期日');
-Insert into      HOLIDAY (HID,H_DATE,H_NAME) values (26,to_date('2016-07-30 12:00:00','RRRR-MM-DD HH24:MI:SS'),'星期六');
-Insert into      HOLIDAY (HID,H_DATE,H_NAME) values (27,to_date('2016-07-31 12:00:00','RRRR-MM-DD HH24:MI:SS'),'星期日');
-Insert into      HOLIDAY (HID,H_DATE,H_NAME) values (28,to_date('2016-08-06 12:00:00','RRRR-MM-DD HH24:MI:SS'),'星期六');
-Insert into      HOLIDAY (HID,H_DATE,H_NAME) values (29,to_date('2016-08-07 12:00:00','RRRR-MM-DD HH24:MI:SS'),'星期日');
-Insert into      HOLIDAY (HID,H_DATE,H_NAME) values (30,to_date('2016-08-13 12:00:00','RRRR-MM-DD HH24:MI:SS'),'星期六');
-Insert into      HOLIDAY (HID,H_DATE,H_NAME) values (31,to_date('2016-08-14 12:00:00','RRRR-MM-DD HH24:MI:SS'),'星期日');
-Insert into      HOLIDAY (HID,H_DATE,H_NAME) values (32,to_date('2016-08-20 12:00:00','RRRR-MM-DD HH24:MI:SS'),'星期六');
-Insert into      HOLIDAY (HID,H_DATE,H_NAME) values (33,to_date('2016-08-21 12:00:00','RRRR-MM-DD HH24:MI:SS'),'星期日');
-Insert into      HOLIDAY (HID,H_DATE,H_NAME) values (34,to_date('2016-08-27 12:00:00','RRRR-MM-DD HH24:MI:SS'),'星期六');
-Insert into      HOLIDAY (HID,H_DATE,H_NAME) values (35,to_date('2016-08-28 12:00:00','RRRR-MM-DD HH24:MI:SS'),'星期日');
-Insert into      HOLIDAY (HID,H_DATE,H_NAME) values (36,to_date('2016-09-03 12:00:00','RRRR-MM-DD HH24:MI:SS'),'星期六');
-Insert into      HOLIDAY (HID,H_DATE,H_NAME) values (37,to_date('2016-09-04 12:00:00','RRRR-MM-DD HH24:MI:SS'),'星期日');
-Insert into      HOLIDAY (HID,H_DATE,H_NAME) values (38,to_date('2016-09-10 12:00:00','RRRR-MM-DD HH24:MI:SS'),'星期六');
-Insert into      HOLIDAY (HID,H_DATE,H_NAME) values (39,to_date('2016-09-11 12:00:00','RRRR-MM-DD HH24:MI:SS'),'星期日');
-Insert into      HOLIDAY (HID,H_DATE,H_NAME) values (40,to_date('2016-09-17 12:00:00','RRRR-MM-DD HH24:MI:SS'),'星期六');
-Insert into      HOLIDAY (HID,H_DATE,H_NAME) values (41,to_date('2016-09-18 12:00:00','RRRR-MM-DD HH24:MI:SS'),'星期日');
-Insert into      HOLIDAY (HID,H_DATE,H_NAME) values (42,to_date('2016-09-24 12:00:00','RRRR-MM-DD HH24:MI:SS'),'星期六');
-Insert into      HOLIDAY (HID,H_DATE,H_NAME) values (43,to_date('2016-09-25 12:00:00','RRRR-MM-DD HH24:MI:SS'),'星期日');
-Insert into      HOLIDAY (HID,H_DATE,H_NAME) values (44,to_date('2016-10-01 12:00:00','RRRR-MM-DD HH24:MI:SS'),'星期六');
-Insert into      HOLIDAY (HID,H_DATE,H_NAME) values (45,to_date('2016-10-02 12:00:00','RRRR-MM-DD HH24:MI:SS'),'星期日');
-Insert into      HOLIDAY (HID,H_DATE,H_NAME) values (46,to_date('2016-10-08 12:00:00','RRRR-MM-DD HH24:MI:SS'),'星期六');
-Insert into      HOLIDAY (HID,H_DATE,H_NAME) values (47,to_date('2016-10-09 12:00:00','RRRR-MM-DD HH24:MI:SS'),'星期日');
-Insert into      HOLIDAY (HID,H_DATE,H_NAME) values (48,to_date('2016-10-15 12:00:00','RRRR-MM-DD HH24:MI:SS'),'星期六');
-Insert into      HOLIDAY (HID,H_DATE,H_NAME) values (49,to_date('2016-10-16 12:00:00','RRRR-MM-DD HH24:MI:SS'),'星期日');
-Insert into      HOLIDAY (HID,H_DATE,H_NAME) values (50,to_date('2016-10-22 12:00:00','RRRR-MM-DD HH24:MI:SS'),'星期六');
-Insert into      HOLIDAY (HID,H_DATE,H_NAME) values (51,to_date('2016-10-23 12:00:00','RRRR-MM-DD HH24:MI:SS'),'星期日');
-Insert into      HOLIDAY (HID,H_DATE,H_NAME) values (52,to_date('2016-10-29 12:00:00','RRRR-MM-DD HH24:MI:SS'),'星期六');
-Insert into      HOLIDAY (HID,H_DATE,H_NAME) values (53,to_date('2016-10-30 12:00:00','RRRR-MM-DD HH24:MI:SS'),'星期日');
-Insert into      HOLIDAY (HID,H_DATE,H_NAME) values (54,to_date('2016-11-05 12:00:00','RRRR-MM-DD HH24:MI:SS'),'星期六');
-Insert into      HOLIDAY (HID,H_DATE,H_NAME) values (55,to_date('2016-11-06 12:00:00','RRRR-MM-DD HH24:MI:SS'),'星期日');
-Insert into      HOLIDAY (HID,H_DATE,H_NAME) values (56,to_date('2016-11-12 12:00:00','RRRR-MM-DD HH24:MI:SS'),'星期六');
-Insert into      HOLIDAY (HID,H_DATE,H_NAME) values (57,to_date('2016-11-13 12:00:00','RRRR-MM-DD HH24:MI:SS'),'星期日');
-Insert into      HOLIDAY (HID,H_DATE,H_NAME) values (58,to_date('2016-11-19 12:00:00','RRRR-MM-DD HH24:MI:SS'),'星期六');
-Insert into      HOLIDAY (HID,H_DATE,H_NAME) values (59,to_date('2016-11-20 12:00:00','RRRR-MM-DD HH24:MI:SS'),'星期日');
-Insert into      HOLIDAY (HID,H_DATE,H_NAME) values (60,to_date('2016-11-26 12:00:00','RRRR-MM-DD HH24:MI:SS'),'星期六');
-Insert into      HOLIDAY (HID,H_DATE,H_NAME) values (61,to_date('2016-11-27 12:00:00','RRRR-MM-DD HH24:MI:SS'),'星期日');
-Insert into      HOLIDAY (HID,H_DATE,H_NAME) values (62,to_date('2016-12-03 12:00:00','RRRR-MM-DD HH24:MI:SS'),'星期六');
-Insert into      HOLIDAY (HID,H_DATE,H_NAME) values (63,to_date('2016-12-04 12:00:00','RRRR-MM-DD HH24:MI:SS'),'星期日');
-Insert into      HOLIDAY (HID,H_DATE,H_NAME) values (64,to_date('2016-12-10 12:00:00','RRRR-MM-DD HH24:MI:SS'),'星期六');
-Insert into      HOLIDAY (HID,H_DATE,H_NAME) values (65,to_date('2016-12-11 12:00:00','RRRR-MM-DD HH24:MI:SS'),'星期日');
-Insert into      HOLIDAY (HID,H_DATE,H_NAME) values (66,to_date('2016-12-17 12:00:00','RRRR-MM-DD HH24:MI:SS'),'星期六');
-Insert into      HOLIDAY (HID,H_DATE,H_NAME) values (67,to_date('2016-12-18 12:00:00','RRRR-MM-DD HH24:MI:SS'),'星期日');
-Insert into      HOLIDAY (HID,H_DATE,H_NAME) values (68,to_date('2016-12-24 12:00:00','RRRR-MM-DD HH24:MI:SS'),'星期六');
-Insert into      HOLIDAY (HID,H_DATE,H_NAME) values (69,to_date('2016-12-25 12:00:00','RRRR-MM-DD HH24:MI:SS'),'星期日');
-Insert into      HOLIDAY (HID,H_DATE,H_NAME) values (70,to_date('2016-12-31 12:00:00','RRRR-MM-DD HH24:MI:SS'),'星期六');
-Insert into      HOLIDAY (HID,H_DATE,H_NAME) values (71,to_date('2017-01-01 12:00:00','RRRR-MM-DD HH24:MI:SS'),'星期日');
-Insert into      HOLIDAY (HID,H_DATE,H_NAME) values (72,to_date('2017-06-09 12:00:00','RRRR-MM-DD HH24:MI:SS'),'端午節');
-Insert into      HOLIDAY (HID,H_DATE,H_NAME) values (73,to_date('2017-06-10 12:00:00','RRRR-MM-DD HH24:MI:SS'),'彈性放假');
-Insert into      HOLIDAY (HID,H_DATE,H_NAME) values (74,to_date('2016-09-15 12:00:00','RRRR-MM-DD HH24:MI:SS'),'中秋節');
-Insert into      HOLIDAY (HID,H_DATE,H_NAME) values (75,to_date('2016-09-16 12:00:00','RRRR-MM-DD HH24:MI:SS'),'彈性放假');
-Insert into      HOLIDAY (HID,H_DATE,H_NAME) values (76,to_date('2016-10-10 12:00:00','RRRR-MM-DD HH24:MI:SS'),'國慶日');
-
 
 
 Insert into      HOURS (EID,YEAR,KID,CREDIT) values ('E151','2016',2,50);
@@ -743,6 +676,87 @@ Insert into      HOURS (EID,YEAR,KID,CREDIT) values ('E150','2017',4,30);
 Insert into      HOURS (EID,YEAR,KID,CREDIT) values ('E150','2017',5,40);
 
 
+Insert into      HOLIDAY (HID,H_DATE,H_NAME) values (1,to_date('2016-05-01 12:00:00','RRRR-MM-DD HH24:MI:SS'),'星期日');
+Insert into      HOLIDAY (HID,H_DATE,H_NAME) values (2,to_date('2016-05-07 12:00:00','RRRR-MM-DD HH24:MI:SS'),'星期六');
+Insert into      HOLIDAY (HID,H_DATE,H_NAME) values (3,to_date('2016-05-08 12:00:00','RRRR-MM-DD HH24:MI:SS'),'星期日');
+Insert into      HOLIDAY (HID,H_DATE,H_NAME) values (4,to_date('2016-05-14 12:00:00','RRRR-MM-DD HH24:MI:SS'),'星期六');
+Insert into      HOLIDAY (HID,H_DATE,H_NAME) values (5,to_date('2016-05-15 12:00:00','RRRR-MM-DD HH24:MI:SS'),'星期日');
+Insert into      HOLIDAY (HID,H_DATE,H_NAME) values (6,to_date('2016-05-21 12:00:00','RRRR-MM-DD HH24:MI:SS'),'星期六');
+Insert into      HOLIDAY (HID,H_DATE,H_NAME) values (7,to_date('2016-05-22 12:00:00','RRRR-MM-DD HH24:MI:SS'),'星期日');
+Insert into      HOLIDAY (HID,H_DATE,H_NAME) values (8,to_date('2016-05-28 12:00:00','RRRR-MM-DD HH24:MI:SS'),'星期六');
+Insert into      HOLIDAY (HID,H_DATE,H_NAME) values (9,to_date('2016-05-29 12:00:00','RRRR-MM-DD HH24:MI:SS'),'星期日');
+Insert into      HOLIDAY (HID,H_DATE,H_NAME) values (10,to_date('2016-06-04 12:00:00','RRRR-MM-DD HH24:MI:SS'),'星期六');
+Insert into      HOLIDAY (HID,H_DATE,H_NAME) values (11,to_date('2016-06-05 12:00:00','RRRR-MM-DD HH24:MI:SS'),'星期日');
+Insert into      HOLIDAY (HID,H_DATE,H_NAME) values (12,to_date('2016-06-11 12:00:00','RRRR-MM-DD HH24:MI:SS'),'星期六');
+Insert into      HOLIDAY (HID,H_DATE,H_NAME) values (13,to_date('2016-06-12 12:00:00','RRRR-MM-DD HH24:MI:SS'),'星期日');
+Insert into      HOLIDAY (HID,H_DATE,H_NAME) values (14,to_date('2016-06-18 12:00:00','RRRR-MM-DD HH24:MI:SS'),'星期六');
+Insert into      HOLIDAY (HID,H_DATE,H_NAME) values (15,to_date('2016-06-19 12:00:00','RRRR-MM-DD HH24:MI:SS'),'星期日');
+Insert into      HOLIDAY (HID,H_DATE,H_NAME) values (16,to_date('2016-06-25 12:00:00','RRRR-MM-DD HH24:MI:SS'),'星期六');
+Insert into      HOLIDAY (HID,H_DATE,H_NAME) values (17,to_date('2016-06-26 12:00:00','RRRR-MM-DD HH24:MI:SS'),'星期日');
+Insert into      HOLIDAY (HID,H_DATE,H_NAME) values (18,to_date('2016-07-02 12:00:00','RRRR-MM-DD HH24:MI:SS'),'星期六');
+Insert into      HOLIDAY (HID,H_DATE,H_NAME) values (19,to_date('2016-07-03 12:00:00','RRRR-MM-DD HH24:MI:SS'),'星期日');
+Insert into      HOLIDAY (HID,H_DATE,H_NAME) values (20,to_date('2016-07-09 12:00:00','RRRR-MM-DD HH24:MI:SS'),'星期六');
+Insert into      HOLIDAY (HID,H_DATE,H_NAME) values (21,to_date('2016-07-10 12:00:00','RRRR-MM-DD HH24:MI:SS'),'星期日');
+Insert into      HOLIDAY (HID,H_DATE,H_NAME) values (22,to_date('2016-07-16 12:00:00','RRRR-MM-DD HH24:MI:SS'),'星期六');
+Insert into      HOLIDAY (HID,H_DATE,H_NAME) values (23,to_date('2016-07-17 12:00:00','RRRR-MM-DD HH24:MI:SS'),'星期日');
+Insert into      HOLIDAY (HID,H_DATE,H_NAME) values (24,to_date('2016-07-23 12:00:00','RRRR-MM-DD HH24:MI:SS'),'星期六');
+Insert into      HOLIDAY (HID,H_DATE,H_NAME) values (25,to_date('2016-07-24 12:00:00','RRRR-MM-DD HH24:MI:SS'),'星期日');
+Insert into      HOLIDAY (HID,H_DATE,H_NAME) values (26,to_date('2016-07-30 12:00:00','RRRR-MM-DD HH24:MI:SS'),'星期六');
+Insert into      HOLIDAY (HID,H_DATE,H_NAME) values (27,to_date('2016-07-31 12:00:00','RRRR-MM-DD HH24:MI:SS'),'星期日');
+Insert into      HOLIDAY (HID,H_DATE,H_NAME) values (28,to_date('2016-08-06 12:00:00','RRRR-MM-DD HH24:MI:SS'),'星期六');
+Insert into      HOLIDAY (HID,H_DATE,H_NAME) values (29,to_date('2016-08-07 12:00:00','RRRR-MM-DD HH24:MI:SS'),'星期日');
+Insert into      HOLIDAY (HID,H_DATE,H_NAME) values (30,to_date('2016-08-13 12:00:00','RRRR-MM-DD HH24:MI:SS'),'星期六');
+Insert into      HOLIDAY (HID,H_DATE,H_NAME) values (31,to_date('2016-08-14 12:00:00','RRRR-MM-DD HH24:MI:SS'),'星期日');
+Insert into      HOLIDAY (HID,H_DATE,H_NAME) values (32,to_date('2016-08-20 12:00:00','RRRR-MM-DD HH24:MI:SS'),'星期六');
+Insert into      HOLIDAY (HID,H_DATE,H_NAME) values (33,to_date('2016-08-21 12:00:00','RRRR-MM-DD HH24:MI:SS'),'星期日');
+Insert into      HOLIDAY (HID,H_DATE,H_NAME) values (34,to_date('2016-08-27 12:00:00','RRRR-MM-DD HH24:MI:SS'),'星期六');
+Insert into      HOLIDAY (HID,H_DATE,H_NAME) values (35,to_date('2016-08-28 12:00:00','RRRR-MM-DD HH24:MI:SS'),'星期日');
+Insert into      HOLIDAY (HID,H_DATE,H_NAME) values (36,to_date('2016-09-03 12:00:00','RRRR-MM-DD HH24:MI:SS'),'星期六');
+Insert into      HOLIDAY (HID,H_DATE,H_NAME) values (37,to_date('2016-09-04 12:00:00','RRRR-MM-DD HH24:MI:SS'),'星期日');
+Insert into      HOLIDAY (HID,H_DATE,H_NAME) values (38,to_date('2016-09-10 12:00:00','RRRR-MM-DD HH24:MI:SS'),'星期六');
+Insert into      HOLIDAY (HID,H_DATE,H_NAME) values (39,to_date('2016-09-11 12:00:00','RRRR-MM-DD HH24:MI:SS'),'星期日');
+Insert into      HOLIDAY (HID,H_DATE,H_NAME) values (40,to_date('2016-09-17 12:00:00','RRRR-MM-DD HH24:MI:SS'),'星期六');
+Insert into      HOLIDAY (HID,H_DATE,H_NAME) values (41,to_date('2016-09-18 12:00:00','RRRR-MM-DD HH24:MI:SS'),'星期日');
+Insert into      HOLIDAY (HID,H_DATE,H_NAME) values (42,to_date('2016-09-24 12:00:00','RRRR-MM-DD HH24:MI:SS'),'星期六');
+Insert into      HOLIDAY (HID,H_DATE,H_NAME) values (43,to_date('2016-09-25 12:00:00','RRRR-MM-DD HH24:MI:SS'),'星期日');
+Insert into      HOLIDAY (HID,H_DATE,H_NAME) values (44,to_date('2016-10-01 12:00:00','RRRR-MM-DD HH24:MI:SS'),'星期六');
+Insert into      HOLIDAY (HID,H_DATE,H_NAME) values (45,to_date('2016-10-02 12:00:00','RRRR-MM-DD HH24:MI:SS'),'星期日');
+Insert into      HOLIDAY (HID,H_DATE,H_NAME) values (46,to_date('2016-10-08 12:00:00','RRRR-MM-DD HH24:MI:SS'),'星期六');
+Insert into      HOLIDAY (HID,H_DATE,H_NAME) values (47,to_date('2016-10-09 12:00:00','RRRR-MM-DD HH24:MI:SS'),'星期日');
+Insert into      HOLIDAY (HID,H_DATE,H_NAME) values (48,to_date('2016-10-15 12:00:00','RRRR-MM-DD HH24:MI:SS'),'星期六');
+Insert into      HOLIDAY (HID,H_DATE,H_NAME) values (49,to_date('2016-10-16 12:00:00','RRRR-MM-DD HH24:MI:SS'),'星期日');
+Insert into      HOLIDAY (HID,H_DATE,H_NAME) values (50,to_date('2016-10-22 12:00:00','RRRR-MM-DD HH24:MI:SS'),'星期六');
+Insert into      HOLIDAY (HID,H_DATE,H_NAME) values (51,to_date('2016-10-23 12:00:00','RRRR-MM-DD HH24:MI:SS'),'星期日');
+Insert into      HOLIDAY (HID,H_DATE,H_NAME) values (52,to_date('2016-10-29 12:00:00','RRRR-MM-DD HH24:MI:SS'),'星期六');
+Insert into      HOLIDAY (HID,H_DATE,H_NAME) values (53,to_date('2016-10-30 12:00:00','RRRR-MM-DD HH24:MI:SS'),'星期日');
+Insert into      HOLIDAY (HID,H_DATE,H_NAME) values (54,to_date('2016-11-05 12:00:00','RRRR-MM-DD HH24:MI:SS'),'星期六');
+Insert into      HOLIDAY (HID,H_DATE,H_NAME) values (55,to_date('2016-11-06 12:00:00','RRRR-MM-DD HH24:MI:SS'),'星期日');
+Insert into      HOLIDAY (HID,H_DATE,H_NAME) values (56,to_date('2016-11-12 12:00:00','RRRR-MM-DD HH24:MI:SS'),'星期六');
+Insert into      HOLIDAY (HID,H_DATE,H_NAME) values (57,to_date('2016-11-13 12:00:00','RRRR-MM-DD HH24:MI:SS'),'星期日');
+Insert into      HOLIDAY (HID,H_DATE,H_NAME) values (58,to_date('2016-11-19 12:00:00','RRRR-MM-DD HH24:MI:SS'),'星期六');
+Insert into      HOLIDAY (HID,H_DATE,H_NAME) values (59,to_date('2016-11-20 12:00:00','RRRR-MM-DD HH24:MI:SS'),'星期日');
+Insert into      HOLIDAY (HID,H_DATE,H_NAME) values (60,to_date('2016-11-26 12:00:00','RRRR-MM-DD HH24:MI:SS'),'星期六');
+Insert into      HOLIDAY (HID,H_DATE,H_NAME) values (61,to_date('2016-11-27 12:00:00','RRRR-MM-DD HH24:MI:SS'),'星期日');
+Insert into      HOLIDAY (HID,H_DATE,H_NAME) values (62,to_date('2016-12-03 12:00:00','RRRR-MM-DD HH24:MI:SS'),'星期六');
+Insert into      HOLIDAY (HID,H_DATE,H_NAME) values (63,to_date('2016-12-04 12:00:00','RRRR-MM-DD HH24:MI:SS'),'星期日');
+Insert into      HOLIDAY (HID,H_DATE,H_NAME) values (64,to_date('2016-12-10 12:00:00','RRRR-MM-DD HH24:MI:SS'),'星期六');
+Insert into      HOLIDAY (HID,H_DATE,H_NAME) values (65,to_date('2016-12-11 12:00:00','RRRR-MM-DD HH24:MI:SS'),'星期日');
+Insert into      HOLIDAY (HID,H_DATE,H_NAME) values (66,to_date('2016-12-17 12:00:00','RRRR-MM-DD HH24:MI:SS'),'星期六');
+Insert into      HOLIDAY (HID,H_DATE,H_NAME) values (67,to_date('2016-12-18 12:00:00','RRRR-MM-DD HH24:MI:SS'),'星期日');
+Insert into      HOLIDAY (HID,H_DATE,H_NAME) values (68,to_date('2016-12-24 12:00:00','RRRR-MM-DD HH24:MI:SS'),'星期六');
+Insert into      HOLIDAY (HID,H_DATE,H_NAME) values (69,to_date('2016-12-25 12:00:00','RRRR-MM-DD HH24:MI:SS'),'星期日');
+Insert into      HOLIDAY (HID,H_DATE,H_NAME) values (70,to_date('2016-12-31 12:00:00','RRRR-MM-DD HH24:MI:SS'),'星期六');
+Insert into      HOLIDAY (HID,H_DATE,H_NAME) values (71,to_date('2017-01-01 12:00:00','RRRR-MM-DD HH24:MI:SS'),'星期日');
+Insert into      HOLIDAY (HID,H_DATE,H_NAME) values (72,to_date('2017-06-09 12:00:00','RRRR-MM-DD HH24:MI:SS'),'端午節');
+Insert into      HOLIDAY (HID,H_DATE,H_NAME) values (73,to_date('2017-06-10 12:00:00','RRRR-MM-DD HH24:MI:SS'),'彈性放假');
+Insert into      HOLIDAY (HID,H_DATE,H_NAME) values (74,to_date('2016-09-15 12:00:00','RRRR-MM-DD HH24:MI:SS'),'中秋節');
+Insert into      HOLIDAY (HID,H_DATE,H_NAME) values (75,to_date('2016-09-16 12:00:00','RRRR-MM-DD HH24:MI:SS'),'彈性放假');
+Insert into      HOLIDAY (HID,H_DATE,H_NAME) values (76,to_date('2016-10-10 12:00:00','RRRR-MM-DD HH24:MI:SS'),'國慶日');
+
+
+
+
+
 
 Insert into      IDENTITY (IDENTITY,IDENTITY_NAME) values ('M','部門經理');
 Insert into      IDENTITY (IDENTITY,IDENTITY_NAME) values ('V','總經理');
@@ -758,11 +772,7 @@ Insert into      JOB (JOB_ID,JOB_NAME) values (4,'專員');
 
 
 
-Insert into      PSE_KIND (KID,KNAME) values (1,'事假');
-Insert into      PSE_KIND (KID,KNAME) values (2,'病假');
-Insert into      PSE_KIND (KID,KNAME) values (3,'喪假');
-Insert into      PSE_KIND (KID,KNAME) values (4,'產假');
-Insert into      PSE_KIND (KID,KNAME) values (5,'特休');
+
 
 
 
@@ -832,10 +842,6 @@ Insert into      PSE_MAIN (PID,EID,STATUS,APPLYTIME,REPLY) values (10000063,'E10
 
 
 
-Insert into      PSE_STATUS (STATUS,SNAME) values (1,'通過');
-Insert into      PSE_STATUS (STATUS,SNAME) values (2,'退回');
-Insert into      PSE_STATUS (STATUS,SNAME) values (3,'待審核');
-Insert into      PSE_STATUS (STATUS,SNAME) values (4,'刪除');
 
 
 
